@@ -1,0 +1,38 @@
+{
+    "product": {
+        "id": 0,
+        "name": "", 
+        "description": "",
+        "price": 0,
+        "sizes": {}
+
+    },
+
+    "order": {
+        "id": 0,
+        "ordertime": 0, 
+        "totalprice": 0,
+        "productlines": {
+
+        }
+    },
+
+    "productline": {
+        "product": {
+            "id": 0,
+            "name": "", 
+            "description": "",
+            "price": 0
+        },
+        "amount": 0,
+        "size": ""
+        
+    },
+
+    "admin": {
+        "username": "",
+        "password": ""
+    }
+
+}
+
