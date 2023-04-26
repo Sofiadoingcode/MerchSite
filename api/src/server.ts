@@ -41,6 +41,7 @@ app.use('/graphql',
     })},
    )
 );
+HALLO
 */
 
 app.use(cors())
