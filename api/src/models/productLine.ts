@@ -1,5 +1,8 @@
 import mongoose, { Schema } from 'mongoose';
 
+const Product = require('productModel.')
+
+
 const ProductLineSchema = new mongoose.Schema({
     linePrice: {
         type: Number,
@@ -19,6 +22,4 @@ const ProductLineSchema = new mongoose.Schema({
     },
 });
 
-const ProductLineModel = mongoose.model('Product', ProductLineSchema);
-
-module.exports = ProductLineModel;
+export default ProductLineSchema;
