@@ -1,7 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
-
-const ProductLine = require('productLine')
-const Address = require('address')
+import ProductLine from './productLine'
+import Address from './Address'
 
 const OrderSchema = new mongoose.Schema({
     orderTime: {
