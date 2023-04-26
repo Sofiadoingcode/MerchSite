@@ -1,6 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
-import ProductLine from './productLine'
-import Address from './Address'
+import ProductLine from './productLineModel'
+import Address from './addressModel'
+import Customer from './customerModel'
 
 const OrderSchema = new mongoose.Schema({
     orderTime: {
@@ -19,6 +20,10 @@ const OrderSchema = new mongoose.Schema({
         type: [ProductLine],
         required: true,
     },
+    customer: {
+        type: Customer,
+        required: true
+    }
 });
 
 export default OrderSchema;
