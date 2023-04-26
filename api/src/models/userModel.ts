@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const CustomerModel = require('./customerModel');
 
 const userSchema = mongoose.Schema({
     name: {
@@ -25,7 +26,7 @@ const userSchema = mongoose.Schema({
     },
 
     user: {
-        type: CustomerModel.schema,
+        type: CustomerModel,
         required: false
     }
 
