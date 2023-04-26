@@ -31,15 +31,17 @@ const server = new ApolloServer<MyContext>({
 
 await server.start();
 
+/*
 app.use('/graphql', 
   cors<cors.CorsRequest>(),
   json(),
   expressMiddleware(server, {
     context: async() => ({
-    
+      
     })},
    )
 );
+*/
 
 app.use(cors())
 console.log(process.env.DATABASE_PASSWORD!);
