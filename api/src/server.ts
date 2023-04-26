@@ -7,8 +7,11 @@ import { startStandaloneServer } from '@apollo/server/standalone';
 import typeDefs from './schema';
 import express from 'express';
 import cors from 'cors';
+import * as dotenv from 'dotenv';
 import body_parser_pkg from 'body-parser';
 const { json } = body_parser_pkg;
+
+dotenv.config({path:'./config.env'})
 
 interface MyContext {
   
@@ -46,6 +49,9 @@ app.use('/graphql',
 app.use(cors())
 console.log(process.env.DATABASE_PASSWORD!);
 
+await new Promise<void>((resolve) => httpServer.listen({ port: 4001 }, resolve));
+console.log(`🚀 GraphQL Server ready at http://localhost:4001/graphql`);
+
 const DB = process.env.DATABASE_DEV!.replace(
     '<PASSWORD>',
     process.env.DATABASE_PASSWORD!
@@ -55,6 +61,4 @@ mongoose.connect(DB, {
 }).then(() => console.log('DB connection successful!'));
 
 
-await new Promise<void>((resolve) => httpServer.listen({ port: 4001 }, resolve));
-console.log(`🚀 GraphQL Server ready at http://localhost:4001/graphql`);
 
