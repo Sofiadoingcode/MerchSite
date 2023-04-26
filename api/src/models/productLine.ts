@@ -1,7 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 
-const Product = require('productModel.')
-
+import Product from './productModel'
 
 const ProductLineSchema = new mongoose.Schema({
     linePrice: {
