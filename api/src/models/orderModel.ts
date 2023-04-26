@@ -1,7 +1,7 @@
 import mongoose, { Schema } from 'mongoose'
 import ProductLine from './productLineModel'
 import Customer from './customerModel'
-import Address from './addressModel'
+import Address from './addressModel';
 
 const OrderSchema = new mongoose.Schema({
     orderTime: {
