@@ -1,10 +1,22 @@
 import mongoose from "mongoose";
 
 const addressSchema = new mongoose.Schema({
-    postalCode: String, 
-    streetAddress: String,
-    city: String,
-    country: String,
+    postalCode: {
+        type: String, 
+        required: true
+    }, 
+    streetAddress: {
+        type: String, 
+        required: true
+    },
+    city: {
+        type: String, 
+        required: true
+    },
+    country: {
+        type: String, 
+        required: true
+    },
 
 })
 

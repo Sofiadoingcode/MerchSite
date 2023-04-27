@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const CustomerModel = require('./customerModel');
 
 const userSchema = mongoose.Schema({
-    name: {
+    username: {
         type: String,
         required: true,
         minlength: [4 , 'Name must be at least 4 characters long'],
@@ -24,11 +24,6 @@ const userSchema = mongoose.Schema({
         enum:['admin', 'user'],
         default: 'admin'
     },
-
-    user: {
-        type: CustomerModel,
-        required: false
-    }
 
 
 })
