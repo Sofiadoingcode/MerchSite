@@ -1,0 +1,24 @@
+.container {
+    display: flex;
+    justify-content: center; /* centers the items horizontally */
+    align-items: center; /* centers the items vertically */
+    flex-direction: row; /* displays the items in a row */
+}
+
+.box {
+    width: 500px;
+    height: 500px;
+    background-color: gray;
+    margin: 10px; /* adds some space between the boxes */
+}
+
+
+.description{
+    font-size: 50px;
+}
+
+.infoGrid{
+    height: 500px;
+    font-size: 40px;
+
+}
