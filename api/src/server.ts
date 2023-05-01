@@ -10,6 +10,7 @@ import cors from 'cors';
 import * as dotenv from 'dotenv';
 import body_parser_pkg from 'body-parser';
 const { json } = body_parser_pkg;
+import Query from './resolvers/Query';
 
 dotenv.config({path:'./config.env'})
 
@@ -18,7 +19,7 @@ interface MyContext {
 };
 
 const resolvers = {
-
+  Query
 };
 
 
@@ -34,7 +35,7 @@ const server = new ApolloServer<MyContext>({
 
 await server.start();
 
-/*
+
 app.use('/graphql', 
   cors<cors.CorsRequest>(),
   json(),
@@ -44,7 +45,7 @@ app.use('/graphql',
     })},
    )
 );
-*/
+
 
 app.use(cors())
 console.log(process.env.DATABASE_PASSWORD!);

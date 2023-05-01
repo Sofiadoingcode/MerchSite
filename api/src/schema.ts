@@ -4,7 +4,6 @@ type Product {
     name: String!
     description: String
     price: Float!
-    description: String
     category: String!
     size: String
     
@@ -20,11 +19,11 @@ type ProductLine {
   
 type Order {
     id: ID!
-    orderTime: Date!
+    orderTime: String!
     totalprice: Float!
     address: Address!
     customer: Customer!
-    productlines: [Productline!]!
+    productlines: [ProductLine!]!
   }
 
 type Customer {
@@ -55,14 +54,13 @@ type User {
 
   
 type Query {
-    
+    products: [Product!]!
   }
 
-type Mutation {
-    
-  }
+
+
+
   
-
 `
 
 export default typeDefs;
