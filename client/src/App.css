@@ -1,0 +1,12 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+#grid_container_shop {
+  width: 100%;
+  margin: 3rem;
+}
+#shop_outer_div{
+  contain: paint;
+}
