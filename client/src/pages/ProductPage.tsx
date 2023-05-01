@@ -19,7 +19,7 @@ function ProductPage() {
                     ></img>
                 </Card>
             </Grid>
-            <Grid style={{}} item xs={6}>
+            <Grid item xs={6}>
                 <Card>
                     <Grid className={"infoGrid container"} container rowSpacing={1}
                           columnSpacing={{xs: 1, sm: 2, md: 3}}>
