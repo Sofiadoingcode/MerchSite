@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import HomePage from './pages/HomePage'
 import ShopPage from './pages/ShopPage'
 import { usePageTitle } from './usePageTitle';
+import Footer from './components/Footer';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="/shop" element={<ShopPage/>} />
           <Route path="*" element={<h1>Page Not Found !!!!</h1>}/>
         </Routes>
+        <Footer/>
 
         </div>
       
