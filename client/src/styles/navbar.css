@@ -19,13 +19,26 @@
     color: #fff;
   }
 
-.linkdiv {
-    position: default;
-}
 
 .link {
     color: white;
     font-size: 20px;
     margin-left: 1.5rem;
+
+}
+
+.link:hover {
+    color: white;
+    font-size: 25px;
+}
+
+.iconlink {
+    margin-left: 1.5rem;
+
+}
+
+.svg:hover {
+    width: 2.5rem;
+    height: 2.2rem;
 
 }
