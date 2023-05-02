@@ -13,8 +13,11 @@ export const usePageTitle = () => {
       case '/shop':
         setPageTitle('SHOP');
         break;
+      case '/cart':
+        setPageTitle('CART');
+        break;
       default:
-        setPageTitle('HOMEPAGE');
+        setPageTitle('DEFAULT');
     }
   }, [location.pathname]);
 

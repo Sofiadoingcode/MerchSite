@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage'
 import ShopPage from './pages/ShopPage'
 import { usePageTitle } from './usePageTitle';
 import Footer from './components/Footer';
+import CartPage from './pages/CartPage';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
       <Routes>
           <Route path="/" element={<HomePage/>} />
           <Route path="/shop" element={<ShopPage/>} />
+          <Route path="/cart" element={<CartPage/>} />
           <Route path="*" element={<h1>Page Not Found !!!!</h1>}/>
         </Routes>
         <Footer/>

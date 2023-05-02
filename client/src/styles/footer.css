@@ -3,6 +3,7 @@ footer {
     bottom: 0px;
     right: 0px;
     left: 0px;
+    
   }
 
 .footer {
@@ -16,6 +17,7 @@ footer {
     max-width: auto;
     margin: 0 auto;
     padding: 0 0rem;
+
   }
   
   .footer-content {
@@ -24,6 +26,7 @@ footer {
     flex-wrap: wrap;
     justify-content: space-between;
     padding-bottom: 2rem;
+  
   }
   
   .footer-section {
