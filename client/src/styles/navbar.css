@@ -24,7 +24,7 @@
     color: white;
     font-size: 20px;
     margin-left: 1.5rem;
-
+    text-decoration: inherit;
 }
 
 .link:hover {
