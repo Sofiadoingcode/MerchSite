@@ -1,3 +1,24 @@
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ccb9ed;
+    padding: 1rem;
+  }
+  
+  .navbarleft,
+  .navbarright {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar p {
+    margin: 0;
+    padding: 0;
+    color: #fff;
+  }
+
 .linkdiv {
     position: default;
 }
@@ -5,6 +26,6 @@
 .link {
     color: white;
     font-size: 20px;
-
+    margin-left: 1.5rem;
 
 }

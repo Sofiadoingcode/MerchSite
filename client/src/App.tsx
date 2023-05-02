@@ -1,22 +1,28 @@
-import { useState } from 'react'
+import { useState , useEffect} from 'react'
 import './App.css'
 import NavBar from './components/NavBar'
-import {Route, Router, Routes, BrowserRouter} from "react-router-dom"
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import HomePage from './pages/HomePage'
+import ShopPage from './pages/ShopPage'
+import { usePageTitle } from './usePageTitle';
 
 function App() {
 
-  return (
-  
-    <div className="App">
+  const currentPage = usePageTitle();
 
-      <BrowserRouter>
-      <NavBar/>
+  return (
+    <div className="App">   
+    
+    <div>
+      <NavBar page={currentPage}/>
       <Routes>
-                <Route path="/" element={<HomePage/>}/>
-                <Route path="*" element={<h1>Page Not Found !!!!</h1>}/>
+          <Route path="/" element={<HomePage/>} />
+          <Route path="/shop" element={<ShopPage/>} />
+          <Route path="*" element={<h1>Page Not Found !!!!</h1>}/>
         </Routes>
-      </BrowserRouter>
+
+        </div>
+      
     </div>
   )
   
