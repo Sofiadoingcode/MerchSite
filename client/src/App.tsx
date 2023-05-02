@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import ShopPage from './pages/ShopPage'
 import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
+import ProductPage from "./pages/ProductPage";
 
 
 const client = new ApolloClient({
@@ -13,7 +14,7 @@ function App() {
 
   return (
     <ApolloProvider client={client}>
-    <ShopPage/>
+      <ProductPage/>
     </ApolloProvider>
   )
 

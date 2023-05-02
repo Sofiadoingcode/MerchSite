@@ -15,10 +15,47 @@
 
 .description{
     font-size: 50px;
+    margin-left: 5%;
+    max-width: 90%;
+    padding: 5px;
 }
 
 .infoGrid{
-    height: 500px;
+    height: 100%;
     font-size: 40px;
-
+    /*background-color: #cbecf2;*/
 }
+
+.pictureAndInfo{
+    width: 90%;
+    height: 90%;
+    margin-top: 2.5%;
+}
+
+label {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+select {
+    font-size: 16px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #444;
+    width: 150px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+select:focus {
+    outline: none;
+    border-color: #719ECE;
+}
+
+option {
+    font-size: 16px;
+}
+
