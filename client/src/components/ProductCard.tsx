@@ -1,10 +1,13 @@
 import { useQuery } from "@apollo/client";
 import { Card, CardContent, Typography, CardMedia, Grid } from "@mui/material";
+import { Product } from "../types";
+import { NavLink } from "react-router-dom";
 
-function ProductCard({ product }: { product: number }) {
+function ProductCard({ product }: { product: Product }) {
 
 
   return (
+    <NavLink to={`/product/${product.id}`} className="link_card">
     <Card raised sx={{margin:'0 auto'}}>
       <CardContent>
       <CardMedia
@@ -15,16 +18,17 @@ function ProductCard({ product }: { product: number }) {
       <Grid container>
         <Grid item md={8}>
       <CardContent>
-        <Typography>{product}</Typography>
+        <Typography>{product.name}</Typography>
       </CardContent>
       </Grid>
       <Grid item md={4}>
       <CardContent>
-        <Typography>299 kr!!</Typography>
+        <Typography>{product.price} €</Typography>
       </CardContent>
       </Grid>
       </Grid>
     </Card>
+    </NavLink>
   )
 }
 

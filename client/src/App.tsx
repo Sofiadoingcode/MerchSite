@@ -1,6 +1,10 @@
 import { useState } from 'react'
 import './App.css'
 import ShopPage from './pages/ShopPage'
+import { usePageTitle } from './usePageTitle';
+import Footer from './components/Footer';
+import CartPage from './pages/CartPage';
+import ProductPage from './pages/ProductPage';
 import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
 import ProductPage from "./pages/ProductPage";
 
@@ -14,7 +18,18 @@ function App() {
 
   return (
     <ApolloProvider client={client}>
-      <ProductPage/>
+      <div>
+        <NavBar page={currentPage}/>
+        <Routes>
+          <Route path="/" element={<HomePage/>} />
+          <Route path="/shop" element={<ShopPage/>}/>
+          <Route path="/product/:productId" element={<ProductPage/>} />
+          <Route path="/cart" element={<CartPage/>} />
+          <Route path="*" element={<h1>Page Not Found !!!!</h1>}/>
+        </Routes>
+        <Footer/>
+
+      </div>
     </ApolloProvider>
   )
 

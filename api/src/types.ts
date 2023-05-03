@@ -16,7 +16,7 @@ type Context = {
 
 type Args = {
     id: string;
-    
+    input: Product;
 };
 
 export type {Product, Context, Args};

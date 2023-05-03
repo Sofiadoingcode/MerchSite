@@ -3,10 +3,13 @@
   padding: 0;
   box-sizing: border-box;
 }
-#grid_container_shop {
+
+html, body {
+  margin: 0;
+  padding: 0;
   width: 100%;
-  margin: 3rem;
+  height: 100%;
 }
-#shop_outer_div{
-  contain: paint;
+body {
+  padding-top: 65px;
 }

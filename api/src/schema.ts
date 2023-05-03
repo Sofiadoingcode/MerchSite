@@ -55,11 +55,21 @@ type User {
   
 type Query {
     products: [Product!]!
+    product(id: ID): Product
   }
 
+type Mutation {
+  createProduct(input:ProductInput): Product
+}
 
-
-
+input ProductInput{
+  id: ID
+  name: String!
+  description: String
+  price: Float!
+  category: String!
+  size: String
+}
   
 `
 
