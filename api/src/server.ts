@@ -15,7 +15,7 @@ import Query from './resolvers/Query';
 dotenv.config({path:'./config.env'})
 
 interface MyContext {
-  
+
 };
 
 const resolvers = {
