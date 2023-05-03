@@ -2,13 +2,22 @@ import {useState} from "react";
 import '../styles/productpage.css'
 import {useQuery} from "@apollo/client";
 import {Button, Card, CardMedia, Grid, TextField} from "@mui/material";
+import GetAllProducts from "../resolvers/queries/GqlGetAllProducts";
+import GetProduct from "../resolvers/queries/GqlGetProduct";
+import {useParams} from "react-router-dom";
 
-// import GetProduct from "../resolvers/queries/GqlGetProduct";
 
 function ProductPage() {
-    const [product, setProduct] = useState('');
-    const description = "Hajer er en orden af tværmunde. De er bruskfisk med en langstrakt krop og adskiller sig fra benfisk ved udelukkende at have skelet af brusk i stedet for ben, huden er dækket af hudtænder i stedet for skæl og i stedet for en enkelt gælleåbning på hver side af hovedet har hajerne 5-7 gælleåbninger"
-    // const {loading, error, data} = useQuery(GetProduct);
+    const { productId } = useParams();
+    const { loading, error, data } = useQuery(GetProduct, {
+        variables: { productId },
+    });
+
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error.message}</p>;
+    if (!data || !data.product) return <p>No product found.</p>;
+
+    const product = data.product;
 
     return (
         // <div style={{backgroundColor: '#cbecf2', width: '100%', height: '100vh', margin: "auto"}}>
@@ -25,8 +34,8 @@ function ProductPage() {
                     <Grid className={"infoGrid container"} container rowSpacing={1}
                           columnSpacing={{xs: 1, sm: 2, md: 3}}>
                         <Grid item xs={10}>
-                            <h2>BlåHaj!</h2>
-                            <h3>699 kr!</h3>
+                            <h2>{product.name}</h2>
+                            <h3>{product.price} DKK</h3>
                         </Grid>
                         <Grid item xs={10}>
                             <label htmlFor="size">Size:</label>
@@ -53,7 +62,7 @@ function ProductPage() {
             <Grid item xs={12}>
                 <Card className={"description"}>
                     <h4>Description</h4>
-                    <p style={{fontSize: '20px'}}>{description}</p>
+                    <p style={{fontSize: '20px'}}>{product.description}</p>
                 </Card>
             </Grid>
         </Grid>
