@@ -57,9 +57,18 @@ type Query {
     products: [Product!]!
   }
 
+type Mutation {
+  createProduct(input:ProductInput): Product
+}
 
-
-
+input ProductInput{
+  id: ID
+  name: String!
+  description: String
+  price: Float!
+  category: String!
+  size: String
+}
   
 `
 
