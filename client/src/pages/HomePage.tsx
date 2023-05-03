@@ -1,11 +1,12 @@
 import CategoryCard from "../components/CategoryCard"
+import CreateProduct from "../components/CreateProduct"
 
 function HomePage() {
     
   
     return (
       <div>
-        <CategoryCard/>
+        <CreateProduct/>
       </div>
     )
   }

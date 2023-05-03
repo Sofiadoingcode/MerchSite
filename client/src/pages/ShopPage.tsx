@@ -3,13 +3,14 @@ import { useQuery } from "@apollo/client/react";
 import ProductCard from "../components/ProductCard"
 import GetAllProducts from "../resolvers/queries/GqlGetAllProducts";
 import '../styles/shop.css'
+import { Product } from "../types";
 
 function ShopPage() {
-  const products = [1,2,3,4,5,6,7]
   const { loading, error, data } = useQuery(GetAllProducts);
 
 if (loading) return <p>Loading...</p>;
 if (error) return <p>Error : {error.message}</p>;
+const products: Product[] = data.products
 
   return (
     <div>
