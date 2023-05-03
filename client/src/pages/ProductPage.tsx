@@ -35,7 +35,6 @@ function ProductPage() {
                                 <option value="small">Small</option>
                                 <option value="medium">Medium</option>
                                 <option value="large">Large</option>
-                                <option value="extra-large">Extra Large</option>
                             </select>
                         </Grid>
                         <Grid item xs={8}>
