@@ -16,7 +16,7 @@ import Mutation from './resolvers/mutation';
 dotenv.config({path:'./config.env'})
 
 interface MyContext {
-  
+
 };
 
 const resolvers = {
