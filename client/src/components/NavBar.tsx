@@ -21,7 +21,7 @@ function NavBar(props: {page: String}) {
     return (
       <>
         
-          <AppBar position='absolute'>
+          <AppBar /*position='absolute'*/>
           <CssBaseline />
           <Toolbar className='navbar'>
               <div className='navbarleft'>

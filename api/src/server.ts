@@ -11,6 +11,7 @@ import * as dotenv from 'dotenv';
 import body_parser_pkg from 'body-parser';
 const { json } = body_parser_pkg;
 import Query from './resolvers/Query';
+import Mutation from './resolvers/mutation';
 
 dotenv.config({path:'./config.env'})
 
@@ -19,7 +20,8 @@ interface MyContext {
 };
 
 const resolvers = {
-  Query
+  Query,
+  Mutation
 };
 
 
