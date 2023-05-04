@@ -1,0 +1,21 @@
+.cart_item_text {
+    margin-top: 0.5rem
+}
+.cart_page_text {
+    margin-left: 0.5rem
+}
+.cart_checkout_div {
+    margin-top: 2rem;
+    padding: 1rem;
+    height: 5rem;
+    width: 100%
+}
+#cart_checkout_button {
+    height: 100%;
+    width: 100%;
+    font-size: larger;
+}
+#cart_checkout_link {
+    height: 100%;
+    width: 100%
+}

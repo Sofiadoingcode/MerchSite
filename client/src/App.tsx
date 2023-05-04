@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import CartPage from './pages/CartPage';
 import ProductPage from './pages/ProductPage';
 import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
+import CheckOutPage from './pages/CheckOutPage';
 
 
 const client = new ApolloClient({
@@ -29,6 +30,7 @@ function App() {
           <Route path="/shop" element={<ShopPage/>}/>
           <Route path="/product/:productId" element={<ProductPage/>} />
           <Route path="/cart" element={<CartPage/>} />
+          <Route path='/checkout' element={<CheckOutPage/>}/>
           <Route path="*" element={<h1>Page Not Found !!!!</h1>}/>
         </Routes>
         <Footer/>
