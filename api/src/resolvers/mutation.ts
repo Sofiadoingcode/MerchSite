@@ -16,6 +16,8 @@ export default {
         console.log("Im editing")
         const {id, ...updates} = input;
         const updatedProduct = await Product.findByIdAndUpdate(id, updates);
+        console.log(updatedProduct)
+        console.log("Im done editing!")
         return updatedProduct;
     },
 
