@@ -1,4 +1,4 @@
-import { useState , useEffect} from 'react'
+import { useState , useEffect, useReducer} from 'react'
 import './App.css'
 import NavBar from './components/NavBar'
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
@@ -10,6 +10,7 @@ import CartPage from './pages/CartPage';
 import ProductPage from './pages/ProductPage';
 import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
 import CheckOutPage from './pages/CheckOutPage';
+import { CartContextProvider } from './contexts/CartContext';
 
 
 const client = new ApolloClient({
@@ -18,11 +19,10 @@ const client = new ApolloClient({
 });
 
 function App() {
-
   const currentPage = usePageTitle();
-
   return (
     <ApolloProvider client={client}>
+      <CartContextProvider>
       <div>
         <NavBar page={currentPage}/>
         <Routes>
@@ -34,8 +34,8 @@ function App() {
           <Route path="*" element={<h1>Page Not Found !!!!</h1>}/>
         </Routes>
         <Footer/>
-
       </div>
+      </CartContextProvider>
     </ApolloProvider>
 
   )

@@ -6,4 +6,14 @@ type Product = {
     category: string;
     size: string;
 }
-export type {Product}
+type AddtoCart = {
+    type: 'added';
+    item: Product;
+};
+
+type RemoveFromCart = {
+    type: 'removed';
+    item: Product;
+};
+type CartActions = AddtoCart | RemoveFromCart;
+export type { Product, CartActions }
