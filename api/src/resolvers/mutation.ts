@@ -7,4 +7,9 @@ export default{
           await newProduct.save();
           return newProduct;
       },
+
+      deleteProduct: async (_parent:never, { id }:Args) => {
+        const result = await Product.findByIdAndDelete(id);
+        return result ? true : false;
+      },
 }

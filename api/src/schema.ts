@@ -60,6 +60,7 @@ type Query {
 
 type Mutation {
   createProduct(input:ProductInput): Product
+  deleteProduct(id:ID): Boolean
 }
 
 input ProductInput{
