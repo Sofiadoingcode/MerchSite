@@ -41,37 +41,35 @@ const EditProduct = (props: { product: Product }) => {
     };
 
     return (
-        <div className="editProductCard">
-            <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
+            <label>
+                Name:
+                <input type="text" name="name" value={input.name} onChange={handleInputChange}/>
+            </label>
+            <div style={{display: "grid", gridTemplateColumns: "repeat(1, 1fr)", gridGap: "1rem"}}>
                 <label>
-                    Name:
-                    <input type="text" name="name" value={input.name} onChange={handleInputChange}/>
+                    Description:
+                    <textarea name="description" value={input.description} onChange={handleInputChange}/>
                 </label>
-                <div style={{display: "grid", gridTemplateColumns: "repeat(1, 1fr)", gridGap: "1rem"}}>
-                    <label>
-                        Description:
-                        <textarea name="description" value={input.description} onChange={handleInputChange}/>
-                    </label>
-                    <label>
-                        Price:
-                        <input type="number" name="price" value={input.price} onChange={handleInputChange}/>
-                    </label>
-                    <label>
-                        Category:
-                        <input type="text" name="category" value={input.category} onChange={handleInputChange}/>
-                    </label>
-                    <label>
-                        Size:
-                        <input type="text" name="size" value={input.size} onChange={handleInputChange}/>
-                    </label>
-                </div>
+                <label>
+                    Price:
+                    <input type="number" name="price" value={input.price} onChange={handleInputChange}/>
+                </label>
+                <label>
+                    Category:
+                    <input type="text" name="category" value={input.category} onChange={handleInputChange}/>
+                </label>
+                <label>
+                    Size:
+                    <input type="text" name="size" value={input.size} onChange={handleInputChange}/>
+                </label>
+            </div>
 
-                <Button variant="contained" type="submit" disabled={loading}>
-                    {loading ? "Updating..." : "Update Product"}
-                </Button>
-                {error && <p>Error updating product</p>}
-            </form>
-        </div>
+            <Button variant="contained" type="submit" disabled={loading}>
+                {loading ? "Updating..." : "Update Product"}
+            </Button>
+            {error && <p>Error updating product</p>}
+        </form>
     );
 }
 export default EditProduct;
