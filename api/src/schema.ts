@@ -4,7 +4,7 @@ type Product {
     name: String!
     description: String
     price: Float!
-    category: String!
+    category: Category!
     size: String
     
   }
@@ -51,11 +51,17 @@ type User {
     role: String!
   }
 
-
+type Category {
+  id: ID!
+  name: String!
+  products: [Product!]!
+}
   
 type Query {
     products: [Product!]!
     product(id: ID): Product
+    categories: [Category!]!
+    productsByCategory(id: ID): [Product!]!
   }
 
 type Mutation {
