@@ -12,7 +12,7 @@ export default {
         return product;
     },
     categories: async () => await Category.find({}).populate('products'),
-    productsByCategory: async (_parent:never, {id}:Args) => {const cat = await Category.findById(id).populate('products'); return cat.products}
+    productsByCategory: async (_parent:never, {id}:Args) => {const category = await Category.findById(id).populate('products'); return category.products}
 }
 
 /*     categories: async ()=> { let newPerson = new Category({id: new mongoose.Types.ObjectId(), name: 'cat1', products:['6451b436944479f28258993e'] });
