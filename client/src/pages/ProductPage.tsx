@@ -1,10 +1,17 @@
-import {useState} from "react";
+import React, {useState} from "react";
 import '../styles/productpage.css'
 import {useQuery} from "@apollo/client";
 import {Button, Card, CardMedia, Grid, TextField} from "@mui/material";
 import GetAllProducts from "../resolvers/queries/GqlGetAllProducts";
 import GetProduct from "../resolvers/queries/GqlGetProduct";
 import {useParams} from "react-router-dom";
+import {useCartDispatchContext} from "../contexts/CartContext";
+import {Product} from "../types";
+
+
+function handleAddToCartClick(item: Product, dispatch: React.Dispatch<any>) {
+    dispatch({ type: 'added', item: item });
+}
 
 
 function ProductPage() {
@@ -13,14 +20,17 @@ function ProductPage() {
         variables: {productId},
     });
 
+    const dispatch = useCartDispatchContext();
+
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
     if (!data || !data.product) return <p>No product found.</p>;
 
     const product = data.product;
 
+
+
     return (
-        // <div style={{backgroundColor: '#cbecf2', width: '100%', height: '100vh', margin: "auto"}}>
         <Grid style={{backgroundColor: '#cbecf2'}} container rowSpacing={2} columnSpacing={{xs: 1, sm: 2, md: 3}}>
             <Grid item xs={6}>
                 <Card className={"pictureAndInfo"} style={{marginLeft: 'auto'}}>
@@ -61,7 +71,8 @@ function ProductPage() {
                         </Grid>
                         <Grid item xs={5}>
                             <h3>{product.price} DKK</h3>
-                            <Button style={{height: '40px', width: '200px'}} variant="contained">Add To Cart</Button>
+                            <Button style={{height: '40px', width: '200px'}} variant="contained"
+                                    onClick={() => handleAddToCartClick(product, dispatch)}>Add To Cart</Button>
                         </Grid>
                     </Grid>
                 </Card>
@@ -71,7 +82,6 @@ function ProductPage() {
             </Grid>
         </Grid>
 
-        // </div>
     )
 }
 
