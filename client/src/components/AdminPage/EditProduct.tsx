@@ -29,6 +29,8 @@ const EditProduct = (props: { product: Product }) => {
 
     const handleSubmit = (event: any) => {
         event.preventDefault();
+        console.log(updateProduct)
+        console.log("DFJSJDKfn")
         editProduct({
             variables: {
                 id: updateProduct.id,
@@ -46,14 +48,13 @@ const EditProduct = (props: { product: Product }) => {
     };
 
     return (
-
         <>
             <td><input type="string" name="name" defaultValue={props.product.name} onChange={handleInputChange}/></td>
             <td><input type="string" name="description" defaultValue={props.product.description} onChange={handleInputChange}/></td>
             <td><input type="number" name="price" defaultValue={props.product.price} onChange={handleInputChange}/></td>
             <td><input type="string" name="category" defaultValue={props.product.category} onChange={handleInputChange}/></td>
             <td><input type="string" name= "size" defaultValue={props.product.size} onChange={handleInputChange}/></td>
-            <td><Button onSubmit={handleSubmit  } variant="contained" type="submit" disabled={loading}>
+            <td><Button onClick={handleSubmit} variant="contained" disabled={loading}>
                 {loading ? "Updating..." : "Update Product"}
             </Button>
                 {error && <p>Error updating product</p>}</td>
