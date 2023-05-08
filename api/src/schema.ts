@@ -5,8 +5,8 @@ type Product {
     description: String
     price: Float!
     category: Category!
-    size: String
-    
+    size: [String!]!
+    image: String!
   }
 
 type ProductLine {
@@ -32,7 +32,6 @@ type Customer {
     email: String!
     phone: Int!
     address: Address!
-
 }
 
 type Address {
@@ -76,7 +75,8 @@ input ProductInput{
   description: String
   price: Float!
   category: String!
-  size: String
+  size: [String!]!
+  image: String!
 }
   
 `

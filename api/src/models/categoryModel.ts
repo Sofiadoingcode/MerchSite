@@ -1,5 +1,4 @@
-import mongoose, { Schema } from 'mongoose'
-import Product from './productModel';
+import mongoose from 'mongoose'
 
 const categorySchema = new mongoose.Schema({
     name: {

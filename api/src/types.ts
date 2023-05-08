@@ -4,9 +4,15 @@ type Product = {
     name: string;
     description: string;
     price: number;
-    category: string;
-    size: string;
+    category: Category;
+    size: string[];
+    image: string;
+}
 
+type Category = {
+    id: string;
+    name: string;
+    products: Product[];
 }
 
 type Context = {
@@ -19,4 +25,4 @@ type Args = {
     input: Product;
 };
 
-export type {Product, Context, Args};
+export type {Product, Category, Context, Args};
