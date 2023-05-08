@@ -5,6 +5,8 @@ import GqlCreateProduct from "../resolvers/mutations/GqlCreateProduct";
 import GqlGetAllProducts from "../resolvers/queries/GqlGetAllProducts";
 import {useQuery} from "@apollo/client/react";
 import GetAllProducts from "../resolvers/queries/GqlGetAllProducts";
+import EditProduct from './AdminPage/EditProduct';
+import DeleteProduct from './AdminPage/DeleteProduct';
 
 function EditProducts() {
     const {loading, error, data} = useQuery(GetAllProducts);
@@ -32,8 +34,8 @@ function EditProducts() {
                     <td> <input type = "number" defaultValue={product.price} /> </td>
                     <td> <input type = "string" defaultValue={product.category} /> </td>
                     <td> <input type = "string" defaultValue={product.size} /> </td>
-                    <td> <button> Edit </button></td>
-                    <td> <button> Delete </button></td>
+                    <td> <EditProduct product={product}/></td>
+                    <td> <button> <DeleteProduct productID={product.id}/> </button></td>
                 </tr>))}
             </table>
 
