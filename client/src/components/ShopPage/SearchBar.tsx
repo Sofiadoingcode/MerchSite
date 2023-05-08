@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Product } from "../types"
+import { Product } from "../../types"
 
 function SearchBar({ allProducts, setProducts }: { allProducts: Product[], setProducts: React.Dispatch<React.SetStateAction<Product[]>> }) {
   const [searchInput, setSearchInput] = useState<string>('')

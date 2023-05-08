@@ -1,11 +1,11 @@
 import { Grid } from "@mui/material"
 import { useQuery } from "@apollo/client/react";
-import ProductCard from "../components/ProductCard"
+import ProductCard from "../components/ShopPage/ProductCard"
 import GetAllProducts from "../resolvers/queries/GqlGetAllProducts";
 import '../styles/shop.css';
 import { Product } from "../types";
 import { Image } from 'mui-image';
-import SearchBar from "../components/SearchBar";
+import SearchBar from "../components/ShopPage/SearchBar";
 import { useState } from "react";
 
 function ShopPage() {

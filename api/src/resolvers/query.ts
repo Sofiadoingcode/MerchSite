@@ -6,9 +6,7 @@ import Category from "../models/categoryModel";
 export default {
     products: async ()=> await Product.find({}),
     product: async (_parent: never, {id}: Args, {products}: Context) => {
-        console.log (id)
         const product = await Product.findById(id);
-        console.log(product)
         return product;
     },
     categories: async () => await Category.find({}).populate('products'),

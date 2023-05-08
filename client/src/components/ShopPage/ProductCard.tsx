@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { Card, CardContent, Typography, CardMedia, Grid } from "@mui/material";
-import { Product } from "../types";
+import { Product } from "../../types";
 import { NavLink } from "react-router-dom";
 
 function ProductCard({ product }: { product: Product }) {
