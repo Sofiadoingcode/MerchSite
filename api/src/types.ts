@@ -6,7 +6,11 @@ type Product = {
     price: number;
     category: string;
     size: string;
+}
 
+type User = {
+    username: string;
+    password: string;
 }
 
 type Context = {
@@ -16,7 +20,7 @@ type Context = {
 
 type Args = {
     id: string;
-    input: Product;
+    input: Product | User;
 };
 
 export type {Product, Context, Args};

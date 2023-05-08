@@ -6,9 +6,11 @@ type Product {
     price: Float!
     category: String!
     size: String
-    
   }
 
+type Token {
+  token: String!
+}
 type ProductLine {
     id: ID!
     lineprice: Float
@@ -35,6 +37,14 @@ type Customer {
 
 }
 
+type User {
+    id: ID
+    username: String!
+    password: String!
+    email: String
+    role: String
+    }
+
 type Address {
     id: ID!
     postalcode: String!
@@ -44,13 +54,12 @@ type Address {
 }
 
 type User {
-    id: ID!
+    id: ID
     username: String!
     password: String!
-    email: String!
-    role: String!
+    email: String
+    role: String
   }
-
 
   
 type Query {
@@ -60,6 +69,7 @@ type Query {
 
 type Mutation {
   createProduct(input:ProductInput): Product
+  login(input: UserInput) : Token
 }
 
 input ProductInput{
@@ -69,6 +79,11 @@ input ProductInput{
   price: Float!
   category: String!
   size: String
+}
+
+input UserInput {
+    username: String!
+    password: String!
 }
   
 `
