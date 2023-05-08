@@ -12,11 +12,9 @@ import {Product} from "../types";
 function EditProducts() {
     const {loading, error, data} = useQuery(GetAllProducts);
 
-   
 
     if (loading) return <>'Submitting...'</>;
     if (error) return <>`Submission error! ${error.message}`</>;
-
 
 
     return (
@@ -34,12 +32,13 @@ function EditProducts() {
                     <th>Delete</th>
                 </tr>
                 {data.products.map((product: Product) => (<tr>
-                    <td>  {product.id}  </td>
-                    <td> <EditProduct product={product}/></td>
-                    <td> <button> <DeleteProduct productID={product.id}/> </button></td>
+                    <td>{product.id}</td>
+                    <EditProduct product={product}/>
+                    <td>
+                        <button><DeleteProduct productID={product.id}/></button>
+                    </td>
                 </tr>))}
             </table>
-
         </div>
     );
 }
