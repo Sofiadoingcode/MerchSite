@@ -3,10 +3,11 @@ import { useQuery } from "@apollo/client/react";
 import ProductCard from "../components/ShopPage/ProductCard"
 import GetAllProducts from "../resolvers/queries/GqlGetAllProducts";
 import '../styles/shop.css';
-import { Product } from "../types";
+import { Category, Product } from "../types";
 import { Image } from 'mui-image';
 import SearchBar from "../components/ShopPage/SearchBar";
 import { useState } from "react";
+import CategoryDropDown from "../components/ShopPage/CategoryDropDown";
 
 function ShopPage() {
   const [allProducts, setAllProducts] = useState<Product[]>([])
@@ -27,6 +28,7 @@ function ShopPage() {
         easing="cubic-bezier(0.7, 0, 0.6, 1)"
       />
       <SearchBar allProducts={allProducts} setProducts={setProducts}/>
+      <CategoryDropDown/>
     <div id={'shop_outer_div'}>
       <Grid container id={'grid_container_shop'} gap={10} spacing={1}>
         {products.map((product)=>
