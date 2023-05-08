@@ -14,7 +14,7 @@ type ProductLine {
     lineprice: Float
     amount: Int!
     size: String!
-    Product: Product!
+    product: Product!
   }
   
 type Order {
@@ -30,8 +30,8 @@ type Customer {
     id: ID!
     name: String!
     email: String!
-    phone: Int!
-    address: Address!
+    phone: Int
+    address: Address
 
 }
 
@@ -56,12 +56,15 @@ type User {
 type Query {
     products: [Product!]!
     product(id: ID): Product
+    productLines: [ProductLine!]!
+
   }
 
 type Mutation {
   createProduct(input:ProductInput): Product
   deleteProduct(id:ID): Boolean
   editProduct(input:ProductInput): Product
+  createOrder(input:OrderInput): Order
 }
 
 input ProductInput{
@@ -71,6 +74,39 @@ input ProductInput{
   price: Float!
   category: String!
   size: String
+}
+
+input CustomerInput {
+  id: ID
+  name: String!
+  email: String!
+  phone: Int
+  address: AddressInput
+}
+
+input AddressInput{
+    id: ID
+    postalcode: String!
+    streetaddress: String!
+    city: String!
+    country: String!
+}
+
+input OrderInput{
+  id: ID
+  orderTime: String
+  totalprice: Float!
+  address: AddressInput!
+  customer: CustomerInput!
+  productlines: [ProductLineInput!]!
+}
+
+input ProductLineInput{
+  id: ID
+  lineprice: Float
+  amount: Int!
+  size: String!
+  product: ProductInput!
 }
   
 `

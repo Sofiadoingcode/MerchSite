@@ -6,7 +6,31 @@ type Product = {
     price: number;
     category: string;
     size: string;
+}
 
+type Address = {
+    id: string;
+    postalcode: string;
+    streetaddress: string;
+    city: string;
+    country: string;
+}
+
+type Customer = {
+    id: string;
+    name: string;
+    email: string;
+    phone: number;
+    address: Address;
+}
+
+type Order = {
+    id: string;
+    orderTime: () => number;
+    totalprice: number;
+    address: Address;
+    customer: Customer;
+    productlines: [];
 }
 
 type Context = {
@@ -17,6 +41,7 @@ type Context = {
 type Args = {
     id: string;
     input: Product;
+    orderInput: Order;
 };
 
-export type {Product, Context, Args};
+export type {Product, Order, Context, Args};

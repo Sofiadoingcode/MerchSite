@@ -1,5 +1,6 @@
 import {Args} from "../types";
 import Product from "../models/productModel";
+import Order from "../models/orderModel";
 
 export default {
     createProduct: async (_parent: never, {input}: Args) => {
@@ -20,5 +21,12 @@ export default {
         console.log("Im done editing!")
         return updatedProduct;
     },
+
+    createOrder: async (_parent:never, { orderInput }:Args) => {
+          const newOrder = new Order(orderInput);
+          await newOrder.save();
+          return newOrder;
+        
+      },
 
 }

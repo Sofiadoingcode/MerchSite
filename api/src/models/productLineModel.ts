@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 
-import Product from './productModel'
+import Product from './productModel';
 
 const ProductLineSchema = new mongoose.Schema({
     linePrice: {
@@ -12,7 +12,7 @@ const ProductLineSchema = new mongoose.Schema({
         required: true,
     },
     product: {
-        type: Product,
+        type: Product.schema,
         required: true,
     },
     size: {
@@ -21,4 +21,6 @@ const ProductLineSchema = new mongoose.Schema({
     },
 });
 
-export default ProductLineSchema;
+const ProductLine = mongoose.model('ProductLine', ProductLineSchema);
+
+export default ProductLine;
