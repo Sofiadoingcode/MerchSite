@@ -1,10 +1,11 @@
+import DeleteProduct from "../components/AdminPage/DeleteProduct"
 import CategoryCard from "../components/CategoryCard"
 import CreateProduct from "../components/CreateProduct"
 import {useCartDispatchContext } from "../contexts/CartContext"
 
 function HomePage() {
   const dispatch = useCartDispatchContext()
-  
+
     return (
       <div>
         <CreateProduct/>
@@ -19,5 +20,5 @@ function HomePage() {
       </div>
     )
   }
-  
+
   export default HomePage
