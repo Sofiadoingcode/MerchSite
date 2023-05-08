@@ -1,6 +1,6 @@
 import DeleteProduct from "../components/AdminPage/DeleteProduct"
 import CategoryCard from "../components/CategoryCard"
-import CreateProduct from "../components/CreateProduct"
+import CreateProduct from "../components/AdminPage/CreateProduct"
 import {useCartDispatchContext } from "../contexts/CartContext"
 
 function HomePage() {

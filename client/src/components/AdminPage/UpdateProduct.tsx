@@ -5,7 +5,7 @@ import {Product} from "../../types";
 import {Button, Card} from "@mui/material";
 import '../../styles/editproduct.css'
 
-const EditProduct = (props: { product: Product }) => {
+const UpdateProduct = (props: { product: Product }) => {
     const [input, setInput] = useState(props.product);
     const [editProduct, {loading, error}] = useMutation(GqlEditProduct);
 
@@ -72,4 +72,4 @@ const EditProduct = (props: { product: Product }) => {
         </form>
     );
 }
-export default EditProduct;
+export default UpdateProduct;

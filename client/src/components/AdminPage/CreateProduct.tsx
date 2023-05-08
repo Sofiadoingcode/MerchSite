@@ -1,7 +1,7 @@
-import GqlCreateProduct from "../resolvers/mutations/GqlCreateProduct"
+import GqlCreateProduct from "../../resolvers/mutations/GqlCreateProduct"
 import {useState} from "react"
 import {useMutation} from "@apollo/client"
-import GqlGetAllProducts from "../resolvers/queries/GqlGetAllProducts";
+import GqlGetAllProducts from "../../resolvers/queries/GqlGetAllProducts";
 
 function CreateProduct() {
     const initialState = {name: '', description: '', price: 0, category: '', size: ''}

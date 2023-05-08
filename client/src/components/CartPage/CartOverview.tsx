@@ -1,6 +1,6 @@
 import { Card, CardContent, Grid, Typography } from '@mui/material';
 import React from 'react';
-import CheckOutPage from '../pages/CheckOutPage';
+import CheckOutPage from '../../pages/CheckOutPage';
 import { NavLink } from 'react-router-dom';
 
 function CartComponent({totalPrice}:{totalPrice:number}) {
