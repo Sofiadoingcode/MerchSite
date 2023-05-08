@@ -5,14 +5,13 @@ import { NavLink } from "react-router-dom";
 
 function ProductCard({ product }: { product: Product }) {
 
-
   return (
     <NavLink to={`/product/${product.id}`} className="link_card">
       <Card raised sx={{ margin: '0 auto' }}>
         <CardContent>
           <CardMedia
             style={{ height: 200 }}
-            image={'https://www.ikea.com/us/en/images/products/blahaj-soft-toy-shark__0710175_pe727378_s5.jpg'}
+            image={product.image}
           />
         </CardContent>
         <Grid container>

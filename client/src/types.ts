@@ -3,8 +3,15 @@ type Product = {
     name: string;
     description: string;
     price: number;
-    category: string;
-    size: string;
+    category: Category;
+    size: string[];
+    image: string;
+}
+
+type Category = {
+    id: string;
+    name: string;
+    products: Product[];
 }
 type AddtoCart = {
     type: 'added';
@@ -16,4 +23,4 @@ type RemoveFromCart = {
     item: Product;
 };
 type CartActions = AddtoCart | RemoveFromCart;
-export type { Product, CartActions }
+export type { Product, Category, CartActions }

@@ -8,6 +8,7 @@ query Products {
       price
       category
       size
+      image
     }
   }
   `

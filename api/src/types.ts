@@ -24,5 +24,9 @@ type Args = {
     id: string;
     input: Product;
 };
+type CategoryArgs = {
+    id: string;
+    input: Category;
+};
 
-export type {Product, Category, Context, Args};
+export type {Product, Category, Context, Args, CategoryArgs};

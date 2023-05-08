@@ -67,6 +67,7 @@ type Mutation {
   createProduct(input:ProductInput): Product
   deleteProduct(id:ID): Boolean
   editProduct(input:ProductInput): Product
+  createCategory(input:CategoryInput): Category
 }
 
 input ProductInput{
@@ -74,9 +75,15 @@ input ProductInput{
   name: String!
   description: String
   price: Float!
-  category: String!
-  size: [String!]!
+  category: CategoryInput!
+  size: [String]
   image: String!
+}
+
+input CategoryInput {
+  id: ID
+  name: String!
+  products: [ProductInput]
 }
   
 `

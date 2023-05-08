@@ -9,6 +9,7 @@ const GetProduct = gql`
       price
       category
       size
+      image
     }
   }
 `;
