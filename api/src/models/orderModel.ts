@@ -3,7 +3,7 @@ import ProductLine from './productLineModel'
 import Customer from './customerModel'
 import Address from './addressModel';
 
-const OrderSchema = new mongoose.Schema({
+const orderSchema = new mongoose.Schema({
     orderTime: {
         type: Date,
         required: true,
@@ -26,4 +26,6 @@ const OrderSchema = new mongoose.Schema({
     }
 });
 
-export default OrderSchema;
+const Order = mongoose.model('Order', orderSchema);
+
+export default Order;
