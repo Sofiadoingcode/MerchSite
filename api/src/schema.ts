@@ -5,7 +5,7 @@ type Product {
     description: String
     price: Float!
     category: Category!
-    size: [String!]!
+    size: [String]
     image: String!
   }
 

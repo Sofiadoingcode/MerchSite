@@ -28,7 +28,6 @@ function ShopPage() {
         easing="cubic-bezier(0.7, 0, 0.6, 1)"
       />
       <SearchBar allProducts={allProducts} setProducts={setProducts}/>
-      <CategoryDropDown/>
     <div id={'shop_outer_div'}>
       <Grid container id={'grid_container_shop'} gap={10} spacing={1}>
         {products.map((product)=>
