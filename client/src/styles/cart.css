@@ -17,5 +17,9 @@
 }
 #cart_checkout_link {
     height: 100%;
-    width: 100%
+    width: 100%;
+}
+#cart_overview_card {
+    position: sticky;
+    top: 135px;
 }

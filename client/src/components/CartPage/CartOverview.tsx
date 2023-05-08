@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 function CartComponent({totalPrice}:{totalPrice:number}) {
     return (
         <>
-            <Card>
+            <Card id='cart_overview_card'>
                 <CardContent>
                     <Grid container>
                         <Grid item xs={8} md={9}>
