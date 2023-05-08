@@ -12,6 +12,7 @@ import body_parser_pkg from 'body-parser';
 const { json } = body_parser_pkg;
 import Query from './resolvers/Query';
 import Mutation from './resolvers/mutation';
+import populator from "./Populator";
 
 dotenv.config({path:'./config.env'})
 
@@ -62,6 +63,4 @@ const DB = process.env.DATABASE_DEV!.replace(
 
 mongoose.connect(DB, {
 }).then(() => console.log('DB connection successful!'));
-
-
 

@@ -1,7 +1,6 @@
-const mongoose = require('mongoose');
-const CustomerModel = require('./customerModel');
-
-const userSchema = mongoose.Schema({
+import mongoose, { Schema } from 'mongoose'
+import CustomerModel from "./customerModel";
+const userSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true,

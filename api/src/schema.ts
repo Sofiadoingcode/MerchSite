@@ -61,15 +61,20 @@ type User {
     role: String
   }
 
+type LoginOutput {
+    token: String!
+    user: User!
+}
   
 type Query {
     products: [Product!]!
     product(id: ID): Product
+    login(input: UserInput) : LoginOutput
+
   }
 
 type Mutation {
   createProduct(input:ProductInput): Product
-  login(input: UserInput) : Token
 }
 
 input ProductInput{
