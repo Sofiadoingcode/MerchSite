@@ -11,7 +11,7 @@ function CartProduct({ item }: { item: any }) {
                             <CardMedia
                                 component='img'
                                 sx={{ objectFit: "contain" }}
-                                image={'https://www.ikea.com/us/en/images/products/blahaj-soft-toy-shark__0710175_pe727378_s5.jpg'}
+                                image={item.image}
                             />
                         </CardContent>
                     </Grid>
