@@ -8,6 +8,14 @@ type Product = {
     image: string;
 }
 
+type Address = {
+    id: string;
+    country: string;
+    city: string;
+    zipCode: string;
+    streetAddress: string;
+}
+
 type Category = {
     id: string;
     name: string;
@@ -27,4 +35,4 @@ type RemoveFromCart = {
     item: Product;
 };
 type CartActions = AddtoCart | RemoveFromCart;
-export type { Product, Category, DropdownItems, CartActions }
+export type { Product, Category, DropdownItems, CartActions, Address }

@@ -1,7 +1,6 @@
 import DeleteProduct from "../components/AdminPage/DeleteProduct"
 import CreateProduct from "../components/AdminPage/CreateProduct"
 import {useCartDispatchContext } from "../contexts/CartContext"
-
 import { Category } from "../types"
 import { useState } from "react"
 import GetAllCategories from "../resolvers/queries/GqlGetAllCategories"
