@@ -7,8 +7,12 @@ mutation EditProduct($input: ProductInput) {
       name
       description
       price
-      category
+      category {
+        id
+        name
+      }
       size
+      image
     }
   }
 `;

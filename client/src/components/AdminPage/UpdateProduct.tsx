@@ -1,34 +1,48 @@
-import React, {useState} from "react";
+import React, {FormEvent, useState} from "react";
 import {useMutation} from "@apollo/client";
 import GqlEditProduct from "../../resolvers/mutations/GqlEditProduct";
-import {Product} from "../../types";
+import {Category, Product} from "../../types";
 import {Button, Card} from "@mui/material";
 import '../../styles/editproduct.css'
 
 const UpdateProduct = (props: { product: Product }) => {
-    const [input, setInput] = useState(props.product);
     const [editProduct, {loading, error}] = useMutation(GqlEditProduct);
+    const [updateProduct, setUpdateProduct] = useState<Product>({
+        id: props.product.id,
+        name: props.product.name,
+        description: props.product.description,
+        price: props.product.price,
+        category: {
+            id: props.product.category.id,
+            name: props.product.category.name
+        },
+        size: props.product.size,
+        image: props.product.image
+    });
+    const [updateCategory, setUpdateCategory] = useState<Category>({
+        id: props.product.category.id,
+        name: props.product.category.name
+    })
 
     const handleInputChange = (event: any) => {
         const {name, value} = event.target;
 
         if (name === 'price') {
-            setInput({...input, [name]: parseFloat(value)});
-        } else {
-            setInput({...input, [name]: value});
+            setUpdateProduct({...updateProduct, [name]: parseFloat(value)});
+        } if (name === "size"){
+           updateProduct.size = event.target.value.split(",").map(str => str.trim());
+        }else {
+            setUpdateProduct({...updateProduct, [name]: value});
         }
     };
 
-
     const handleSubmit = (event: any) => {
         event.preventDefault();
-        console.log("About To Edit!")
         editProduct({
             variables: {
-                id: props.product.id,
+                id: updateProduct.id,
                 input: {
-                    // id: product.id,
-                    ...input,
+                    ...updateProduct,
                 },
             },
         })
@@ -41,35 +55,18 @@ const UpdateProduct = (props: { product: Product }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>
-                Name:
-                <input type="text" name="name" value={input.name} onChange={handleInputChange}/>
-            </label>
-            <div style={{display: "grid", gridTemplateColumns: "repeat(1, 1fr)", gridGap: "1rem"}}>
-                <label>
-                    Description:
-                    <textarea name="description" value={input.description} onChange={handleInputChange}/>
-                </label>
-                <label>
-                    Price:
-                    <input type="number" name="price" value={input.price} onChange={handleInputChange}/>
-                </label>
-                <label>
-                    Category:
-                    <input type="text" name="category" value={input.category} onChange={handleInputChange}/>
-                </label>
-                <label>
-                    Size:
-                    <input type="text" name="size" value={input.size} onChange={handleInputChange}/>
-                </label>
-            </div>
-
-            <Button variant="contained" type="submit" disabled={loading}>
+        <>
+            <td><input type="string" name="name" defaultValue={props.product.name} onChange={handleInputChange}/></td>
+            <td><input type="string" name="image" defaultValue={props.product.image} onChange={handleInputChange}/></td>
+            <td><input type="string" name="description" defaultValue={props.product.description} onChange={handleInputChange}/></td>
+            <td><input type="number" name="price" defaultValue={props.product.price} onChange={handleInputChange}/></td>
+            <td><input type="string" name="category" defaultValue={props.product.category.name} onChange={handleInputChange}/></td>
+            <td><input type="string" name= "size" defaultValue={props.product.size} onChange={handleInputChange}/></td>
+            <td><Button onClick={handleSubmit} variant="contained" disabled={loading}>
                 {loading ? "Updating..." : "Update Product"}
             </Button>
-            {error && <p>Error updating product</p>}
-        </form>
+                {error && <p>Error updating product</p>}</td>
+        </>
     );
 }
 export default UpdateProduct;

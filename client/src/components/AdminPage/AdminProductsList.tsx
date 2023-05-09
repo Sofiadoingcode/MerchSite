@@ -1,17 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import {useMutation} from "@apollo/client";
 import GqlCreateProduct from "../../resolvers/mutations/GqlCreateProduct";
-import GqlGetAllProducts from "../../resolvers/queries/GqlGetAllProducts";
 import {useQuery} from "@apollo/client/react";
 import GetAllProducts from "../../resolvers/queries/GqlGetAllProducts";
-import UpdateProduct from './UpdateProduct';
-import DeleteProduct from './DeleteProduct';
+import DeleteProduct from '../AdminPage/DeleteProduct';
+import {Product} from "../../types";
+import UpdateProduct from "./UpdateProduct";
 
 function AdminProductsList() {
     const {loading, error, data} = useQuery(GetAllProducts);
+
+
     if (loading) return <>'Submitting...'</>;
     if (error) return <>`Submission error! ${error.message}`</>;
+
 
     return (
 
@@ -20,6 +23,7 @@ function AdminProductsList() {
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
+                    <th>Image</th>
                     <th>Description</th>
                     <th>Price</th>
                     <th>Category</th>
@@ -27,18 +31,14 @@ function AdminProductsList() {
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
-                {data.products.map((product: any) => (<tr>
-                    <td>  {product.id}  </td>
-                    <td> <input type = "string" defaultValue={product.name} /> </td>
-                    <td> <input type = "string" defaultValue={product.description} /> </td>
-                    <td> <input type = "number" defaultValue={product.price} /> </td>
-                    <td> <input type = "string" defaultValue={product.category} /> </td>
-                    <td> <input type = "string" defaultValue={product.size} /> </td>
-                    <td> <UpdateProduct product={product}/></td>
-                    <td> <button> <DeleteProduct productID={product.id}/> </button></td>
+                {data.products.map((product: Product) => (<tr>
+                    <td>{product.id}</td>
+                    <UpdateProduct product={product}/>
+                    <td>
+                        <button><DeleteProduct productID={product.id}/></button>
+                    </td>
                 </tr>))}
             </table>
-
         </div>
     );
 }

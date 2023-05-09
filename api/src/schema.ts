@@ -7,52 +7,72 @@ type Product {
     category: Category!
     size: [String]
     image: String!
+
   }
 
+type Token {
+  token: String!
+}
 type ProductLine {
     id: ID!
-    lineprice: Float
+    linePrice: Float
     amount: Int!
     size: String!
-    Product: Product!
+    product: Product!
   }
   
 type Order {
     id: ID!
     orderTime: String!
-    totalprice: Float!
+    totalPrice: Float!
     address: Address!
     customer: Customer!
-    productlines: [ProductLine!]!
+    productLines: [ProductLine!]!
   }
 
 type Customer {
     id: ID!
     name: String!
     email: String!
-    phone: Int!
-    address: Address!
+    phone: Int
+    address: Address
+    orders: [Order!]!
+
 }
+
+type User {
+    id: ID
+    username: String!
+    password: String!
+    email: String
+    role: String
+    }
 
 type Address {
     id: ID!
-    postalcode: String!
-    streetaddress: String!
+    postalCode: String!
+    streetAddress: String!
     city: String!
     country: String!
 }
 
 type User {
-    id: ID!
+    id: ID
     username: String!
     password: String!
-    email: String!
-    role: String!
+    email: String
+    role: String
   }
+
 
 type Category {
   id: ID!
   name: String!
+}
+
+type LoginOutput {
+    token: String!
+    user: User!
 }
   
 type Query {
@@ -60,13 +80,18 @@ type Query {
     product(id: ID): Product
     categories: [Category!]!
     productsByCategory(id: ID): [Product!]!
+    login(userInput: UserInput) : LoginOutput
+
   }
+
 
 type Mutation {
   createProduct(input:ProductInput): Product
   deleteProduct(id:ID): Boolean
   editProduct(input:ProductInput): Product
   createCategory(input:CategoryInput): Category
+  createOrder(orderInput:OrderInput): Order
+
 }
 
 input ProductInput{
@@ -82,6 +107,44 @@ input ProductInput{
 input CategoryInput {
   id: ID
   name: String!
+}
+
+input UserInput {
+    username: String!
+    password: String!
+}
+
+input CustomerInput {
+  id: ID
+  name: String!
+  email: String!
+  phone: Int
+  addressId: ID
+}
+
+input AddressInput{
+    id: ID
+    postalCode: String!
+    streetAddress: String!
+    city: String!
+    country: String!
+}
+
+input OrderInput{
+  id: ID
+  orderTime: Int
+  totalPrice: Float!
+  address: AddressInput!
+  customerId: ID!
+  productLines: [ProductLineInput!]!
+}
+
+input ProductLineInput{
+  id: ID
+  linePrice: Float
+  amount: Int!
+  size: String!
+  product: ProductInput!
 }
   
 `

@@ -1,6 +1,9 @@
+
 import {Args, CategoryArgs} from "../types";
 import Product from "../models/productModel";
 import Category from "../models/categoryModel";
+import Order from "../models/orderModel";
+
 
 export default {
     createProduct: async (_parent: never, {input}: Args) => {
@@ -15,17 +18,22 @@ export default {
         return result ? true : false;
     },
     editProduct: async (_parent: never, {input}: Args) => {
-        console.log("Im editing")
         const {id, ...updates} = input;
         const updatedProduct = await Product.findByIdAndUpdate(id, updates);
-        console.log(updatedProduct)
-        console.log("Im done editing!")
         return updatedProduct;
     },
+    
     createCategory: async (_parent: never, {input}: CategoryArgs) => {
         const newCategory = new Category(input);
         await newCategory.save();
         return newCategory;
     },
+
+    createOrder: async (_parent:never, { orderInput }:Args) => {
+          const newOrder = new Order(orderInput);
+          await newOrder.save();
+          return newOrder;
+        
+      },
 
 }
