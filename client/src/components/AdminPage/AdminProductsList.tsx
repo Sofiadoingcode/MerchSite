@@ -2,12 +2,11 @@ import React, {useState} from 'react';
 
 import {useMutation} from "@apollo/client";
 import GqlCreateProduct from "../../resolvers/mutations/GqlCreateProduct";
-import GqlGetAllProducts from "../../resolvers/queries/GqlGetAllProducts";
 import {useQuery} from "@apollo/client/react";
-import GetAllProducts from "../resolvers/queries/GqlGetAllProducts";
-import EditProduct from './AdminPage/EditProduct';
-import DeleteProduct from './AdminPage/DeleteProduct';
-import {Product} from "../types";
+import GetAllProducts from "../../resolvers/queries/GqlGetAllProducts";
+import DeleteProduct from '../AdminPage/DeleteProduct';
+import {Product} from "../../types";
+import UpdateProduct from "./UpdateProduct";
 
 function AdminProductsList() {
     const {loading, error, data} = useQuery(GetAllProducts);
@@ -33,7 +32,7 @@ function AdminProductsList() {
                 </tr>
                 {data.products.map((product: Product) => (<tr>
                     <td>{product.id}</td>
-                    <EditProduct product={product}/>
+                    <UpdateProduct product={product}/>
                     <td>
                         <button><DeleteProduct productID={product.id}/></button>
                     </td>
