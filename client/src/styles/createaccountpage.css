@@ -1,0 +1,42 @@
+.createAccountDiv {
+
+    height: 100vh;
+    background-color: #cbecf2;
+    text-align: center;
+    overflow: auto;
+}
+
+.createAccountCard {
+
+    /*background-color: #ccb9ed;*/
+
+    padding: 20px 20px 40px 20px;
+    height: auto;
+
+}
+
+.createAccountCardInputFields{
+    width: 65%;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 15px;
+    /*background-color: lightgray;*/
+}
+
+.usernameButton {
+    background: none;
+    color: inherit;
+    border: none;
+    padding-right: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
+.usernameButton:hover {
+    color: #ccb9ed;
+}
+
+.navLinkToCreateOrLogin {
+    text-decoration: none;
+}
