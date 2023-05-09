@@ -4,7 +4,7 @@ type Product = {
     name: string;
     description: string;
     price: number;
-    category: Category;
+    categoryId: string;
     size: string[];
     image: string;
 }
@@ -17,7 +17,6 @@ type Category = {
 type Context = {
     products: Product[];
 };
-
 
 type Args = {
     id: string;

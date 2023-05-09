@@ -4,6 +4,7 @@ import Category from "../models/categoryModel";
 
 export default {
     createProduct: async (_parent: never, {input}: Args) => {
+        console.log(input)
         const newProduct = new Product(input);
         await newProduct.save();
         return newProduct;

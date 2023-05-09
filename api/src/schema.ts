@@ -74,7 +74,7 @@ input ProductInput{
   name: String!
   description: String
   price: Float!
-  category: CategoryInput!
+  categoryId: ID
   size: [String]
   image: String!
 }

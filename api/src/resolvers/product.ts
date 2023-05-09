@@ -2,5 +2,5 @@ import CategoryModel from "../models/categoryModel";
 import { Category, Product } from "../types";
 
 export default {
-    category: (parent:Product, _args:never) => parent.category
+    category: async (parent:Product, _args:never)  =>  await CategoryModel.findById(parent.categoryId)
 }

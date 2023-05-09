@@ -11,12 +11,3 @@ export default {
     },
     categories: async () => await Category.find({}),
 }
-
-/*     categories: async ()=> { let newPerson = new Category({id: new mongoose.Types.ObjectId(), name: 'cat1', products:['6451b436944479f28258993e'] });
-    await newPerson.save();
-    let arr = []
-    arr.push(newPerson)
-    let newPerso = new Category({id: new mongoose.Types.ObjectId(), name: 'cat2', products:['6451b436944479f28258993e'] });
-    await newPerso.save();
-    arr.push(newPerso)
-    return arr;*/

@@ -6,16 +6,34 @@ import '../styles/shop.css';
 import { Category, Product } from "../types";
 import { Image } from 'mui-image';
 import SearchBar from "../components/ShopPage/SearchBar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CategoryDropDown from "../components/ShopPage/CategoryDropDown";
+import GetAllCategories from "../resolvers/queries/GqlGetAllCategories";
 
 function ShopPage() {
   const [allProducts, setAllProducts] = useState<Product[]>([])
   const [products, setProducts] = useState<Product[]>([])
+  const [categories, setCategories] = useState<Category[]>([])
+  const [value, setValue] = useState<string>('');
+  const catData = useQuery(GetAllCategories, {onCompleted: (data)=> {setCategories(data.categories)}});
   const { loading, error, data } = useQuery(GetAllProducts, {onCompleted: (data)=> {setAllProducts(data.products); setProducts(data.products)}});
 
-  if (loading) return <p>Loading...</p>;
+    useEffect(() => {
+      if(value.length > 0){
+        console.log(value)
+        const filtered: Product[] = allProducts.filter((product) => {
+          console.log(product.category.id)
+          return product.category.id === value;
+        });
+        setProducts(filtered)
+      }
+      else{
+        setProducts(allProducts)
+      }
+  }, [value])
+  if (loading || catData.loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;
+  if (catData.error) return <p>Error : {catData.error.message}</p>;
 
   return (
     <>
@@ -27,7 +45,14 @@ function ShopPage() {
         duration={2000}
         easing="cubic-bezier(0.7, 0, 0.6, 1)"
       />
-      <SearchBar allProducts={allProducts} setProducts={setProducts}/>
+      <Grid container gap={10}>
+        <Grid item xs={6} md={5}>
+        <SearchBar allProducts={allProducts} setProducts={setProducts}/>
+        </Grid>
+        <Grid item xs={6} md={5}>
+        <CategoryDropDown items={categories} value={value} setValue={setValue}/>
+        </Grid>
+      </Grid>
     <div id={'shop_outer_div'}>
       <Grid container id={'grid_container_shop'} gap={10} spacing={1}>
         {products.map((product)=>
