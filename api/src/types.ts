@@ -29,7 +29,7 @@ type Customer = {
     name: string;
     email: string;
     phone: number;
-    address: Address;
+    addressId: string;
 }
 
 type Order = {
@@ -37,7 +37,7 @@ type Order = {
     orderTime: () => number;
     totalPrice: number;
     address: Address;
-    customer: Customer;
+    customerId: string;
     productLines: [ProductLine];
 }
 

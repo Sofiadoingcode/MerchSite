@@ -10,8 +10,8 @@ const customerSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    address: {
-        type: Address.schema,
+    addressId: {
+        type: mongoose.Schema.Types.ObjectId,
         required: false
     },
     phone: {

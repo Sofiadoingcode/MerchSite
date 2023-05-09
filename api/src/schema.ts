@@ -31,6 +31,7 @@ type Customer {
     email: String!
     phone: Int
     address: Address
+    orders: [Order!]!
 }
 
 type Address {
@@ -78,7 +79,7 @@ input CustomerInput {
   name: String!
   email: String!
   phone: Int
-  address: AddressInput
+  addressId: ID
 }
 
 input AddressInput{
@@ -94,7 +95,7 @@ input OrderInput{
   orderTime: Int
   totalPrice: Float!
   address: AddressInput!
-  customer: CustomerInput!
+  customerId: ID!
   productLines: [ProductLineInput!]!
 }
 

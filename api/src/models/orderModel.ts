@@ -21,8 +21,8 @@ const orderSchema = new mongoose.Schema({
         type: [ProductLine.schema],
         required: true,
     },
-    customer: {
-        type: Customer.schema,
+    customerId: {
+        type: mongoose.Schema.Types.ObjectId,
         required: true
     }
 });
