@@ -14,15 +14,21 @@ type Category = {
     name: string;
 }
 
+type User = {
+    username: string;
+    password: string;
+}
+
 type Context = {
     products: Product[];
 };
 
-
 type Args = {
     id: string;
     input: Product;
+    userInput: User;
 };
+
 type CategoryArgs = {
     id: string;
     input: Category;

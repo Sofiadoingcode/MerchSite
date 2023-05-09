@@ -29,7 +29,9 @@ const UpdateProduct = (props: { product: Product }) => {
 
         if (name === 'price') {
             setUpdateProduct({...updateProduct, [name]: parseFloat(value)});
-        } else {
+        } if (name === "size"){
+           updateProduct.size = event.target.value.split(",").map(str => str.trim());
+        }else {
             setUpdateProduct({...updateProduct, [name]: value});
         }
     };
@@ -55,6 +57,7 @@ const UpdateProduct = (props: { product: Product }) => {
     return (
         <>
             <td><input type="string" name="name" defaultValue={props.product.name} onChange={handleInputChange}/></td>
+            <td><input type="string" name="image" defaultValue={props.product.image} onChange={handleInputChange}/></td>
             <td><input type="string" name="description" defaultValue={props.product.description} onChange={handleInputChange}/></td>
             <td><input type="number" name="price" defaultValue={props.product.price} onChange={handleInputChange}/></td>
             <td><input type="string" name="category" defaultValue={props.product.category.name} onChange={handleInputChange}/></td>

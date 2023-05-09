@@ -14,6 +14,7 @@ import Query from './resolvers/Query';
 import Mutation from './resolvers/mutation';
 import Product from './resolvers/product';
 
+
 dotenv.config({path:'./config.env'})
 
 interface MyContext {
@@ -52,7 +53,6 @@ app.use('/graphql',
 
 
 app.use(cors())
-console.log(process.env.DATABASE_PASSWORD!);
 
 await new Promise<void>((resolve) => httpServer.listen({ port: 4001 }, resolve));
 console.log(`🚀 GraphQL Server ready at http://localhost:4001/graphql`);
@@ -64,6 +64,4 @@ const DB = process.env.DATABASE_DEV!.replace(
 
 mongoose.connect(DB, {
 }).then(() => console.log('DB connection successful!'));
-
-
 

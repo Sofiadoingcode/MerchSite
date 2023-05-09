@@ -1,6 +1,9 @@
+
 import {Args, CategoryArgs} from "../types";
 import Product from "../models/productModel";
 import Category from "../models/categoryModel";
+
+
 
 export default {
     createProduct: async (_parent: never, {input}: Args) => {
@@ -22,6 +25,5 @@ export default {
         const newCategory = new Category(input);
         await newCategory.save();
         return newCategory;
-    },
-
+    }
 }
