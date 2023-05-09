@@ -34,8 +34,8 @@ function ProductPage() {
         <Grid style={{backgroundColor: '#cbecf2'}} container rowSpacing={2} columnSpacing={{xs: 1, sm: 2, md: 3}}>
             <Grid item xs={6}>
                 <Card className={"pictureAndInfo"} style={{marginLeft: 'auto'}}>
-                    <img style={{height: '100%', width: '100%'}}
-                         src={"https://www.ikea.com/dk/da/images/products/blahaj-tojdyr-haj__0710175_pe727378_s5.jpg"}
+                    <img style={{height: '100%', minHeight: '400px', width: '100%', minWidth: '400px'}}
+                         src={product.image}
                     ></img>
                 </Card>
             </Grid>

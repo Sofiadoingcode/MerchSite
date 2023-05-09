@@ -1,6 +1,6 @@
 import { Grid, Card, Typography } from "@mui/material"
-import CartProduct from "../components/CartProduct"
-import CartComponent from "../components/CartComponent"
+import CartProduct from "../components/CartPage/CartProduct"
+import CartComponent from "../components/CartPage/CartOverview"
 import '../styles/cart.css'
 import { useState, useEffect } from "react"
 import { useCartContext } from "../contexts/CartContext"

@@ -1,8 +1,8 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose from 'mongoose';
 
 import Product from './productModel'
 
-const ProductLineSchema = new mongoose.Schema({
+const productLineSchema = new mongoose.Schema({
     linePrice: {
         type: Number,
         required: true,
@@ -21,4 +21,6 @@ const ProductLineSchema = new mongoose.Schema({
     },
 });
 
-export default ProductLineSchema;
+const ProductLine = mongoose.model('ProductLine', productLineSchema);
+
+export default ProductLine;

@@ -3,9 +3,20 @@ type Product = {
     name: string;
     description: string;
     price: number;
-    category: string;
-    size: string;
+    category: Category;
+    size: string[];
+    image: string;
 }
+
+type Category = {
+    id: string;
+    name: string;
+}
+
+type DropdownItems = {
+    items: Category[]
+}
+
 type AddtoCart = {
     type: 'added';
     item: Product;
@@ -16,4 +27,4 @@ type RemoveFromCart = {
     item: Product;
 };
 type CartActions = AddtoCart | RemoveFromCart;
-export type { Product, CartActions }
+export type { Product, Category, DropdownItems, CartActions }

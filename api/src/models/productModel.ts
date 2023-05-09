@@ -1,4 +1,5 @@
-import mongoose, { Schema } from 'mongoose'
+import mongoose from 'mongoose'
+import Category from './categoryModel';
 
 
 const productSchema = new mongoose.Schema({
@@ -15,12 +16,17 @@ const productSchema = new mongoose.Schema({
         required: true
     },
     category: {
-        type: String,
+        type: Category.schema,
         required: true
     },
     size: {
-        type: String,
+        type: [String],
+        default: ['Small', 'Medium', 'Large'],
         required: false
+    },
+    image: {
+        type: String,
+        required: true
     }
 });
 

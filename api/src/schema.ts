@@ -4,9 +4,9 @@ type Product {
     name: String!
     description: String
     price: Float!
-    category: String!
-    size: String
-    
+    category: Category!
+    size: [String]
+    image: String!
   }
 
 type ProductLine {
@@ -32,7 +32,6 @@ type Customer {
     email: String!
     phone: Int!
     address: Address!
-
 }
 
 type Address {
@@ -51,17 +50,23 @@ type User {
     role: String!
   }
 
-
+type Category {
+  id: ID!
+  name: String!
+}
   
 type Query {
     products: [Product!]!
     product(id: ID): Product
+    categories: [Category!]!
+    productsByCategory(id: ID): [Product!]!
   }
 
 type Mutation {
   createProduct(input:ProductInput): Product
   deleteProduct(id:ID): Boolean
   editProduct(input:ProductInput): Product
+  createCategory(input:CategoryInput): Category
 }
 
 input ProductInput{
@@ -69,8 +74,14 @@ input ProductInput{
   name: String!
   description: String
   price: Float!
-  category: String!
-  size: String
+  category: CategoryInput!
+  size: [String]
+  image: String!
+}
+
+input CategoryInput {
+  id: ID
+  name: String!
 }
   
 `
