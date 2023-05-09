@@ -23,7 +23,7 @@ type Order {
     totalprice: Float!
     address: Address!
     customer: Customer!
-    productlines: [ProductLine!]!
+    productLines: [ProductLine!]!
   }
 
 type Customer {
@@ -56,9 +56,8 @@ type User {
 type Query {
     products: [Product!]!
     product(id: ID): Product
-    productLines: [ProductLine!]!
-
   }
+
 
 type Mutation {
   createProduct(input:ProductInput): Product
@@ -98,7 +97,7 @@ input OrderInput{
   totalprice: Float!
   address: AddressInput!
   customer: CustomerInput!
-  productlines: [ProductLineInput!]!
+  productLines: [ProductLineInput!]!
 }
 
 input ProductLineInput{

@@ -6,11 +6,12 @@ export default {
      },
 
      address: async (parent:Order, _args:never) => {
-        return parent.address
-     },
+      return parent.address
+   },
 
-     customer: async (parent:Order, _args:never) => {
-        return parent.customer
-     }
+   customer: async (parent:Order, _args:never) => {
+      return parent.customer
+   },
+
 
 }
