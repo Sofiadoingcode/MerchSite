@@ -1,10 +1,9 @@
 import { useQuery } from "@apollo/client";
 import { Card, CardContent, Typography, CardMedia, Grid } from "@mui/material";
-import { Product } from "../types";
+import { Product } from "../../types";
 import { NavLink } from "react-router-dom";
 
 function ProductCard({ product }: { product: Product }) {
-
 
   return (
     <NavLink to={`/product/${product.id}`} className="link_card">
@@ -12,7 +11,7 @@ function ProductCard({ product }: { product: Product }) {
         <CardContent>
           <CardMedia
             style={{ height: 200 }}
-            image={'https://www.ikea.com/us/en/images/products/blahaj-soft-toy-shark__0710175_pe727378_s5.jpg'}
+            image={product.image}
           />
         </CardContent>
         <Grid container>

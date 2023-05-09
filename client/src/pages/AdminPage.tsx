@@ -1,5 +1,5 @@
-import CreateProduct from "../components/CreateProduct";
-import EditProducts from "../components/EditProducts";
+import CreateProduct from "../components/AdminPage/CreateProduct";
+import AdminProductsList from "../components/AdminPage/AdminProductsList";
 import {useEffect, useState} from "react";
 
 function AdminPage() {
@@ -8,7 +8,7 @@ function AdminPage() {
     return (
       <div>
           <CreateProduct></CreateProduct>
-          <EditProducts></EditProducts>
+          <AdminProductsList></AdminProductsList>
       </div>
     )
   }

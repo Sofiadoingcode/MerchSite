@@ -7,8 +7,12 @@ const GetProduct = gql`
       name
       description
       price
-      category
+      category{
+        id
+        name
+      }
       size
+      image
     }
   }
 `;

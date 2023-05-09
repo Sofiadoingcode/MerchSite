@@ -5,3 +5,36 @@
   .link_card {
     text-decoration: inherit;
 }
+#shop_searchbar {
+  width: 95%;
+  border-radius: 15px;
+  padding: 5px 10px;
+  font-size: 16px;
+  margin: 0.25rem 0 0 1.8rem;
+  border-color: white;
+}
+.searchbar_icon {
+  position: absolute;
+  top: 0.6rem;
+  left: 0.5rem;
+}
+.searchbar_outer_div {
+  position: relative;
+  background-color:darkgray;
+  border-radius: 15px;
+  width: 35%;
+  margin: 1rem 5rem auto;
+  height: 2.5rem;
+}
+#shop_searchbar:focus {
+  outline-color: black;
+}
+/*#shop_outer_div {
+  contain: paint;
+  background-image: url("https://media.gq.com/photos/57486a68cd0aaff827f46ae6/master/pass/sharks-michael-muller-photo-book-03.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}*/

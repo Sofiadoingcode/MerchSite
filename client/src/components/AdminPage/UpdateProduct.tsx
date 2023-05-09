@@ -5,8 +5,8 @@ import {Product} from "../../types";
 import {Button, Card} from "@mui/material";
 import '../../styles/editproduct.css'
 
-const EditProduct = (props: { product: Product }) => {
-
+const UpdateProduct = (props: { product: Product }) => {
+    const [input, setInput] = useState(props.product);
     const [editProduct, {loading, error}] = useMutation(GqlEditProduct);
     const [updateProduct, setUpdateProduct] = useState<Product>({
         id: props.product.id,
@@ -15,6 +15,7 @@ const EditProduct = (props: { product: Product }) => {
         price: props.product.price,
         category: props.product.category,
         size: props.product.size,
+        
     });
 
     const handleInputChange = (event: any) => {
@@ -61,4 +62,4 @@ const EditProduct = (props: { product: Product }) => {
         </>
     );
 }
-export default EditProduct;
+export default UpdateProduct;

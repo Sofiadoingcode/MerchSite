@@ -1,15 +1,15 @@
 import React, {useState} from 'react';
 
 import {useMutation} from "@apollo/client";
-import GqlCreateProduct from "../resolvers/mutations/GqlCreateProduct";
-import GqlGetAllProducts from "../resolvers/queries/GqlGetAllProducts";
+import GqlCreateProduct from "../../resolvers/mutations/GqlCreateProduct";
+import GqlGetAllProducts from "../../resolvers/queries/GqlGetAllProducts";
 import {useQuery} from "@apollo/client/react";
 import GetAllProducts from "../resolvers/queries/GqlGetAllProducts";
 import EditProduct from './AdminPage/EditProduct';
 import DeleteProduct from './AdminPage/DeleteProduct';
 import {Product} from "../types";
 
-function EditProducts() {
+function AdminProductsList() {
     const {loading, error, data} = useQuery(GetAllProducts);
 
 
@@ -43,4 +43,4 @@ function EditProducts() {
     );
 }
 
-export default EditProducts;
+export default AdminProductsList;
