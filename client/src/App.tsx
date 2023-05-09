@@ -14,6 +14,7 @@ import {CartContextProvider} from './contexts/CartContext';
 import AdminPage from "./pages/AdminPage";
 import SignInPage from "./pages/SignInPage";
 import CreateAccountPage from "./pages/CreateAccountPage";
+import AccountPage from "./pages/AccountPage";
 
 
 const client = new ApolloClient({
@@ -37,6 +38,7 @@ function App() {
                         <Route path="/adminPage" element={<AdminPage/>}></Route>
                         <Route path="/createaccount" element={<CreateAccountPage/>}></Route>
                         <Route path="/signin" element={<SignInPage/>}></Route>
+                        <Route path="/accountpage" element={<AccountPage/>}></Route>
                         <Route path="*" element={<h1>Page Not Found !!!!</h1>}/>
                     </Routes>
                     <Footer/>
