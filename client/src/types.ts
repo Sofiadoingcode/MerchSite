@@ -11,7 +11,6 @@ type Product = {
 type Category = {
     id: string;
     name: string;
-    products: Product[];
 }
 
 type DropdownItems = {

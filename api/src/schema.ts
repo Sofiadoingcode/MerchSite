@@ -53,7 +53,6 @@ type User {
 type Category {
   id: ID!
   name: String!
-  products: [Product!]!
 }
   
 type Query {
@@ -83,7 +82,6 @@ input ProductInput{
 input CategoryInput {
   id: ID
   name: String!
-  products: [ProductInput]
 }
   
 `

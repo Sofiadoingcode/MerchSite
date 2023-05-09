@@ -4,14 +4,6 @@ query Categories {
     categories {
       id
       name
-      products {
-        id
-        name
-        description
-        price
-        size
-        image
-      }
     }
   }
   `

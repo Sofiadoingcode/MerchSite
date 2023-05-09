@@ -4,9 +4,9 @@ import {useMutation} from "@apollo/client"
 import GqlGetAllProducts from "../../resolvers/queries/GqlGetAllProducts";
 
 function CreateProduct() {
-    const initialState = {name: '', description: '', price: 0, category: {id: '', name: '', products: []}, size: [], image: ''}
+    const initialState = {name: '', description: '', price: 0, category: {id: '', name: ''}, size: [], image: ''}
     const [product, setProduct] = useState(initialState)
-    const cat = {id: "6458d6dffb3fb651f2812d36", name: 'category', products: []}
+    const cat = {id: "6458d6dffb3fb651f2812d36", name: 'category'}
     const [mutateFunction, {loading, error, data}] = useMutation(GqlCreateProduct, {
         refetchQueries: [GqlGetAllProducts]
     })
