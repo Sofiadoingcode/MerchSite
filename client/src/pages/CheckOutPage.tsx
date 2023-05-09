@@ -10,7 +10,7 @@ function CheckOutPage() {
 
 
   const [mutateFunction, {loading, error, data}] = useMutation(GqlCreateOrder, {
-})
+  })
 
 
   
@@ -19,6 +19,6 @@ function CheckOutPage() {
         <CreateAddress address={address} setAddress={setAddress}/>
       </div>
     )
-  }
+}
   
   export default CheckOutPage
