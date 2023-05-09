@@ -2,7 +2,7 @@
 import {Args, CategoryArgs} from "../types";
 import Product from "../models/productModel";
 import Category from "../models/categoryModel";
-
+import Order from "../models/orderModel";
 
 
 export default {
@@ -21,9 +21,18 @@ export default {
         const updatedProduct = await Product.findByIdAndUpdate(id, updates);
         return updatedProduct;
     },
+    
     createCategory: async (_parent: never, {input}: CategoryArgs) => {
         const newCategory = new Category(input);
         await newCategory.save();
         return newCategory;
-    }
+    },
+
+    createOrder: async (_parent:never, { orderInput }:Args) => {
+          const newOrder = new Order(orderInput);
+          await newOrder.save();
+          return newOrder;
+        
+      },
+
 }

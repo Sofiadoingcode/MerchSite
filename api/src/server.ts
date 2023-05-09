@@ -13,6 +13,9 @@ const { json } = body_parser_pkg;
 import Query from './resolvers/Query';
 import Mutation from './resolvers/mutation';
 import Product from './resolvers/product';
+import Order from './resolvers/order';
+import ProductLine from './resolvers/productLine';
+import Customer from './resolvers/customer';
 
 
 dotenv.config({path:'./config.env'})
@@ -24,7 +27,10 @@ interface MyContext {
 const resolvers = {
   Query,
   Mutation,
-  Product
+  Product,
+  Order,
+  ProductLine,
+  Customer
 };
 
 

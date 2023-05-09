@@ -5,7 +5,8 @@ import Address from './addressModel';
 
 const orderSchema = new mongoose.Schema({
     orderTime: {
-        type: Date,
+        type: Schema.Types.Date,
+		default: Date.now,
         required: true,
     },
     totalPrice: {
@@ -13,15 +14,15 @@ const orderSchema = new mongoose.Schema({
         required: true,
     },
     address: {
-        type: Address,
+        type: Address.schema,
         required: true,
     },
     productLines: {
-        type: [ProductLine],
+        type: [ProductLine.schema],
         required: true,
     },
-    customer: {
-        type: Customer,
+    customerId: {
+        type: mongoose.Schema.Types.ObjectId,
         required: true
     }
 });
