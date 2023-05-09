@@ -23,8 +23,11 @@ export default {
     },
 
     createOrder: async (_parent:never, { orderInput }:Args) => {
+        console.log("TEST1")
           const newOrder = new Order(orderInput);
+          console.log("TEST2")
           await newOrder.save();
+          console.log("TEST3")
           return newOrder;
         
       },

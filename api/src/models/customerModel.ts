@@ -1,4 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
+import Address from './addressModel';
 
 const customerSchema = new mongoose.Schema({
     email: {
@@ -9,8 +10,8 @@ const customerSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    addressId: {
-        type: mongoose.Schema.Types.ObjectId,
+    address: {
+        type: Address.schema,
         required: false
     },
     phone: {

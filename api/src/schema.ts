@@ -6,12 +6,11 @@ type Product {
     price: Float!
     category: String!
     size: String
-    
   }
 
 type ProductLine {
     id: ID!
-    lineprice: Float
+    linePrice: Float
     amount: Int!
     size: String!
     product: Product!
@@ -20,7 +19,7 @@ type ProductLine {
 type Order {
     id: ID!
     orderTime: String!
-    totalprice: Float!
+    totalPrice: Float!
     address: Address!
     customer: Customer!
     productLines: [ProductLine!]!
@@ -32,13 +31,12 @@ type Customer {
     email: String!
     phone: Int
     address: Address
-
 }
 
 type Address {
     id: ID!
-    postalcode: String!
-    streetaddress: String!
+    postalCode: String!
+    streetAddress: String!
     city: String!
     country: String!
 }
@@ -63,7 +61,7 @@ type Mutation {
   createProduct(input:ProductInput): Product
   deleteProduct(id:ID): Boolean
   editProduct(input:ProductInput): Product
-  createOrder(input:OrderInput): Order
+  createOrder(orderInput:OrderInput): Order
 }
 
 input ProductInput{
@@ -85,16 +83,16 @@ input CustomerInput {
 
 input AddressInput{
     id: ID
-    postalcode: String!
-    streetaddress: String!
+    postalCode: String!
+    streetAddress: String!
     city: String!
     country: String!
 }
 
 input OrderInput{
   id: ID
-  orderTime: String
-  totalprice: Float!
+  orderTime: Int
+  totalPrice: Float!
   address: AddressInput!
   customer: CustomerInput!
   productLines: [ProductLineInput!]!
@@ -102,7 +100,7 @@ input OrderInput{
 
 input ProductLineInput{
   id: ID
-  lineprice: Float
+  linePrice: Float
   amount: Int!
   size: String!
   product: ProductInput!
