@@ -23,6 +23,7 @@ function AdminProductsList() {
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
+                    <th>Image</th>
                     <th>Description</th>
                     <th>Price</th>
                     <th>Category</th>
