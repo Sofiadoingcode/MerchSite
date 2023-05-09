@@ -6,6 +6,7 @@ import Order from "../models/orderModel";
 
 
 export default {
+
     createProduct: async (_parent: never, {input}: Args) => {
         const newProduct = new Product(input);
         await newProduct.save();

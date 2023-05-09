@@ -1,4 +1,4 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose, {Schema} from 'mongoose';
 import ProductLine from './productLineModel'
 import Customer from './customerModel'
 import Address from './addressModel';
@@ -6,7 +6,7 @@ import Address from './addressModel';
 const orderSchema = new mongoose.Schema({
     orderTime: {
         type: Schema.Types.Date,
-		default: Date.now,
+        default: Date.now,
         required: true,
     },
     totalPrice: {
