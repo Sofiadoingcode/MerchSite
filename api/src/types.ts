@@ -70,5 +70,5 @@ type CategoryArgs = {
     input: Category;
 };
 
-export type {Product, Order, Customer, Address, ProductLine, Context, CategoryArgs, Args};
+export type {Product, Order, Customer, Address, ProductLine, Category, Context, CategoryArgs, Args};
 

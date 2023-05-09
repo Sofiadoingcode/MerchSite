@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import mongoose, { Schema } from 'mongoose';
 import ProductLine from './productLineModel'
 import Customer from './customerModel'
 import Address from './addressModel';
