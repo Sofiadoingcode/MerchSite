@@ -37,14 +37,6 @@ type Customer {
     address: Address!
 }
 
-type User {
-    id: ID
-    username: String!
-    password: String!
-    email: String
-    role: String
-    }
-
 type Address {
     id: ID!
     postalcode: String!
@@ -57,8 +49,8 @@ type User {
     id: ID
     username: String!
     password: String!
-    email: String
     role: String
+    customer: Customer
   }
 
 

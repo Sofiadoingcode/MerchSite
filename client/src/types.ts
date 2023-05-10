@@ -43,5 +43,17 @@ type RemoveFromCart = {
 
 type CartActions = AddtoCart | RemoveFromCart;
 
+type AddUser = {
+    type: 'added';
+    user: User;
+};
 
-export type { Product, Category, DropdownItems, CartActions }
+type RemoveUser = {
+    type: 'removed';
+    user: User;
+};
+
+type UserActions = AddUser | RemoveUser;
+
+
+export type { Product, Category, DropdownItems, CartActions, User, Customer, UserActions }
