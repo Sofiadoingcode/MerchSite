@@ -13,6 +13,8 @@ const { json } = body_parser_pkg;
 import Query from './resolvers/Query';
 import Mutation from './resolvers/mutation';
 import Product from './resolvers/product';
+import User from '../src/models/userModel'
+
 import Order from './resolvers/order';
 import ProductLine from './resolvers/productLine';
 import Customer from './resolvers/customer';
@@ -35,7 +37,6 @@ const resolvers = {
   Review
 };
 
-
 const app = express();
 
 const httpServer = http.createServer(app);
@@ -49,12 +50,12 @@ const server = new ApolloServer<MyContext>({
 await server.start();
 
 
-app.use('/graphql', 
+app.use('/graphql',
   cors<cors.CorsRequest>(),
   json(),
   expressMiddleware(server, {
     context: async() => ({
-      
+
     })},
    )
 );
@@ -72,4 +73,3 @@ const DB = process.env.DATABASE_DEV!.replace(
 
 mongoose.connect(DB, {
 }).then(() => console.log('DB connection successful!'));
-

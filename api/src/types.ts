@@ -10,16 +10,23 @@ type Product = {
     ratingAvg: number;
 }
 
+enum Roles {
+    "admin", "customer"
+}
+
 type Category = {
     id: string;
     name: string;
 }
 
 type User = {
+    id: string | undefined;
     username: string;
     password: string;
     category: string;
     size: string;
+    customer: Customer;
+    role: string;
 }
 
 type ProductLine = {
@@ -81,5 +88,5 @@ type CategoryArgs = {
     input: Category;
 };
 
-export type {Product, Order, Customer, Address, ProductLine, Category, Review, Context, CategoryArgs, Args};
+export type {Product, User, Order, Customer, Address, Review, ProductLine, Category, Context, CategoryArgs, Args};
 

@@ -20,7 +20,7 @@ type ProductLine {
     size: String!
     product: Product!
   }
-  
+
 type Order {
     id: ID!
     orderTime: String!
@@ -44,8 +44,8 @@ type User {
     id: ID
     username: String!
     password: String!
-    email: String
     role: String
+    customer: Customer
     }
 
 type Address {
@@ -65,14 +65,6 @@ type Review {
   product: Product!
 }
 
-type User {
-    id: ID
-    username: String!
-    password: String!
-    email: String
-    role: String
-  }
-
 
 type Category {
   id: ID!
@@ -83,7 +75,7 @@ type LoginOutput {
     token: String!
     user: User!
 }
-  
+
 type Query {
     products: [Product!]!
     product(id: ID): Product
@@ -100,8 +92,10 @@ type Mutation {
   deleteProduct(id:ID): Boolean
   editProduct(input:ProductInput): Product
   createCategory(input:CategoryInput): Category
+  login(userInput: UserInput) : LoginOutput
   createOrder(orderInput:OrderInput): Order
   createReview(reviewInput:ReviewInput): Review
+  createCustomerAccount(userInput:UserInput): User
 }
 
 input ProductInput{
@@ -122,6 +116,7 @@ input CategoryInput {
 input UserInput {
     username: String!
     password: String!
+    customer: CustomerInput
 }
 
 input CustomerInput {

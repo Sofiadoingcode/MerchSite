@@ -30,7 +30,7 @@ const UpdateProduct = (props: { product: Product }) => {
         if (name === 'price') {
             setUpdateProduct({...updateProduct, [name]: parseFloat(value)});
         } if (name === "size"){
-           updateProduct.size = event.target.value.split(",").map(str => str.trim());
+           updateProduct.size = event.target.value.split(",").map((str: string) => str.trim());
         }else {
             setUpdateProduct({...updateProduct, [name]: value});
         }
