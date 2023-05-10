@@ -39,11 +39,15 @@ function userReducer(user: User, action: UserActions) {
         case 'added': {
             return {
                 ...user,
-                    id: action.user.id,
-                    username: action.user.username,
-                    password: action.user.password,
-                    role: action.user.role,
-                    customer: action.user.customer,
+                id: action.user.id,
+                username: action.user.username,
+                password: action.user.password,
+                role: action.user.role,
+                customer: {
+                    name: action.user.customer.name,
+                    email: action.user.customer.email,
+                    phone: action.user.customer.phone
+                }
 
             };
         }
@@ -60,6 +64,7 @@ export function useUserContext() {
     }
     return context
 }
+
 export function useCartDispatchContext() {
     let context = useContext(UserDispatchContext)
     if (context === undefined) {
