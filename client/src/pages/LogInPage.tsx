@@ -66,7 +66,7 @@ function Login() {
                             <br/>
                             <div style={{fontSize: '14px', color: 'grey'}}>
                                 <p>Don't have an account?</p>
-                                <NavLink className={"navLinkToCreateOrLogin"} to={"/createaccount"}>Create
+                                <NavLink className={"navLinkToCreateOrLogin"} to={"/signup"}>Create
                                     account</NavLink>
                             </div>
                             <br/>

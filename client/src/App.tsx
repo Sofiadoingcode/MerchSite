@@ -38,9 +38,9 @@ function App() {
                             <Route path="/cart" element={<CartPage/>}/>
                             <Route path='/checkout' element={<CheckOutPage/>}/>
                             <Route path="/adminPage" element={<AdminPage/>}></Route>
-                            <Route path="/createaccount" element={<CreateAccountPage/>}></Route>
+                            <Route path="/signup" element={<CreateAccountPage/>}></Route>
                             <Route path="/login" element={<Login/>}></Route>
-                            <Route path="/accountpage" element={<AccountPage/>}></Route>
+                            <Route path="/account" element={<AccountPage/>}></Route>
                             <Route path="*" element={<h1>Page Not Found !!!!</h1>}/>
                         </Routes>
                         <Footer/>
