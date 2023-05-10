@@ -2,16 +2,14 @@ import React, {useState} from 'react';
 import createAccount from "../styles/createAccount.css"
 import {Button, Card, CardContent, CardMedia, Grid} from "@mui/material";
 import {NavLink, redirect, useNavigate} from "react-router-dom";
-import {useQuery} from "@apollo/client/react";
-import GetAllProducts from "../resolvers/queries/GqlGetAllProducts";
-import GetProduct from "../resolvers/queries/GqlGetProduct";
-import LogIn from "../resolvers/queries/GqlLogIn";
 import {useMutation} from "@apollo/client";
-import GqlCreateProduct from "../resolvers/mutations/GqlCreateProduct";
-import GqlGetAllProducts from "../resolvers/queries/GqlGetAllProducts";
 import GqlLogIn from "../resolvers/mutations/GqlLogIn";
+import {useUserContext, useCartDispatchContext} from "../contexts/UserContext";
+
+
 
 function Login() {
+    const dispatch = useCartDispatchContext();
     const navigate = useNavigate();
     const [user, setUser] = useState({
         username: '',
@@ -34,7 +32,10 @@ function Login() {
         }).then((result) => {
             console.log(result.data.login.token);
             console.log(result.data.login.user);
+            console.log(result.data.login.user.role);
+            dispatch({ type: 'added', user: result.data.login.user });
             localStorage.setItem('token', result.data.login.token);
+
             navigate('/');
         })
             .catch((error) => {
@@ -65,7 +66,7 @@ function Login() {
                             <br/>
                             <div style={{fontSize: '14px', color: 'grey'}}>
                                 <p>Don't have an account?</p>
-                                <NavLink className={"navLinkToCreateOrLogin"} to={"/createaccount"}>Create
+                                <NavLink className={"navLinkToCreateOrLogin"} to={"/signup"}>Create
                                     account</NavLink>
                             </div>
                             <br/>

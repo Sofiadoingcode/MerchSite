@@ -7,7 +7,7 @@ type Product {
     category: Category!
     size: [String]
     image: String!
-
+    ratingAvg: Float
   }
 
 type Token {
@@ -20,7 +20,7 @@ type ProductLine {
     size: String!
     product: Product!
   }
-  
+
 type Order {
     id: ID!
     orderTime: String!
@@ -56,6 +56,15 @@ type Address {
     country: String!
 }
 
+type Review {
+  id: ID!
+  title: String
+  text: String
+  rating: Float!
+  user: User
+  product: Product!
+}
+
 
 type Category {
   id: ID!
@@ -66,12 +75,15 @@ type LoginOutput {
     token: String!
     user: User!
 }
-  
+
 type Query {
     products: [Product!]!
     product(id: ID): Product
     categories: [Category!]!
     productsByCategory(id: ID): [Product!]!
+    login(userInput: UserInput) : LoginOutput
+    orders: [Order!]!
+    reviewsByProduct(id: ID): [Review!]!
 
   }
 type Mutation {
@@ -81,6 +93,7 @@ type Mutation {
   createCategory(input:CategoryInput): Category
   login(userInput: UserInput) : LoginOutput
   createOrder(orderInput:OrderInput): Order
+  createReview(reviewInput:ReviewInput): Review
   createCustomerAccount(userInput:UserInput): User
 }
 
@@ -138,6 +151,15 @@ input ProductLineInput{
   size: String!
   product: ProductInput!
 }
+input ReviewInput {
+  id: ID
+  title: String
+  text: String
+  rating: Float!
+  userId: ID
+  productId: ID!
+}
+  
 `
 
 export default typeDefs;

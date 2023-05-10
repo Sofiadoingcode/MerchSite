@@ -1,9 +1,10 @@
 import {Args, CategoryArgs} from "../types";
 import Product from "../models/productModel";
 import Category from "../models/categoryModel";
+import Order from "../models/orderModel";
+import Review from "../models/reviewModel";
 import UserModel from "../models/userModel";
 import jwt from "jsonwebtoken";
-import Order from "../models/orderModel";
 import User from "../models/userModel";
 
 export default {
@@ -29,6 +30,8 @@ export default {
     },
     login: async (_parent: never, {userInput}: Args) => {
         const user = await UserModel.findOne({username: userInput.username}).exec();
+        console.log("--------------------------------")
+        console.log(user)
         if (!user) throw new Error('User not found');
 
         const validPassword = await user.password === userInput.password;
@@ -38,10 +41,19 @@ export default {
 
         return {user: user, token: token}
     },
-    createOrder: async (_parent: never, {orderInput}: Args) => {
-        const newOrder = new Order(orderInput);
-        await newOrder.save();
-        return newOrder;
+
+
+    createOrder: async (_parent:never, { orderInput }:Args) => {
+          const newOrder = new Order(orderInput);
+          await newOrder.save();
+          return newOrder;
+
+      },
+      createReview: async (_parent:never, { reviewInput }:Args) => {
+        const newReview = new Review(reviewInput);
+        await newReview.save();
+        return newReview;
+
     },
 
     createCustomerAccount: async (_parent: never, {userInput}: Args) => {
@@ -49,5 +61,6 @@ export default {
         const newUser = new User(userInput);
         await newUser.save();
         return newUser;
+
     },
 }

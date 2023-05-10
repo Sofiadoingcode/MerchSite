@@ -1,6 +1,7 @@
 import DeleteProduct from "../components/AdminPage/DeleteProduct"
 import CreateProduct from "../components/AdminPage/CreateProduct"
 import {useCartDispatchContext } from "../contexts/CartContext"
+import {useUserContext} from "../contexts/UserContext";
 
 import { Category } from "../types"
 import { useState } from "react"
@@ -12,6 +13,9 @@ function HomePage() {
   const [categories, setCategories] = useState<Category[]>([])
   const { loading, error, data } = useQuery(GetAllCategories, {onCompleted: (data)=> {setCategories(data.categories)}});
 
+  const user = useUserContext()
+  console.log("I'm user")
+  console.log(user)
 
     return (
       <div>

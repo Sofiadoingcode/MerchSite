@@ -12,6 +12,7 @@ query Products {
       }
       size
       image
+      ratingAvg
     }
   }
   `

@@ -7,7 +7,13 @@ mutation LogIn($userInput: UserInput) {
       id
       username
       password
+      role
+      customer {
+      id
+      name
       email
+      phone
+    }
     }
   }
 }

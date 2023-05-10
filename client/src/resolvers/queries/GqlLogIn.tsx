@@ -8,7 +8,6 @@ query LogIn($userInput: UserInput) {
       username
       password
       email
-    }
   }
 }
   `

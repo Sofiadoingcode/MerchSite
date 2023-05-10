@@ -56,7 +56,7 @@ function CreateAccountPage(props: any) {
                             <div style={{fontSize: '13px', color: 'grey'}}>
                                 <span>Already have an account?</span>
                                 <br/>
-                                <NavLink className={"navLinkToCreateOrLogin"} to={"/signin"}>Log in</NavLink>
+                                <NavLink className={"navLinkToCreateOrLogin"} to={"/login"}>Log in</NavLink>
                             </div>
                             <br/>
                             <br/>

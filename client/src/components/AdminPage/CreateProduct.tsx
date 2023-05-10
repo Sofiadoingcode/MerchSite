@@ -12,7 +12,6 @@ function CreateProduct() {
     const initialState = {name: '', description: '', price: 0, categoryId: '', size: [''], image: ''}
     const [product, setProduct] = useState(initialState)
     const catData = useQuery(GetAllCategories, {onCompleted: (data)=> {setCategories(data.categories)}});
-    
     const [mutateFunction, {loading, error, data}] = useMutation(GqlCreateProduct, {
         refetchQueries: [GqlGetAllProducts]
     })

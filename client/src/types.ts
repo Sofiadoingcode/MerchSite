@@ -6,6 +6,7 @@ type Product = {
     category: Category;
     size: string[];
     image: string;
+    ratingAvg: number;
 }
 
 type User = {
@@ -27,6 +28,15 @@ type Category = {
     name: string;
 }
 
+type Review = {
+    id: string;
+    title: string;
+    text: string;
+    rating: number;
+    userId: string;
+    productId: string;
+}
+
 type DropdownItems = {
     items: Category[];
     value: string;
@@ -45,5 +55,18 @@ type RemoveFromCart = {
 
 type CartActions = AddtoCart | RemoveFromCart;
 
+type AddUser = {
+    type: 'added';
+    user: User;
+};
 
-export type { Product,  Category, DropdownItems, CartActions, User, Customer};
+type RemoveUser = {
+    type: 'removed';
+    user: User;
+};
+
+type UserActions = AddUser | RemoveUser;
+
+
+export type { Product, Category, DropdownItems, Review, CartActions, User, Customer, UserActions }
+
