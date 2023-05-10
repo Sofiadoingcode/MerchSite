@@ -44,6 +44,9 @@ function NavBar(props: { page: String }) {
                         <NavLink to="/signup" className="link">
                             SIGN UP
                         </NavLink>
+                        <NavLink to="/account" className="link">
+                            ACCOUNT
+                        </NavLink>
 
                         <NavLink to="/wishlist" className="iconlink">
                             <svg width="2rem" height="2rem" viewBox="0 0 24 24" fill="none"
