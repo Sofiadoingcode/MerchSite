@@ -17,7 +17,7 @@ import User from '../src/models/userModel'
 import Order from './resolvers/order';
 import ProductLine from './resolvers/productLine';
 import Customer from './resolvers/customer';
-import populator from './Populator';
+
 
 
 

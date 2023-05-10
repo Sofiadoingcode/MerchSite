@@ -103,6 +103,7 @@ input UserInput {
     username: String!
     password: String!
     customer: CustomerInput
+    role: String
 }
 
 input CustomerInput {

@@ -5,41 +5,37 @@ import GqlEditProduct from "../resolvers/mutations/GqlEditProduct";
 import {Card, Grid} from "@mui/material";
 import '../styles/createaccountpage.css'
 import {NavLink} from "react-router-dom";
-import {User} from "../types"
+import {Customer, User} from "../types"
 import GqlCreateCustomer from "../resolvers/mutations/GqlCreateCustomer";
 function CreateAccountPage(props: any) {
     const [CreateCustomer, {loading, error}] = useMutation(GqlCreateCustomer);
 
-    const [userCredentials, setUserCredentials] = useState({
-        username: "",
-        password: "",
-        customer: {}
-    });
-    const [customerCredentials, setCustomerCredentials] = useState({
-        email: "",
-        name: "name",
-        number: 0
-    });
+    const [userCredentials, setUserCredentials] = useState<User>(Object);
+    const [customerCredentials, setCustomerCredentials] = useState<Customer>(Object);
 
 
 
     const createAccount = (evt:  React.FormEvent<HTMLFormElement>) => {
         evt.preventDefault();
+        customerCredentials.name = "testName"
         userCredentials.customer = customerCredentials;
-        console.log(userCredentials)
-        CreateCustomer({variables: {input: userCredentials}})
+        CreateCustomer({variables: {userInput: userCredentials}})
     }
     const onChange = (evt: any) => {
+        const {id, value} = evt.target;
+
         if (evt.target.id === "email" || evt.target.id === "name") {
-            setCustomerCredentials({...customerCredentials, [evt.target.id]: evt.target.value})
+            setCustomerCredentials({...customerCredentials, [id]: value})
             return
         }
-        if (evt.target.id === "number") {
-            setCustomerCredentials({...customerCredentials, [evt.target.id]: evt.target.value})
+        if (evt.target.id === "phone") {
+            setCustomerCredentials({...customerCredentials, [id]: parseFloat(value)})
             return
         }
-        setUserCredentials({...userCredentials, [evt.target.id]: evt.target.value})
+        setUserCredentials({...userCredentials, [id]: value})
     }
+
+
     return (
         <div className={"createAccountDiv"}>
             <Grid container>
@@ -56,7 +52,7 @@ function CreateAccountPage(props: any) {
                             <input style={{margin: '10px 10px'}} className={"createAccountCardInputFields"} onChange={onChange} type="email"
                                    placeholder="Email" id="email"/>
                             <input style={{margin: '10px 10px'}} className={"createAccountCardInputFields"} onChange={onChange} type="number"
-                                   placeholder="Number" id="number"/>
+                                   placeholder="Number" id="phone"/>
                             <div style={{fontSize: '13px', color: 'grey'}}>
                                 <span>Already have an account?</span>
                                 <br/>

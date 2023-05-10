@@ -1,19 +1,16 @@
 import {gql} from '@apollo/client';
 
 const GqlCreateCustomer = gql`
-mutation CreateProduct($input: UserInput) {
-    createProduct(input: $input) {
-      id
+mutation Mutation($userInput: UserInput) {
+  createCustomerAccount(userInput: $userInput) {
+    username
+    password
+    customer {
+      phone
       name
-      description
-      price
-      category {
-        id
-        name
-      }
-      size
-      image
+      email
     }
   }
+}
 `;
 export default GqlCreateCustomer
