@@ -11,8 +11,15 @@ type Product = {
 type User = {
     id: string;
     username: string;
+    password: string;
+    role: string
+    customer: Customer;
+}
 
-
+type Customer = {
+    email: string;
+    name: string;
+    phone: string;
 }
 
 type Category = {
