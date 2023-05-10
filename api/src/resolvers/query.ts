@@ -4,6 +4,7 @@ import Product from "../models/productModel";
 import Category from "../models/categoryModel";
 import UserModel from "../models/userModel";
 import jwt from "jsonwebtoken";
+import Order from "../models/orderModel";
 
 
 export default {
@@ -15,6 +16,7 @@ export default {
 
     categories: async () => await Category.find({}),
 
+    orders: async () => await Order.find({}),
 
     login: async (_parent: never, {userInput}: Args) => {
             const user = await UserModel.findOne({username: userInput.username}).exec();

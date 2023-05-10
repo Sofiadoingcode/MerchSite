@@ -29,7 +29,8 @@ export function CartContextProvider({ children }:{children:JSX.Element}) {
               description: action.item.description,
               price: action.item.price,
               category: action.item.category,
-              size: action.item.size
+              size: action.item.size,
+              image: action.item.image
             }];
           }
           case 'removed': {

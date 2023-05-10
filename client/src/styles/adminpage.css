@@ -4,3 +4,41 @@
     height: 40px;
     width: 40px;
 }
+#adminpage_outer_div {
+    display: flex;
+    flex-wrap: wrap;
+}
+.admin_menu_div {
+    min-height: 70vh;
+}
+.menu_active {
+    width: 60%;
+    margin-left: 20%;
+}
+.menu_inactive {
+    width: 20%;
+}
+#admin_header {
+        text-align: center;
+        border: 2px solid gainsboro;
+        background-color: gray;
+        color: white;
+        height: 3rem;
+}
+.admin_menu_buttons {
+    width: 100%;
+    height: 3rem;
+    text-align: left;
+    position: relative;
+}
+.admin_menu_buttons_text {
+    margin-left: 10%;
+    font-size: large;
+}
+.admin_menu_buttons_arrow {
+    position: absolute;
+    font-size: 1.5rem;
+    top: 8px;
+    right: 20px;
+    user-select: none;
+}
