@@ -12,7 +12,7 @@ type Address = {
     id: string;
     country: string;
     city: string;
-    zipCode: string;
+    postalCode: string;
     streetAddress: string;
 }
 
@@ -25,7 +25,7 @@ type Order = {
 }
 
 type ProductLine = {
-    lineprice: number;
+    linePrice: number;
     amount: number;
     size: string;
     productId: string;

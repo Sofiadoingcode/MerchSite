@@ -135,7 +135,7 @@ input OrderInput{
   orderTime: Int
   totalPrice: Float!
   address: AddressInput!
-  customerId: ID!
+  customerId: ID
   productLines: [ProductLineInput!]!
 }
 

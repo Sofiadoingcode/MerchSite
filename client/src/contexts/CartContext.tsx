@@ -9,6 +9,7 @@ export function CartContextProvider({ children }:{children:JSX.Element}) {
       cartReducer,
       initialCart
     );
+
     return (
         <CartContext.Provider value={cart}>
           <CartDispatchContext.Provider value={dispatch}>
