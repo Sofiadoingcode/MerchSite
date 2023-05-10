@@ -6,11 +6,6 @@ mutation CreateOrder($orderInput: OrderInput) {
         id
         orderTime
         totalPrice
-          customer {
-            name
-            id
-            email
-        }
         productLines {
             id
         }

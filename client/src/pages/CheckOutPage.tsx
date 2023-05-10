@@ -21,7 +21,7 @@ function CheckOutPage() {
     const handleSubmit = () => {
 
       order.totalPrice = totalPrice;
-      order.customerId = "";
+      //order.customerId = "1";
       order.address = address;
 
       let list : ProductLine[] = [];

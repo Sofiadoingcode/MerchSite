@@ -26,7 +26,7 @@ type Order {
     orderTime: String!
     totalPrice: Float!
     address: Address!
-    customer: Customer!
+    customer: Customer
     productLines: [ProductLine!]!
   }
 
