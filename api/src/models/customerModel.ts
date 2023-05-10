@@ -19,6 +19,8 @@ const customerSchema = new mongoose.Schema({
         type: Number,
         required: false
     },
+
+
 });
 
 const Customer = mongoose.model('Customer', customerSchema);

@@ -44,8 +44,8 @@ type User {
     id: ID
     username: String!
     password: String!
-    email: String
     role: String
+    customer: Customer
     }
 
 type Address {
@@ -55,14 +55,6 @@ type Address {
     city: String!
     country: String!
 }
-
-type User {
-    id: ID
-    username: String!
-    password: String!
-    email: String
-    role: String
-  }
 
 
 type Category {
@@ -81,7 +73,6 @@ type Query {
     categories: [Category!]!
     productsByCategory(id: ID): [Product!]!
     login(userInput: UserInput) : LoginOutput
-
   }
 
 
@@ -91,7 +82,7 @@ type Mutation {
   editProduct(input:ProductInput): Product
   createCategory(input:CategoryInput): Category
   createOrder(orderInput:OrderInput): Order
-
+  createCustomerAccount(userInput:UserInput): User
 }
 
 input ProductInput{
@@ -112,6 +103,7 @@ input CategoryInput {
 input UserInput {
     username: String!
     password: String!
+    customer: CustomerInput
 }
 
 input CustomerInput {
@@ -146,7 +138,6 @@ input ProductLineInput{
   size: String!
   product: ProductInput!
 }
-  
 `
 
 export default typeDefs;

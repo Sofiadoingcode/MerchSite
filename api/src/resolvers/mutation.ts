@@ -1,9 +1,8 @@
-
 import {Args, CategoryArgs} from "../types";
 import Product from "../models/productModel";
 import Category from "../models/categoryModel";
 import Order from "../models/orderModel";
-
+import User from "../models/userModel";
 
 export default {
     createProduct: async (_parent: never, {input}: Args) => {
@@ -11,7 +10,6 @@ export default {
         await newProduct.save();
         return newProduct;
     },
-
     deleteProduct: async (_parent: never, {id}: Args) => {
         const result = await Product.findByIdAndDelete(id);
         return result ? true : false;
@@ -21,18 +19,20 @@ export default {
         const updatedProduct = await Product.findByIdAndUpdate(id, updates);
         return updatedProduct;
     },
-    
     createCategory: async (_parent: never, {input}: CategoryArgs) => {
         const newCategory = new Category(input);
         await newCategory.save();
         return newCategory;
     },
-
-    createOrder: async (_parent:never, { orderInput }:Args) => {
-          const newOrder = new Order(orderInput);
-          await newOrder.save();
-          return newOrder;
-        
-      },
-
+    createOrder: async (_parent: never, {orderInput}: Args) => {
+        const newOrder = new Order(orderInput);
+        await newOrder.save();
+        return newOrder;
+    },
+    createCustomerAccount: async (_parent: never, {userInput}: Args) => {
+        userInput.role = 'customer';
+        const newUser = new User(userInput);
+        await newUser.save();
+        return newUser;
+    }
 }
