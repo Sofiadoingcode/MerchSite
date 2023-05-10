@@ -78,7 +78,6 @@ type Query {
     categories: [Category!]!
     productsByCategory(id: ID): [Product!]!
     login(userInput: UserInput) : LoginOutput
-
   }
 
 type Mutation {

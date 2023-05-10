@@ -2,31 +2,51 @@ import React, {useState} from 'react';
 import createAccount from "../styles/createAccount.css"
 import {Button, Card, CardContent, CardMedia, Grid} from "@mui/material";
 import {NavLink, redirect, useNavigate} from "react-router-dom";
+import {useQuery} from "@apollo/client/react";
+import GetAllProducts from "../resolvers/queries/GqlGetAllProducts";
+import GetProduct from "../resolvers/queries/GqlGetProduct";
+import LogIn from "../resolvers/queries/GqlLogIn";
 
 function Login() {
-    const init = {username: "", password: ""};
-    const [loginCredentials, setLoginCredentials] = useState(init);
     const navigate = useNavigate();
+
+    const [user, setUser] = useState({
+        username: 'testyman',
+        password: 'test123',
+    });
+
+    const {loading, error, data} = useQuery(LogIn, {
+        variables: {
+            userInput: {
+                username: user.username,
+                password: user.password,
+            },
+        },
+    });
+    console.log(user.username)
+    console.log(user.password)
+
+
+    console.log("Im data!")
+    console.log(data)
+
+
+    if (loading) return <>'Submitting...'</>;
+    if (error) return <>`Submission error! ${error.message}`</>;
+
 
 
     const performLogin = (evt: any) => {
         evt.preventDefault();
-        // login(loginCredentials.username, loginCredentials.password)
+
+
+
     }
-
-
-    // const login = (user, pass) => {
-    //     facade.login(user, pass, setRoles, setLoggedIn, setUsername)
-    //         .then((res) => {
-    //             facade.getAccountFromId(apiFacade.decodeJwt().username)
-    //                 .then((res) => { setAccount(res)
-    //                     navigate("/feed")}
-    //                 )})}
-
 
     const onChange = (evt: any) => {
-        setLoginCredentials({...loginCredentials, [evt.target.id]: evt.target.value})
+        setUser({...user, [evt.target.id]: evt.target.value})
     }
+
 
 
     return (

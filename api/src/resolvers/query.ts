@@ -19,6 +19,7 @@ export default {
     login: async (_parent: never, {userInput}: Args) => {
             const user = await UserModel.findOne({username: userInput.username}).exec();
             if (!user) throw new Error('User not found');
+            console.log("Yay me!------------")
 
             const validPassword = await user.password === userInput.password;
             if (!validPassword) throw new Error('Invalid password');

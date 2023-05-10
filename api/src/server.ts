@@ -13,6 +13,8 @@ const { json } = body_parser_pkg;
 import Query from './resolvers/Query';
 import Mutation from './resolvers/mutation';
 import Product from './resolvers/product';
+import User from '../src/models/userModel'
+
 
 
 dotenv.config({path:'./config.env'})
@@ -27,6 +29,14 @@ const resolvers = {
   Product
 };
 
+// const user = new User({
+//     email: 'test@gmail.com',
+//     username: 'testyman',
+//     password: 'test123',
+//     role: 'admin'
+// })
+//
+// user.save();
 
 const app = express();
 

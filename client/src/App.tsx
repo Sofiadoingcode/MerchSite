@@ -12,9 +12,9 @@ import {ApolloClient, InMemoryCache, ApolloProvider, gql} from '@apollo/client';
 import CheckOutPage from './pages/CheckOutPage';
 import {CartContextProvider} from './contexts/CartContext';
 import AdminPage from "./pages/AdminPage";
-import SignInPage from "./pages/SignInPage";
 import CreateAccountPage from "./pages/CreateAccountPage";
 import AccountPage from "./pages/AccountPage";
+import Login from "./pages/LogInPage";
 
 
 const client = new ApolloClient({
@@ -37,7 +37,7 @@ function App() {
                         <Route path='/checkout' element={<CheckOutPage/>}/>
                         <Route path="/adminPage" element={<AdminPage/>}></Route>
                         <Route path="/createaccount" element={<CreateAccountPage/>}></Route>
-                        <Route path="/signin" element={<SignInPage/>}></Route>
+                        <Route path="/login" element={<Login/>}></Route>
                         <Route path="/accountpage" element={<AccountPage/>}></Route>
                         <Route path="*" element={<h1>Page Not Found !!!!</h1>}/>
                     </Routes>
