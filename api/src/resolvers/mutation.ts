@@ -8,6 +8,7 @@ import Order from "../models/orderModel";
 
 
 export default {
+
     createProduct: async (_parent: never, {input}: Args) => {
         console.log(input)
         const newProduct = new Product(input);
