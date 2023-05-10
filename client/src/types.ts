@@ -8,6 +8,13 @@ type Product = {
     image: string;
 }
 
+type User = {
+    id: string;
+    username: string;
+
+
+}
+
 type Category = {
     id: string;
     name: string;
@@ -26,5 +33,8 @@ type RemoveFromCart = {
     type: 'removed';
     item: Product;
 };
+
 type CartActions = AddtoCart | RemoveFromCart;
+
+
 export type { Product, Category, DropdownItems, CartActions }
