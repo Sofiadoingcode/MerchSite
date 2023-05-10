@@ -24,12 +24,13 @@ function cartReducer(cart: Product[], action: CartActions) {
     switch (action.type) {
         case 'added': {
             return [...cart, {
-                id: action.item.id,
-                name: action.item.name,
-                description: action.item.description,
-                price: action.item.price,
-                category: action.item.category,
-                size: action.item.size
+              id: action.item.id,
+              name: action.item.name,
+              description: action.item.description,
+              price: action.item.price,
+              category: action.item.category,
+              size: action.item.size,
+              image: action.item.image
             }];
         }
         case 'removed': {

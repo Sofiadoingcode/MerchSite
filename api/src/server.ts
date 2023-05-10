@@ -15,6 +15,9 @@ import Mutation from './resolvers/mutation';
 import Product from './resolvers/product';
 import User from '../src/models/userModel'
 
+import Order from './resolvers/order';
+import ProductLine from './resolvers/productLine';
+import Customer from './resolvers/customer';
 
 
 dotenv.config({path:'./config.env'})
@@ -26,7 +29,10 @@ interface MyContext {
 const resolvers = {
   Query,
   Mutation,
-  Product
+  Product,
+  Order,
+  ProductLine,
+  Customer
 };
 
 // const user = new User({
@@ -51,12 +57,12 @@ const server = new ApolloServer<MyContext>({
 await server.start();
 
 
-app.use('/graphql', 
+app.use('/graphql',
   cors<cors.CorsRequest>(),
   json(),
   expressMiddleware(server, {
     context: async() => ({
-      
+
     })},
    )
 );
@@ -74,4 +80,3 @@ const DB = process.env.DATABASE_DEV!.replace(
 
 mongoose.connect(DB, {
 }).then(() => console.log('DB connection successful!'));
-
