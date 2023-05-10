@@ -80,3 +80,6 @@ option {
     padding: 4px;
     resize: none;
 }
+#review_input_box_rating {
+    margin-left: 40%;
+}

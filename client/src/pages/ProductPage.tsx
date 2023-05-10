@@ -85,7 +85,7 @@ function ProductPage() {
                     </Grid>
                 </Card>
             </Grid>
-            <ReviewInputBox/>
+            <ReviewInputBox product={product}/>
             <ReviewCard reviews={reviews}/>
         </Grid>
         

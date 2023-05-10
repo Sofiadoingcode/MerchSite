@@ -1,7 +1,35 @@
-import { Card, CardContent, Grid, Input, InputLabel, Typography } from "@mui/material"
+import { Card, CardContent, Grid, Input, InputLabel, Rating, Typography } from "@mui/material"
+import { Product, Review } from "../../types"
+import GqlCreateReview from "../../resolvers/mutations/GqlCreateReview"
+import { useMutation } from "@apollo/client"
+import GetReviewsByProduct from "../../resolvers/queries/GqlGetReviewsByProduct"
+import { useState } from "react"
 
 
-function ReviewInputBox() {
+function ReviewInputBox({product}:{product:Product}) {
+    const intialState: Review = {id:'', title:'', text:'', rating:0, userId:'', productId:''}
+    const [review, setReview] = useState<Review>(intialState)
+    const [mutateFunction, {loading, error, data}] = useMutation(GqlCreateReview, {
+        refetchQueries: [{
+            query: GetReviewsByProduct,
+            variables: {
+                reviewsByProductId: product.id
+            }
+        }]
+    })
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error.message}</p>;
+
+    function handleSubmit(event: React.FormEvent<HTMLFormElement>){
+        event.preventDefault()
+        
+        review.productId = product.id
+        mutateFunction({
+            variables: {
+                reviewInput: review
+            }
+        })
+    }
 
     return (
         <>
@@ -10,16 +38,19 @@ function ReviewInputBox() {
                     <CardContent>
                         <Typography typography={'h4'}>Leave a review</Typography>
                     </CardContent>
-                    <CardContent>
+                    <form onSubmit={handleSubmit}>
+                    <CardContent style={{display:'flex'}}>
                         <label className="review_label">Title:
-                            <input className="review_input" />
+                            <input className="review_input" required value={review.title} onChange={(evt)=> setReview({...review, title:evt.target.value})}/>
                         </label>
+                        <Rating id="review_input_box_rating" size="large" onChange={(evt, newValue)=> { if(newValue!=null)setReview({...review, rating:newValue})}}/>
                     </CardContent>
                     <CardContent>
                         <Typography typography={'h6'}>Comment: </Typography>
-                        <textarea required maxLength={500} className="review_input" id="review_input_comment" placeholder={"Write your comment here"} />
-                        <button type={"submit"}>Submit Review</button>
+                        <textarea required maxLength={500} aria-required className="review_input" id="review_input_comment" placeholder={"Write your comment here"} value={review.text} onChange={(evt)=> setReview({...review, text:evt.target.value})}/>
+                        <button type="submit">Submit Review</button>
                     </CardContent>
+                    </form>
                 </Card>
             </Grid>
         </>

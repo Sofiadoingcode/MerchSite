@@ -20,9 +20,7 @@ function ShopPage() {
 
     useEffect(() => {
       if(value.length > 0){
-        console.log(value)
         const filtered: Product[] = allProducts.filter((product) => {
-          console.log(product.category.id)
           return product.category.id === value;
         });
         setProducts(filtered)
