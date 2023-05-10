@@ -3,6 +3,7 @@ import {Args, CategoryArgs} from "../types";
 import Product from "../models/productModel";
 import Category from "../models/categoryModel";
 import Order from "../models/orderModel";
+import Review from "../models/reviewModel";
 
 
 export default {
@@ -35,5 +36,10 @@ export default {
           return newOrder;
         
       },
+      createReview: async (_parent:never, { reviewInput }:Args) => {
+        const newReview = new Review(reviewInput);
+        await newReview.save();
+        return newReview;
+    },
 
 }

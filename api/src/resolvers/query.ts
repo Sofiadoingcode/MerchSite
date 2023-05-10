@@ -5,6 +5,7 @@ import Category from "../models/categoryModel";
 import UserModel from "../models/userModel";
 import jwt from "jsonwebtoken";
 import Order from "../models/orderModel";
+import Review from "../models/reviewModel";
 
 
 export default {
@@ -17,6 +18,12 @@ export default {
     categories: async () => await Category.find({}),
 
     orders: async () => await Order.find({}),
+
+    reviewsByProduct: async (_parent: never, {id}: Args) => {
+       const allReviews = await Review.find({});
+       const reviews = allReviews.filter((rev)=> rev.productId.toString() === id)
+       return reviews
+    },
 
     login: async (_parent: never, {userInput}: Args) => {
             const user = await UserModel.findOne({username: userInput.username}).exec();

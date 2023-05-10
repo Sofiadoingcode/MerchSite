@@ -7,6 +7,7 @@ type Product = {
     categoryId: string;
     size: string[];
     image: string;
+    ratingAvg: number;
 }
 
 type Category = {
@@ -54,6 +55,15 @@ type Order = {
     productLines: [ProductLine];
 }
 
+type Review = {
+    id: string;
+    title: string;
+    text: string;
+    rating: number;
+    userId: string;
+    productId: string;
+}
+
 type Context = {
     products: Product[];
 };
@@ -63,6 +73,7 @@ type Args = {
     input: Product;
     userInput: User;
     orderInput: Order;
+    reviewInput: Review;
 };
 
 type CategoryArgs = {
@@ -70,5 +81,5 @@ type CategoryArgs = {
     input: Category;
 };
 
-export type {Product, Order, Customer, Address, ProductLine, Category, Context, CategoryArgs, Args};
+export type {Product, Order, Customer, Address, ProductLine, Category, Review, Context, CategoryArgs, Args};
 

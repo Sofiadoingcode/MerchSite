@@ -7,7 +7,7 @@ type Product {
     category: Category!
     size: [String]
     image: String!
-
+    ratingAvg: Float
   }
 
 type Token {
@@ -56,6 +56,15 @@ type Address {
     country: String!
 }
 
+type Review {
+  id: ID!
+  title: String
+  text: String
+  rating: Float!
+  user: User
+  product: Product!
+}
+
 type User {
     id: ID
     username: String!
@@ -82,6 +91,7 @@ type Query {
     productsByCategory(id: ID): [Product!]!
     login(userInput: UserInput) : LoginOutput
     orders: [Order!]!
+    reviewsByProduct(id: ID): [Review!]!
   }
 
 
@@ -91,7 +101,7 @@ type Mutation {
   editProduct(input:ProductInput): Product
   createCategory(input:CategoryInput): Category
   createOrder(orderInput:OrderInput): Order
-
+  createReview(reviewInput:ReviewInput): Review
 }
 
 input ProductInput{
@@ -145,6 +155,14 @@ input ProductLineInput{
   amount: Int!
   size: String!
   product: ProductInput!
+}
+input ReviewInput {
+  id: ID
+  title: String
+  text: String
+  rating: Float!
+  userId: ID
+  productId: ID!
 }
   
 `

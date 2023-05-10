@@ -58,4 +58,25 @@ select:focus {
 option {
     font-size: 16px;
 }
-
+#productpage_rating {
+    margin-left: 2rem;
+}
+.review_input {
+    border: 2px solid plum;
+    border-radius: 10px;
+    margin-left: 5px;
+    font-size: medium;
+    padding: 5px;
+    outline-color: #719ECE;
+}
+.review_label {
+    font-size: larger;
+    font-weight:normal;
+}
+#review_input_comment {
+    width: 100%;
+    min-height: 20vh;
+    border-radius: 5px;
+    padding: 4px;
+    resize: none;
+}

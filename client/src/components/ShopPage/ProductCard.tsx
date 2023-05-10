@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { Card, CardContent, Typography, CardMedia, Grid } from "@mui/material";
+import { Card, CardContent, Typography, CardMedia, Grid, Rating } from "@mui/material";
 import { Product } from "../../types";
 import { NavLink } from "react-router-dom";
 
@@ -26,6 +26,9 @@ function ProductCard({ product }: { product: Product }) {
             </CardContent>
           </Grid>
         </Grid>
+        <CardContent>
+          <Rating value={product.ratingAvg} readOnly/>
+        </CardContent>
       </Card>
     </NavLink>
   )

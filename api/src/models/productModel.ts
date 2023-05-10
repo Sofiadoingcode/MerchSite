@@ -28,6 +28,10 @@ const productSchema = new mongoose.Schema({
     image: {
         type: String,
         required: true
+    },
+    ratingAvg: {
+        type: Number,
+        required: false
     }
 });
 

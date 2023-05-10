@@ -13,6 +13,7 @@ const GetProduct = gql`
       }
       size
       image
+      ratingAvg
     }
   }
 `;
