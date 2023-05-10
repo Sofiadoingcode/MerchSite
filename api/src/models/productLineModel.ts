@@ -11,8 +11,8 @@ const productLineSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    product: {
-        type: Product.schema,
+    productId: {
+        type: mongoose.Schema.Types.ObjectId,
         required: true,
     },
     size: {

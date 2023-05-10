@@ -1,7 +1,7 @@
 import { createContext, useReducer, useContext } from 'react';
-import { CartActions, Product } from '../types';
+import { CartActions, Product, ProductLine, ProductLineWithProduct } from '../types';
 
-    const CartContext = createContext<Product[] | undefined>(undefined);
+    const CartContext = createContext<ProductLineWithProduct[] | undefined>(undefined);
     const CartDispatchContext = createContext<React.Dispatch<CartActions> | undefined>(undefined);
 
 export function CartContextProvider({ children }:{children:JSX.Element}) {
@@ -18,22 +18,21 @@ export function CartContextProvider({ children }:{children:JSX.Element}) {
       );
     }
 
-    const initialCart : Product[] = []
+    const initialCart : ProductLineWithProduct[] = []
 
-    function cartReducer(cart:Product[], action:CartActions) {
+    function cartReducer(cart:ProductLineWithProduct[], action:CartActions) {
         switch (action.type) {
           case 'added': {
             return [...cart, {
-              id: action.item.id,
-              name: action.item.name,
-              description: action.item.description,
-              price: action.item.price,
-              category: action.item.category,
-              size: action.item.size
+              lineprice: action.item.lineprice,
+              amount: action.item.amount,
+              size: action.item.size,
+              product: action.item.product,
+              
             }];
           }
           case 'removed': {
-            return cart.filter(i => i.id !== action.item.id);
+            return cart.filter(i => i.product !== action.item.product && i.size !== action.item.size);
           }
         }
       }

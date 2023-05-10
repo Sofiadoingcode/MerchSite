@@ -26,7 +26,7 @@ type ProductLine = {
     lineprice: number;
     amount: number;
     size: string;
-    product: Product;
+    productId: string;
 }
 
 type Address = {

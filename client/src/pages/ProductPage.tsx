@@ -6,16 +6,12 @@ import GetAllProducts from "../resolvers/queries/GqlGetAllProducts";
 import GetProduct from "../resolvers/queries/GqlGetProduct";
 import {useParams} from "react-router-dom";
 import {useCartDispatchContext} from "../contexts/CartContext";
-import {Product} from "../types";
-
-
-function handleAddToCartClick(item: Product, dispatch: React.Dispatch<any>) {
-    dispatch({ type: 'added', item: item });
-}
+import {Product, ProductLine, ProductLineWithProduct} from "../types";
 
 
 function ProductPage() {
     const {productId} = useParams();
+    const [productLine, setProductLine] = useState<ProductLineWithProduct>(Object)
     const {loading, error, data} = useQuery(GetProduct, {
         variables: {productId},
     });
@@ -26,7 +22,22 @@ function ProductPage() {
     if (error) return <p>Error: {error.message}</p>;
     if (!data || !data.product) return <p>No product found.</p>;
 
-    const product = data.product;
+    const product: Product = data.product;
+
+
+    function handleAddToCartClick(item: Product, dispatch: React.Dispatch<any>) {
+        productLine.product = product;
+        productLine.amount = 1;
+        productLine.lineprice = productLine.amount * product.price;
+        dispatch({ type: 'added', item: productLine });
+    }
+
+    const handleChange = (evt: React.ChangeEvent<HTMLSelectElement>) => {
+        evt.preventDefault();
+        
+        setProductLine({...productLine, size: evt.target.value});
+    }
+
 
 
 
@@ -63,7 +74,7 @@ function ProductPage() {
                         <Grid item xs={6}>
                             <label htmlFor="size" style={{fontSize: '25px'}}>Size:</label>
                             <br/>
-                            <select id="size" name="size">
+                            <select id="size" name="size" defaultValue={"small"} onChange={handleChange}>
                                 <option value="small">Small</option>
                                 <option value="medium">Medium</option>
                                 <option value="large">Large</option>

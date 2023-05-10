@@ -1,7 +1,8 @@
 import { Card, CardContent, CardMedia, Typography, Grid } from '@mui/material';
 import React from 'react';
+import { ProductLineWithProduct } from '../../types';
 
-function CartProduct({ item }: { item: any }) {
+function CartProduct({ item }: { item: ProductLineWithProduct }) {
     return (
         <>
             <Card raised sx={{ margin: 1 }}>
@@ -17,9 +18,9 @@ function CartProduct({ item }: { item: any }) {
                     </Grid>
                     <Grid item md={7}>
                         <CardContent>
-                            <Typography typography={'h5'} className='cart_item_text'>{item.name}</Typography>
-                            <Typography className='cart_item_text'>Size: Large</Typography>
-                            <Typography className='cart_item_text'>{item.price} €</Typography>
+                            <Typography typography={'h5'} className='cart_item_text'>{item.product.name}</Typography>
+                            <Typography className='cart_item_text'>Size: {item.size}</Typography>
+                            <Typography className='cart_item_text'>{item.lineprice} €</Typography>
                         </CardContent>
                     </Grid>
                     <Grid item md={1}>

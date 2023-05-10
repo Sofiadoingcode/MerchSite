@@ -16,6 +16,28 @@ type Address = {
     streetAddress: string;
 }
 
+type Order = {
+    id: string;
+    totalPrice: number;
+    address: Address;
+    customerId: string;
+    productLines: ProductLine[];
+}
+
+type ProductLine = {
+    lineprice: number;
+    amount: number;
+    size: string;
+    productId: string;
+}
+
+type ProductLineWithProduct = {
+    lineprice: number;
+    amount: number;
+    size: string;
+    product: Product;
+}
+
 type Category = {
     id: string;
     name: string;
@@ -27,12 +49,12 @@ type DropdownItems = {
 
 type AddtoCart = {
     type: 'added';
-    item: Product;
+    item: ProductLineWithProduct;
 };
 
 type RemoveFromCart = {
     type: 'removed';
-    item: Product;
+    item: ProductLineWithProduct;
 };
 type CartActions = AddtoCart | RemoveFromCart;
-export type { Product, Category, DropdownItems, CartActions, Address }
+export type { Product, Category, DropdownItems, CartActions, Address, Order, ProductLine, ProductLineWithProduct }

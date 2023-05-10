@@ -144,7 +144,7 @@ input ProductLineInput{
   linePrice: Float
   amount: Int!
   size: String!
-  product: ProductInput!
+  productId: ID!
 }
   
 `
