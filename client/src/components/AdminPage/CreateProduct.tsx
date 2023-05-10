@@ -1,21 +1,28 @@
 import GqlCreateProduct from "../../resolvers/mutations/GqlCreateProduct"
 import {useState} from "react"
-import {useMutation} from "@apollo/client"
+import {useMutation, useQuery} from "@apollo/client"
 import GqlGetAllProducts from "../../resolvers/queries/GqlGetAllProducts";
+import GetAllCategories from "../../resolvers/queries/GqlGetAllCategories";
+import { Category } from "../../types";
+import CategoryDropDown from "../ShopPage/CategoryDropDown";
 
 function CreateProduct() {
-    const initialState = {name: '', description: '', price: 0, category: {id: '', name: ''}, size: [], image: ''}
+    const [categories, setCategories] = useState<Category[]>([])
+    const [value, setValue] = useState<string>('')
+    const initialState = {name: '', description: '', price: 0, categoryId: '', size: [''], image: ''}
     const [product, setProduct] = useState(initialState)
-    const cat = {id: "6458d6dffb3fb651f2812d36", name: 'category'}
+    const catData = useQuery(GetAllCategories, {onCompleted: (data)=> {setCategories(data.categories)}});
+    
     const [mutateFunction, {loading, error, data}] = useMutation(GqlCreateProduct, {
         refetchQueries: [GqlGetAllProducts]
     })
 
-    if (loading) return <p>Loading...</p>;
+    if (loading || catData.loading) return <p>Loading...</p>;
     if (error) return <p>Error : {error.message}</p>;
-
+    if (catData.error) return <p>Error : {catData.error.message}</p>;
     const handleOnSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
+        product.categoryId = value
         mutateFunction({
             variables: {
                 input: product
@@ -39,12 +46,12 @@ function CreateProduct() {
                        onChange={(evt) => {
                            setProduct({...product, price: evt.target.valueAsNumber})
                        }}></input>
-                <input type='text' style={{margin: 5}} required placeholder='Category' value={product?.category.name}
-                       onChange={(evt) => {
-                           setProduct({...product, category: cat})
-                       }}></input>
-                <input type='text' style={{margin: 5}} placeholder='Size' value={product?.size} onChange={(evt) => {
-                    setProduct({...product, size: []})
+                       <div style={{width:'18%'}}>
+                       <CategoryDropDown items={categories} value={value} setValue={setValue}/>
+                       </div>
+                <input type='text' style={{margin: 5}} placeholder='Size' value={product?.size.toString()} onChange={(evt) => {
+                    let arr: string[] = evt.target.value.split(",").map(str => str.trim())
+                    setProduct({...product, size: arr})
                 }}></input>
                 <input type='text' style={{margin: 5}} placeholder='Image' value={product?.image} onChange={(evt) => {
                     setProduct({...product, image: evt.target.value})

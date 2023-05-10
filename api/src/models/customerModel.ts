@@ -1,4 +1,6 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from 'mongoose';
+import Address from './addressModel';
+
 
 const customerSchema = new mongoose.Schema({
     email: {
@@ -11,11 +13,11 @@ const customerSchema = new mongoose.Schema({
     },
     addressId: {
         type: mongoose.Schema.Types.ObjectId,
-        required: true
+        required: false
     },
     phone: {
         type: Number,
-        required: true
+        required: false
     },
 });
 

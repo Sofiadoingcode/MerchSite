@@ -14,7 +14,9 @@ type Category = {
 }
 
 type DropdownItems = {
-    items: Category[]
+    items: Category[];
+    value: string;
+    setValue: React.Dispatch<React.SetStateAction<string>>;
 }
 
 type AddtoCart = {
