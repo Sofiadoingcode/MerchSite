@@ -74,8 +74,6 @@ type Query {
     productsByCategory(id: ID): [Product!]!
 
   }
-
-
 type Mutation {
   createProduct(input:ProductInput): Product
   deleteProduct(id:ID): Boolean

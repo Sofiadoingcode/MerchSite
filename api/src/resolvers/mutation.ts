@@ -7,7 +7,6 @@ import Order from "../models/orderModel";
 import User from "../models/userModel";
 
 export default {
-
     createProduct: async (_parent: never, {input}: Args) => {
         console.log(input)
         const newProduct = new Product(input);
@@ -28,7 +27,6 @@ export default {
         await newCategory.save();
         return newCategory;
     },
-
     login: async (_parent: never, {userInput}: Args) => {
         const user = await UserModel.findOne({username: userInput.username}).exec();
         if (!user) throw new Error('User not found');
@@ -44,7 +42,6 @@ export default {
         const newOrder = new Order(orderInput);
         await newOrder.save();
         return newOrder;
-
     },
 
     createCustomerAccount: async (_parent: never, {userInput}: Args) => {
