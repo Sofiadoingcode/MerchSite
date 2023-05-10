@@ -6,48 +6,47 @@ import {useQuery} from "@apollo/client/react";
 import GetAllProducts from "../resolvers/queries/GqlGetAllProducts";
 import GetProduct from "../resolvers/queries/GqlGetProduct";
 import LogIn from "../resolvers/queries/GqlLogIn";
+import {useMutation} from "@apollo/client";
+import GqlCreateProduct from "../resolvers/mutations/GqlCreateProduct";
+import GqlGetAllProducts from "../resolvers/queries/GqlGetAllProducts";
+import GqlLogIn from "../resolvers/mutations/GqlLogIn";
 
 function Login() {
     const navigate = useNavigate();
-
     const [user, setUser] = useState({
-        username: 'testyman',
-        password: 'test123',
+        username: '',
+        password: '',
     });
 
-    const {loading, error, data} = useQuery(LogIn, {
-        variables: {
-            userInput: {
-                username: user.username,
-                password: user.password,
-            },
-        },
-    });
-    console.log(user.username)
-    console.log(user.password)
-
-
-    console.log("Im data!")
-    console.log(data)
-
-
-    if (loading) return <>'Submitting...'</>;
-    if (error) return <>`Submission error! ${error.message}`</>;
-
-
+    const [mutateFunction, {loading, error, data}] = useMutation(GqlLogIn, {
+        // refetchQueries: []
+    })
 
     const performLogin = (evt: any) => {
         evt.preventDefault();
-
-
-
-    }
+        mutateFunction({
+            variables: {
+                userInput: {
+                    username: user.username,
+                    password: user.password,
+                },
+            }
+        }).then((result) => {
+            console.log(result.data.login.token);
+            localStorage.setItem('token', result.data.login.token);
+            navigate('/');
+        })
+            .catch((error) => {
+                console.log(`Submission error! ${error.message}`);
+            });
+    };
 
     const onChange = (evt: any) => {
-        setUser({...user, [evt.target.id]: evt.target.value})
-    }
+        setUser({...user, [evt.target.id]: evt.target.value});
+    };
 
-
+    if (loading) return <>Submitting...</>;
+    if (error) return <>Submission error! {error.message}</>;
 
     return (
         <div className={"createAccountDiv"}>

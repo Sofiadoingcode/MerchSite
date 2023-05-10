@@ -77,7 +77,6 @@ type Query {
     product(id: ID): Product
     categories: [Category!]!
     productsByCategory(id: ID): [Product!]!
-    login(userInput: UserInput) : LoginOutput
   }
 
 type Mutation {
@@ -85,6 +84,7 @@ type Mutation {
   deleteProduct(id:ID): Boolean
   editProduct(input:ProductInput): Product
   createCategory(input:CategoryInput): Category
+  login(userInput: UserInput) : LoginOutput
 }
 
 input ProductInput{
