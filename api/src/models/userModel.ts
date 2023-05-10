@@ -13,18 +13,15 @@ const userSchema = new mongoose.Schema({
         required: true,
         minlength: [4 , 'Password must be at least 4 characters long']
     },
-    email: {
-        type: String,
-        required: false,
-    }
-    ,
     role: { 
         type: String,
-        enum:['admin', 'user'],
+        enum:['admin', 'customer'],
         default: 'admin'
     },
-
-
+    customer: {
+        type: CustomerModel.schema,
+        required: false
+    }
 })
 
 export default mongoose.model('User', userSchema);

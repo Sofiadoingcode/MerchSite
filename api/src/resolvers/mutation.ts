@@ -1,11 +1,10 @@
-
 import {Args, CategoryArgs} from "../types";
 import Product from "../models/productModel";
 import Category from "../models/categoryModel";
 import UserModel from "../models/userModel";
 import jwt from "jsonwebtoken";
 import Order from "../models/orderModel";
-
+import User from "../models/userModel";
 
 export default {
 
@@ -15,7 +14,6 @@ export default {
         await newProduct.save();
         return newProduct;
     },
-
     deleteProduct: async (_parent: never, {id}: Args) => {
         const result = await Product.findByIdAndDelete(id);
         return result ? true : false;
@@ -25,7 +23,6 @@ export default {
         const updatedProduct = await Product.findByIdAndUpdate(id, updates);
         return updatedProduct;
     },
-    
     createCategory: async (_parent: never, {input}: CategoryArgs) => {
         const newCategory = new Category(input);
         await newCategory.save();
@@ -41,12 +38,19 @@ export default {
 
         const token = jwt.sign({username: user}, process.env.JWT_SECRET);
 
-        return {user: user, token:token}
+        return {user: user, token: token}
     },
-    createOrder: async (_parent:never, { orderInput }:Args) => {
-          const newOrder = new Order(orderInput);
-          await newOrder.save();
-          return newOrder;
-        
-      },
+    createOrder: async (_parent: never, {orderInput}: Args) => {
+        const newOrder = new Order(orderInput);
+        await newOrder.save();
+        return newOrder;
+
+    },
+
+    createCustomerAccount: async (_parent: never, {userInput}: Args) => {
+        userInput.role = 'customer';
+        const newUser = new User(userInput);
+        await newUser.save();
+        return newUser;
+    },
 }
