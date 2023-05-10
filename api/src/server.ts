@@ -35,15 +35,6 @@ const resolvers = {
   Customer
 };
 
-// const user = new User({
-//     email: 'test@gmail.com',
-//     username: 'testyman',
-//     password: 'test123',
-//     role: 'admin'
-// })
-//
-// user.save();
-
 const app = express();
 
 const httpServer = http.createServer(app);

@@ -33,8 +33,6 @@ export default {
     },
     login: async (_parent: never, {userInput}: Args) => {
         const user = await UserModel.findOne({username: userInput.username}).exec();
-        console.log("ITS MEEEEEEEEEEEE")
-        console.log(user)
         if (!user) throw new Error('User not found');
 
         const validPassword = await user.password === userInput.password;
@@ -43,7 +41,7 @@ export default {
         const token = jwt.sign({username: user}, process.env.JWT_SECRET);
 
         return {user: user, token:token}
-    }
+    },
 
     createOrder: async (_parent:never, { orderInput }:Args) => {
           const newOrder = new Order(orderInput);
