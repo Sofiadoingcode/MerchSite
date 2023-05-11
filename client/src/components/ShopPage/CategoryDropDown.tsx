@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { DropdownItems } from "../../types";
+import {useParams} from "react-router-dom";
 
 function CategoryDropDown({items, value, setValue}: DropdownItems) {
   const [dropdownValue, setDropdownValue] = useState<string>('')
-  
+
   const handleChange = (event:React.ChangeEvent<HTMLSelectElement>) => {
     setValue(event.target.value);
   };
@@ -21,5 +22,5 @@ function CategoryDropDown({items, value, setValue}: DropdownItems) {
     </div>
     )
   }
-  
+
   export default CategoryDropDown

@@ -9,12 +9,15 @@ import SearchBar from "../components/ShopPage/SearchBar";
 import { useState, useEffect } from "react";
 import CategoryDropDown from "../components/ShopPage/CategoryDropDown";
 import GetAllCategories from "../resolvers/queries/GqlGetAllCategories";
+import {useParams} from "react-router-dom";
 
 function ShopPage() {
   const [allProducts, setAllProducts] = useState<Product[]>([])
   const [products, setProducts] = useState<Product[]>([])
   const [categories, setCategories] = useState<Category[]>([])
   const [value, setValue] = useState<string>('');
+  const category = useParams()
+
   const catData = useQuery(GetAllCategories, {onCompleted: (data)=> {setCategories(data.categories)}});
   const { loading, error, data } = useQuery(GetAllProducts, {onCompleted: (data)=> {setAllProducts(data.products); setProducts(data.products)}});
 

@@ -80,11 +80,11 @@ type Query {
     products: [Product!]!
     product(id: ID): Product
     categories: [Category!]!
-    productsByCategory(id: ID): [Product!]!
+    productByCategory(id: ID): Product!
     login(userInput: UserInput) : LoginOutput
     orders: [Order!]!
     reviewsByProduct(id: ID): [Review!]!
-
+    
   }
 type Mutation {
   createProduct(input:ProductInput): Product
