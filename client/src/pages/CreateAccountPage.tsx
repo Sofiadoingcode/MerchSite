@@ -8,7 +8,7 @@ import {NavLink} from "react-router-dom";
 import {Customer, User} from "../types"
 import GqlCreateCustomer from "../resolvers/mutations/GqlCreateCustomer";
 
-function CreateAccountPage(props: any) {
+function CreateAccountPage() {
     const [CreateCustomer, {loading, error}] = useMutation(GqlCreateCustomer);
 
     const [userCredentials, setUserCredentials] = useState<User>(Object);
@@ -21,7 +21,7 @@ function CreateAccountPage(props: any) {
         userCredentials.customer = customerCredentials;
         CreateCustomer({variables: {userInput: userCredentials}})
     }
-    const onChange = (evt: any) => {
+    const onChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
         const {id, value} = evt.target;
 
         if (evt.target.id === "email" || evt.target.id === "name") {

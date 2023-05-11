@@ -9,7 +9,6 @@ import User from "../models/userModel";
 
 export default {
     createProduct: async (_parent: never, {input}: Args) => {
-        console.log(input)
         const newProduct = new Product(input);
         await newProduct.save();
         return newProduct;
@@ -29,9 +28,8 @@ export default {
         return newCategory;
     },
     login: async (_parent: never, {userInput}: Args) => {
+
         const user = await UserModel.findOne({username: userInput.username}).exec();
-        console.log("--------------------------------")
-        console.log(user)
         if (!user) throw new Error('User not found');
 
         const validPassword = await user.password === userInput.password;
