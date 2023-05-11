@@ -1,8 +1,10 @@
+import Product from "../models/productModel";
 import { ProductLine } from "../types";
 
 export default {
      product: async (parent:ProductLine, _args:never) => {
-        return parent.product
+         const product = await Product.findById(parent.productId);
+      return product 
      },
 
 

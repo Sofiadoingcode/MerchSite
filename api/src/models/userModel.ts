@@ -1,6 +1,5 @@
 
 import mongoose, { Schema } from 'mongoose'
-import CustomerModel from "./customerModel";
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -18,8 +17,20 @@ const userSchema = new mongoose.Schema({
         enum:['admin', 'customer'],
         default: 'admin'
     },
-    customer: {
-        type: CustomerModel.schema,
+    email: {
+        type: String,
+        required: false
+    },
+    name: {
+        type: String,
+        required: false
+    },
+    addressId: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: false
+    },
+    phone: {
+        type: Number,
         required: false
     }
 })

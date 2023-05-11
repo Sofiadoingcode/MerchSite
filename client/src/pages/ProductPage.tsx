@@ -6,7 +6,7 @@ import GetAllProducts from "../resolvers/queries/GqlGetAllProducts";
 import GetProduct from "../resolvers/queries/GqlGetProduct";
 import {useParams} from "react-router-dom";
 import {useCartDispatchContext} from "../contexts/CartContext";
-import {Product, Review} from "../types";
+import {Product, Review, ProductLine, ProductLineWithProduct} from "../types";
 import ReviewCard from "../components/ProductPage/ReviewCard";
 import GetReviewsByProduct from "../resolvers/queries/GqlGetReviewsByProduct";
 import ReviewInputBox from "../components/ProductPage/ReviewInputBox";
@@ -16,8 +16,10 @@ function handleAddToCartClick(item: Product, dispatch: React.Dispatch<any>) {
     dispatch({ type: 'added', item: item });
 }
 
+
 function ProductPage() {
     const {productId} = useParams();
+    const [productLine, setProductLine] = useState<ProductLineWithProduct>(Object)
     const {loading, error, data} = useQuery(GetProduct, {
         variables: {productId},
     });
@@ -34,8 +36,26 @@ function ProductPage() {
     if (r.error) return <p>Error: {r.error.message}</p>;
     if (!data || !data.product) return <p>No product found.</p>;
 
-    const product : Product = data.product;
+
     const reviews : Review[] = r.data.reviewsByProduct;
+    const product: Product = data.product;
+
+
+    function handleAddToCartClick(item: Product, dispatch: React.Dispatch<any>) {
+        productLine.product = product;
+        productLine.amount = 1;
+        productLine.lineprice = productLine.amount * product.price;
+        dispatch({ type: 'added', item: productLine });
+    }
+
+    const handleChange = (evt: React.ChangeEvent<HTMLSelectElement>) => {
+        evt.preventDefault();
+        
+        setProductLine({...productLine, size: evt.target.value});
+    }
+
+
+
 
     return (
         <Grid style={{backgroundColor: '#cbecf2'}} container rowSpacing={2} columnSpacing={{xs: 1, sm: 2, md: 3}}>
@@ -71,14 +91,14 @@ function ProductPage() {
                         <Grid item xs={6}>
                             <label htmlFor="size" style={{fontSize: '25px'}}>Size:</label>
                             <br/>
-                            <select id="size" name="size">
+                            <select id="size" name="size" defaultValue={"small"} onChange={handleChange}>
                                 <option value="small">Small</option>
                                 <option value="medium">Medium</option>
                                 <option value="large">Large</option>
                             </select>
                         </Grid>
                         <Grid item xs={5}>
-                            <h3>{product.price} DKK</h3>
+                            <h3>{product.price} €</h3>
                             <Button style={{height: '40px', width: '200px'}} variant="contained"
                                     onClick={() => handleAddToCartClick(product, dispatch)}>Add To Cart</Button>
                         </Grid>

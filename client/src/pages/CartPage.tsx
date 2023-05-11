@@ -13,7 +13,7 @@ function CartPage() {
   useEffect(() => {
     setTotalPrice(0)
     cart?.map((item)=>{
-      setTotalPrice((totalPrice) => totalPrice + item.price)
+      setTotalPrice((totalPrice) => totalPrice + item.lineprice)
     })
   },[changedCart])
 

@@ -9,16 +9,13 @@ import express from 'express';
 import cors from 'cors';
 import * as dotenv from 'dotenv';
 import body_parser_pkg from 'body-parser';
-
-const {json} = body_parser_pkg;
 import Query from './resolvers/Query';
 import Mutation from './resolvers/mutation';
 import Product from './resolvers/product';
 import Order from './resolvers/order';
 import ProductLine from './resolvers/productLine';
-import Customer from './resolvers/customer';
 import Review from './resolvers/review';
-
+const {json} = body_parser_pkg;
 
 dotenv.config({path: './config.env'})
 
@@ -32,7 +29,6 @@ const resolvers = {
     Product,
     Order,
     ProductLine,
-    Customer,
     Review
 };
 
