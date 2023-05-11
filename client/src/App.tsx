@@ -26,10 +26,6 @@ const client = new ApolloClient({
 function App() {
     const currentPage = usePageTitle();
 
-    window.onload = () => {
-        
-    }
-
     return (
         <ApolloProvider client={client}>
             <CartContextProvider>
