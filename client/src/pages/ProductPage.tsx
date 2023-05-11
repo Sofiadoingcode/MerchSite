@@ -98,7 +98,7 @@ function ProductPage() {
                             </select>
                         </Grid>
                         <Grid item xs={5}>
-                            <h3>{product.price} DKK</h3>
+                            <h3>{product.price} €</h3>
                             <Button style={{height: '40px', width: '200px'}} variant="contained"
                                     onClick={() => handleAddToCartClick(product, dispatch)}>Add To Cart</Button>
                         </Grid>
