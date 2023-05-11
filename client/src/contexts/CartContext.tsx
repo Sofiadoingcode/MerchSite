@@ -1,14 +1,15 @@
-import {createContext, useReducer, useContext} from 'react';
-import {CartActions, Product} from '../types';
+import { createContext, useReducer, useContext } from 'react';
+import { CartActions, Product, ProductLine, ProductLineWithProduct } from '../types';
 
-const CartContext = createContext<Product[] | undefined>(undefined);
-const CartDispatchContext = createContext<React.Dispatch<CartActions> | undefined>(undefined);
+    const CartContext = createContext<ProductLineWithProduct[] | undefined>(undefined);
+    const CartDispatchContext = createContext<React.Dispatch<CartActions> | undefined>(undefined);
 
 export function CartContextProvider({children}: { children: JSX.Element }) {
     const [cart, dispatch] = useReducer(
         cartReducer,
         initialCart
     );
+
     return (
         <CartContext.Provider value={cart}>
             <CartDispatchContext.Provider value={dispatch}>
@@ -18,27 +19,30 @@ export function CartContextProvider({children}: { children: JSX.Element }) {
     );
 }
 
-const initialCart: Product[] = []
+    const initialCart : ProductLineWithProduct[] = []
 
-function cartReducer(cart: Product[], action: CartActions) {
-    switch (action.type) {
-        case 'added': {
+    function cartReducer(cart:ProductLineWithProduct[], action:CartActions) {
+        switch (action.type) {
+          case 'added': {
             return [...cart, {
-              id: action.item.id,
-              name: action.item.name,
-              description: action.item.description,
-              price: action.item.price,
-              category: action.item.category,
+              lineprice: action.item.lineprice,
+              amount: action.item.amount,
               size: action.item.size,
-              image: action.item.image
+              product: action.item.product,
+              
             }];
-        }
-        case 'removed': {
-            return cart.filter(i => i.id !== action.item.id);
+          }
+          case 'removed': {
+            return cart.filter(i => i.product !== action.item.product && i.size !== action.item.size);
+          }
+          case 'reset': {
+            cart = initialCart;
+            return cart;
+          }
         }
     }
-}
 
+    
 export function useCartContext() {
     let context = useContext(CartContext)
     if (context === undefined) {

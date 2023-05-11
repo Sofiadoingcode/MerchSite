@@ -23,7 +23,7 @@ const orderSchema = new mongoose.Schema({
     },
     customerId: {
         type: mongoose.Schema.Types.ObjectId,
-        required: true
+        required: false
     }
 });
 

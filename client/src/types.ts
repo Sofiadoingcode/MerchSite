@@ -23,6 +23,36 @@ type Customer = {
     phone: string;
 }
 
+type Address = {
+    id: string;
+    country: string;
+    city: string;
+    postalCode: string;
+    streetAddress: string;
+}
+
+type Order = {
+    id: string;
+    totalPrice: number;
+    address: Address;
+    customerId: string;
+    productLines: ProductLine[];
+}
+
+type ProductLine = {
+    linePrice: number;
+    amount: number;
+    size: string;
+    productId: string;
+}
+
+type ProductLineWithProduct = {
+    lineprice: number;
+    amount: number;
+    size: string;
+    product: Product;
+}
+
 type Category = {
     id: string;
     name: string;
@@ -45,15 +75,14 @@ type DropdownItems = {
 
 type AddtoCart = {
     type: 'added';
-    item: Product;
+    item: ProductLineWithProduct;
 };
 
 type RemoveFromCart = {
     type: 'removed';
-    item: Product;
+    item: ProductLineWithProduct;
 };
 
-type CartActions = AddtoCart | RemoveFromCart;
 
 type AddUser = {
     type: 'added';
@@ -65,8 +94,17 @@ type RemoveUser = {
     user: User;
 };
 
+type ResetCart = {
+    type: 'reset';
+};
+
+
 type UserActions = AddUser | RemoveUser;
 
+type CartActions = AddtoCart | RemoveFromCart | ResetCart;
+export type { Product, Category, DropdownItems, Review, CartActions, User, Customer, UserActions, Address, Order, ProductLine, ProductLineWithProduct }
 
-export type { Product, Category, DropdownItems, Review, CartActions, User, Customer, UserActions }
+
+
+
 

@@ -26,7 +26,7 @@ type Order {
     orderTime: String!
     totalPrice: Float!
     address: Address!
-    customer: Customer!
+    customer: Customer
     productLines: [ProductLine!]!
   }
 
@@ -140,7 +140,7 @@ input OrderInput{
   orderTime: Int
   totalPrice: Float!
   address: AddressInput!
-  customerId: ID!
+  customerId: ID
   productLines: [ProductLineInput!]!
 }
 
@@ -149,7 +149,7 @@ input ProductLineInput{
   linePrice: Float
   amount: Int!
   size: String!
-  product: ProductInput!
+  productId: ID!
 }
 input ReviewInput {
   id: ID

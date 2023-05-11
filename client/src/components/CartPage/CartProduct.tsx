@@ -1,13 +1,14 @@
 import { Card, CardContent, CardMedia, Typography, Grid } from '@mui/material';
 import React from 'react';
-import {useCartDispatchContext} from "../../contexts/CartContext";
-import {CartActions, Product} from "../../types";
 
-function CartProduct({ item, changedCart, setChangedCart }: { item: Product, changedCart: boolean, setChangedCart: React.Dispatch<React.SetStateAction<boolean>> }) {
+import {useCartDispatchContext} from "../../contexts/CartContext";
+import {CartActions, Product, ProductLineWithProduct} from "../../types";
+
+function CartProduct({ item, changedCart, setChangedCart }: { item: ProductLineWithProduct, changedCart: boolean, setChangedCart: React.Dispatch<React.SetStateAction<boolean>> }) {
 
     const dispatch = useCartDispatchContext();
 
-    function handleDelete(item: Product, dispatch: React.Dispatch<CartActions>) {
+    function handleDelete(item: ProductLineWithProduct, dispatch: React.Dispatch<CartActions>) {
         dispatch({ type: 'removed', item: item });
         setChangedCart(!changedCart);
     }
@@ -21,15 +22,15 @@ function CartProduct({ item, changedCart, setChangedCart }: { item: Product, cha
                             <CardMedia
                                 component='img'
                                 sx={{ objectFit: "contain" }}
-                                image={item.image}
+                                image={item.product.image}
                             />
                         </CardContent>
                     </Grid>
                     <Grid item md={7}>
                         <CardContent>
-                            <Typography typography={'h5'} className='cart_item_text'>{item.name}</Typography>
-                            <Typography className='cart_item_text'>Size: Large</Typography>
-                            <Typography className='cart_item_text'>{item.price} €</Typography>
+                            <Typography typography={'h5'} className='cart_item_text'>{item.product.name}</Typography>
+                            <Typography className='cart_item_text'>Size: {item.size}</Typography>
+                            <Typography className='cart_item_text'>{item.lineprice} €</Typography>
                         </CardContent>
                     </Grid>
                     <Grid item md={1}>
