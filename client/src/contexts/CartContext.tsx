@@ -45,10 +45,13 @@ export function CartContextProvider({children}: { children: JSX.Element }) {
             return cart ;
           }
           case 'removed': {
-            cart = cart.filter(i => i.product !== action.item.product && i.size !== action.item.size)
+
+            let unwanted = cart.filter(i => i.product.id == action.item.product.id && i.size == action.item.size)
+            cart = cart.filter(i => !unwanted.includes(i))
             localStorage.setItem("cart", JSON.stringify(cart))
             return cart;
           }
+          
           case 'reset': {
             cart = initialCart;
             localStorage.setItem("cart", JSON.stringify(cart))
