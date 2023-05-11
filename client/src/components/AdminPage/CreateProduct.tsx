@@ -21,6 +21,7 @@ function CreateProduct() {
     if (catData.error) return <p>Error : {catData.error.message}</p>;
     const handleOnSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
+        
         product.categoryId = value
         mutateFunction({
             variables: {
@@ -28,6 +29,7 @@ function CreateProduct() {
             }
         })
         setProduct(initialState)
+        setValue('')
     }
 
     return (

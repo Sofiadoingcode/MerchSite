@@ -14,13 +14,42 @@ type User = {
     username: string;
     password: string;
     role: string;
-    customer: Customer;
-}
-
-type Customer = {
     email: string;
     name: string;
     phone: string;
+
+}
+
+
+
+type Address = {
+    id: string;
+    country: string;
+    city: string;
+    postalCode: string;
+    streetAddress: string;
+}
+
+type Order = {
+    id: string;
+    totalPrice: number;
+    address: Address;
+    userId: string;
+    productLines: ProductLine[];
+}
+
+type ProductLine = {
+    linePrice: number;
+    amount: number;
+    size: string;
+    productId: string;
+}
+
+type ProductLineWithProduct = {
+    lineprice: number;
+    amount: number;
+    size: string;
+    product: Product;
 }
 
 type Category = {
@@ -45,15 +74,14 @@ type DropdownItems = {
 
 type AddtoCart = {
     type: 'added';
-    item: Product;
+    item: ProductLineWithProduct;
 };
 
 type RemoveFromCart = {
     type: 'removed';
-    item: Product;
+    item: ProductLineWithProduct;
 };
 
-type CartActions = AddtoCart | RemoveFromCart;
 
 type AddUser = {
     type: 'added';
@@ -65,8 +93,17 @@ type RemoveUser = {
     user: User;
 };
 
+type ResetCart = {
+    type: 'reset';
+};
+
+
 type UserActions = AddUser | RemoveUser;
 
+type CartActions = AddtoCart | RemoveFromCart | ResetCart;
+export type { Product, Category, DropdownItems, Review, CartActions, User, Customer, UserActions, Address, Order, ProductLine, ProductLineWithProduct }
 
-export type { Product, Category, DropdownItems, Review, CartActions, User, Customer, UserActions }
+
+
+
 

@@ -27,7 +27,7 @@ function AccountPage() {
                     <Grid container>
                         <Grid item md={12}>
                             <CardContent style={{textAlign: 'center'}}>
-                                <h2>{user.customer.name}</h2>
+                                <h2>{user.name}</h2>
                             </CardContent>
                         </Grid>
                         <Grid style={{fontSize: '24.5px'}} item md={6}>
@@ -46,10 +46,10 @@ function AccountPage() {
                                 <h2>{user.username}</h2>
                             </CardContent>
                             <CardContent style={{float: 'right'}}>
-                                <h2>{user.customer.email}</h2>
+                                <h2>{user.email}</h2>
                             </CardContent>
                             <CardContent style={{float: 'right'}}>
-                                <h2>{user.customer.phone}</h2>
+                                <h2>{user.phone}</h2>
                             </CardContent>
                         </Grid>
                     </Grid>

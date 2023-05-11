@@ -9,11 +9,11 @@ function CartComponent({totalPrice}:{totalPrice:number}) {
             <Card id='cart_overview_card'>
                 <CardContent>
                     <Grid container>
-                        <Grid item xs={8} md={9}>
-                    <Typography typography={'h4'} style={{marginLeft:'2rem'}}>Total Price</Typography>
+                    <Grid item xs={8} md={9}>
+                        <Typography typography={'h4'} style={{marginLeft:'2rem'}}>Total Price</Typography>
                     </Grid>
                     <Grid item xs={4} md={3}>
-                    <Typography typography={'h5'} style={{marginTop:'4rem'}}>{totalPrice} €</Typography>
+                        <Typography typography={'h5'} style={{marginTop:'4rem'}}>{totalPrice} €</Typography>
                     </Grid>
                     </Grid>
                     <div className='cart_checkout_div'>

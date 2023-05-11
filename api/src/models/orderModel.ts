@@ -1,6 +1,6 @@
 import mongoose, {Schema} from 'mongoose';
 import ProductLine from './productLineModel'
-import Customer from './customerModel'
+
 import Address from './addressModel';
 
 const orderSchema = new mongoose.Schema({
@@ -21,9 +21,9 @@ const orderSchema = new mongoose.Schema({
         type: [ProductLine.schema],
         required: true,
     },
-    customerId: {
+    userId: {
         type: mongoose.Schema.Types.ObjectId,
-        required: true
+        required: false
     }
 });
 

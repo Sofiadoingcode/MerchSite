@@ -1,10 +1,10 @@
 import DeleteProduct from "../components/AdminPage/DeleteProduct"
 import CreateProduct from "../components/AdminPage/CreateProduct"
-import {useCartDispatchContext} from "../contexts/CartContext"
+import {useCartContext, useCartDispatchContext } from "../contexts/CartContext"
 import {useUserContext} from "../contexts/UserContext";
 
-import {Category} from "../types"
-import React, {useState} from "react"
+import { Category } from "../types"
+import React, { useState, useEffect } from "react"
 import GetAllCategories from "../resolvers/queries/GqlGetAllCategories"
 import {useQuery} from "@apollo/client"
 import CategoryCard from "../components/Homepage/CategoryCard";
@@ -14,6 +14,8 @@ import {Grid} from "@mui/material";
 
 function HomePage() {
     const dispatch = useCartDispatchContext()
+
+
 
 
     return (

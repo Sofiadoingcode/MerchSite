@@ -26,26 +26,20 @@ type Order {
     orderTime: String!
     totalPrice: Float!
     address: Address!
-    customer: Customer!
+    user: User
     productLines: [ProductLine!]!
   }
-
-type Customer {
-    id: ID!
-    name: String!
-    email: String!
-    phone: Int
-    address: Address
-    orders: [Order!]!
-
-}
 
 type User {
     id: ID
     username: String!
     password: String!
     role: String
-    customer: Customer
+    name: String!
+    email: String!
+    phone: Int
+    address: Address
+    orders: [Order!]!
     }
 
 type Address {
@@ -58,13 +52,12 @@ type Address {
 
 type Review {
   id: ID!
-  title: String
+  title: String!
   text: String
   rating: Float!
-  user: User
+  user: User!
   product: Product!
 }
-
 
 type Category {
   id: ID!
@@ -84,8 +77,8 @@ type Query {
     login(userInput: UserInput) : LoginOutput
     orders: [Order!]!
     reviewsByProduct(id: ID): [Review!]!
-    
   }
+
 type Mutation {
   createProduct(input:ProductInput): Product
   deleteProduct(id:ID): Boolean
@@ -115,17 +108,14 @@ input CategoryInput {
 input UserInput {
     username: String!
     password: String!
-    customer: CustomerInput
+    name: String
+    email: String
+    phone: Int
+    addressId: ID
     role: String
 }
 
-input CustomerInput {
-  id: ID
-  name: String!
-  email: String!
-  phone: Int
-  addressId: ID
-}
+
 
 input AddressInput{
     id: ID
@@ -140,7 +130,7 @@ input OrderInput{
   orderTime: Int
   totalPrice: Float!
   address: AddressInput!
-  customerId: ID!
+  userId: ID
   productLines: [ProductLineInput!]!
 }
 
@@ -149,17 +139,17 @@ input ProductLineInput{
   linePrice: Float
   amount: Int!
   size: String!
-  product: ProductInput!
+  productId: ID!
 }
 input ReviewInput {
   id: ID
-  title: String
+  title: String!
   text: String
   rating: Float!
-  userId: ID
+  userId: ID!
   productId: ID!
 }
-  
+
 `
 
 export default typeDefs;

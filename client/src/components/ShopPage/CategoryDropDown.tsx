@@ -12,7 +12,7 @@ function CategoryDropDown({items, value, setValue}: DropdownItems) {
   return (
     <div>
       <label>
-        <select onChange={handleChange} className="dropdown_select">
+        <select required onChange={handleChange} className="dropdown_select">
           <option value={''}>Select Category</option>
           {items?.map((item)=>
             <option key={item.id} value={item.id}>{item.name}</option>

@@ -1,34 +1,31 @@
 import React, {useState} from 'react';
 import Button from "@mui/material/Button";
 import {useMutation} from "@apollo/client";
-import GqlEditProduct from "../resolvers/mutations/GqlEditProduct";
 import {Card, Grid} from "@mui/material";
 import '../styles/createaccountpage.css'
 import {NavLink} from "react-router-dom";
-import {Customer, User} from "../types"
 import GqlCreateCustomer from "../resolvers/mutations/GqlCreateCustomer";
+import {User} from "../types";
 
 function CreateAccountPage() {
     const [CreateCustomer, {loading, error}] = useMutation(GqlCreateCustomer);
 
     const [userCredentials, setUserCredentials] = useState<User>(Object);
-    const [customerCredentials, setCustomerCredentials] = useState<Customer>(Object);
 
 
     const createAccount = (evt: React.FormEvent<HTMLFormElement>) => {
         evt.preventDefault();
-        customerCredentials.name = "testName"
-        userCredentials.customer = customerCredentials;
+
         CreateCustomer({variables: {userInput: userCredentials}})
     }
     const onChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
         const {id, value} = evt.target;
 
         if (evt.target.id === "email" || evt.target.id === "name") {
-            return setCustomerCredentials({...customerCredentials, [id]: value})
+            return setUserCredentials({...userCredentials, [id]: value})
         }
         if (evt.target.id === "phone") {
-            return setCustomerCredentials({...customerCredentials, [id]: parseFloat(value)})
+            return setUserCredentials({...userCredentials, [id]: parseFloat(value)})
         }
         setUserCredentials({...userCredentials, [id]: value})
     }
