@@ -26,26 +26,20 @@ type Order {
     orderTime: String!
     totalPrice: Float!
     address: Address!
-    customer: Customer
+    user: User
     productLines: [ProductLine!]!
   }
-
-type Customer {
-    id: ID!
-    name: String!
-    email: String!
-    phone: Int
-    address: Address
-    orders: [Order!]!
-
-}
 
 type User {
     id: ID
     username: String!
     password: String!
     role: String
-    customer: Customer
+    name: String!
+    email: String!
+    phone: Int
+    address: Address
+    orders: [Order!]!
     }
 
 type Address {
@@ -65,7 +59,6 @@ type Review {
   product: Product!
 }
 
-
 type Category {
   id: ID!
   name: String!
@@ -84,8 +77,8 @@ type Query {
     login(userInput: UserInput) : LoginOutput
     orders: [Order!]!
     reviewsByProduct(id: ID): [Review!]!
-
   }
+  
 type Mutation {
   createProduct(input:ProductInput): Product
   deleteProduct(id:ID): Boolean
@@ -115,17 +108,14 @@ input CategoryInput {
 input UserInput {
     username: String!
     password: String!
-    customer: CustomerInput
+    name: String
+    email: String
+    phone: Int
+    addressId: ID
     role: String
 }
 
-input CustomerInput {
-  id: ID
-  name: String!
-  email: String!
-  phone: Int
-  addressId: ID
-}
+
 
 input AddressInput{
     id: ID
@@ -140,7 +130,7 @@ input OrderInput{
   orderTime: Int
   totalPrice: Float!
   address: AddressInput!
-  customerId: ID
+  userId: ID
   productLines: [ProductLineInput!]!
 }
 

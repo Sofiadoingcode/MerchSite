@@ -10,9 +10,6 @@ type Product = {
     ratingAvg: number;
 }
 
-enum Roles {
-    "admin", "customer"
-}
 
 type Category = {
     id: string;
@@ -23,9 +20,11 @@ type User = {
     id: string | undefined;
     username: string;
     password: string;
-    category: string;
     size: string;
-    customer: Customer;
+    email: string;
+    name: string;
+    addressId: string;
+    phone: number;
     role: string;
 }
 
@@ -45,20 +44,14 @@ type Address = {
     country: string;
 }
 
-type Customer = {
-    id: string;
-    name: string;
-    email: string;
-    phone: number;
-    addressId: string;
-}
+
 
 type Order = {
     id: string;
     orderTime: () => number;
     totalPrice: number;
     address: Address;
-    customerId: string;
+    userId: string;
     productLines: [ProductLine];
 }
 
@@ -88,5 +81,5 @@ type CategoryArgs = {
     input: Category;
 };
 
-export type {Product, User, Order, Customer, Address, Review, ProductLine, Category, Context, CategoryArgs, Args};
+export type {Product, User, Order,  Address, Review, ProductLine, Category, Context, CategoryArgs, Args};
 
