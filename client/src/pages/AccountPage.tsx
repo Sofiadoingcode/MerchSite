@@ -5,7 +5,6 @@ import {Card, CardContent, CardMedia, Grid, Typography} from "@mui/material";
 function AccountPage() {
 
     const user = useUserContext()
-    console.log(user)
 
     return (
         <Grid container>

@@ -20,7 +20,7 @@ function Login() {
         // refetchQueries: []
     })
 
-    const performLogin = (evt: any) => {
+    const performLogin = (evt: React.MouseEvent<HTMLElement>) => {
         evt.preventDefault();
         mutateFunction({
             variables: {
@@ -30,9 +30,6 @@ function Login() {
                 },
             }
         }).then((result) => {
-            console.log(result.data.login.token);
-            console.log(result.data.login.user);
-            console.log(result.data.login.user.role);
             dispatch({ type: 'added', user: result.data.login.user });
             localStorage.setItem('token', result.data.login.token);
 
@@ -43,7 +40,7 @@ function Login() {
             });
     };
 
-    const onChange = (evt: any) => {
+    const onChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
         setUser({...user, [evt.target.id]: evt.target.value});
     };
 

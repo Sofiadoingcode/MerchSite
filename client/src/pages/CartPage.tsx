@@ -23,7 +23,7 @@ function CartPage() {
         <Grid item xs={6} md={6}>
           <Typography typography={'h4'} className="cart_page_text">Your Cart</Typography>
           {cart.map((item) =>
-              <CartProduct item={item} />
+              <CartProduct changedCart={changedCart} setChangedCart={setChangedCart} item={item} />
           )}
         </Grid>
         <Grid item xs={6} md={3}>

@@ -14,8 +14,6 @@ function HomePage() {
   const { loading, error, data } = useQuery(GetAllCategories, {onCompleted: (data)=> {setCategories(data.categories)}});
 
   const user = useUserContext()
-  console.log("I'm user")
-  console.log(user)
 
     return (
       <div>

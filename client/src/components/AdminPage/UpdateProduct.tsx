@@ -24,7 +24,7 @@ const UpdateProduct = (props: { product: Product }) => {
         name: props.product.category.name
     })
 
-    const handleInputChange = (event: any) => {
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = event.target;
 
         if (name === 'price') {
@@ -36,7 +36,7 @@ const UpdateProduct = (props: { product: Product }) => {
         }
     };
 
-    const handleSubmit = (event: any) => {
+    const handleSubmit = (event: React.MouseEvent<HTMLElement>) => {
         event.preventDefault();
         editProduct({
             variables: {
