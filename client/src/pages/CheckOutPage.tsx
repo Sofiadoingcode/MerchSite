@@ -63,7 +63,7 @@ function CheckOutPage() {
             </Card>
           </Grid>
           <Grid item xs={6}>
-          <Card className={"pictureAndInfo"}>
+          <Card >
                     <Grid className={"infoGrid container"} container rowSpacing={1}
                           columnSpacing={{xs: 1, sm: 2, md: 3}}>
                         <Grid item xs={9}>
@@ -74,7 +74,8 @@ function CheckOutPage() {
                             {cart.map((productLine) => <ProductLineSummary productLine={productLine}/>)}
                         </Grid>
                         <Grid item xs={5}>
-                          <Typography typography={'h5'} style={{marginTop:'4rem'}}>{totalPrice} €</Typography>
+                        <Typography typography={'h4'} style={{marginTop:'3rem'}}>Total Price:</Typography>
+                          <Typography typography={'h5'} style={{marginBottom:'3rem'}}>{totalPrice} €</Typography>
                         </Grid>
         
                         <Grid item xs={5}>
@@ -82,9 +83,6 @@ function CheckOutPage() {
                         </Grid>
                     </Grid>
                 </Card>
-            
-            
-            
           </Grid> 
         </Grid>
       </div>
