@@ -38,8 +38,10 @@ export default {
         if (!validPassword) throw new Error('Invalid password');
 
         const token = jwt.sign({username: user}, process.env.JWT_SECRET);
-        return {user: user, token:token}
+
+        return {user: user, token: token}
     },
+
 
     createOrder: async (_parent:never, { orderInput }:Args) => {
           const newOrder = new Order(orderInput);
@@ -51,6 +53,7 @@ export default {
         const newReview = new Review(reviewInput);
         await newReview.save();
         return newReview;
+
     },
 
     createCustomerAccount: async (_parent: never, {userInput}: Args) => {
@@ -58,5 +61,6 @@ export default {
         const newUser = new User(userInput);
         await newUser.save();
         return newUser;
-    }
+
+    },
 }
