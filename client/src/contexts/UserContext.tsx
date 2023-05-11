@@ -19,18 +19,15 @@ export function UserContextProvider({children}: { children: JSX.Element }) {
     );
 }
 
-const customer: Customer = {
-    email: '',
-    name: '',
-    phone: ''
-}
 
 const initialUser: User = {
     id: '',
     username: '',
     password: '',
     role: '',
-    customer: customer
+    email: '',
+    name: '',
+    phone: ''
 }
 
 
@@ -43,11 +40,10 @@ function userReducer(user: User, action: UserActions) {
                 username: action.user.username,
                 password: action.user.password,
                 role: action.user.role,
-                customer: {
-                    name: action.user.customer.name,
-                    email: action.user.customer.email,
-                    phone: action.user.customer.phone
-                }
+                name: action.user.name,
+                email: action.user.email,
+                phone: action.user.phone
+
 
             };
         }

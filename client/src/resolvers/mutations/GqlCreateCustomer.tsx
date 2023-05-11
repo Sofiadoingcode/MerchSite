@@ -5,11 +5,10 @@ mutation Mutation($userInput: UserInput) {
   createCustomerAccount(userInput: $userInput) {
     username
     password
-    customer {
-      phone
-      name
-      email
-    }
+    phone
+    name
+    email
+   
   }
 }
 `;
