@@ -34,7 +34,7 @@ type Order = {
     id: string;
     totalPrice: number;
     address: Address;
-    customerId: string;
+    userId: string;
     productLines: ProductLine[];
 }
 

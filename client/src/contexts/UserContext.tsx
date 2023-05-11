@@ -1,5 +1,5 @@
 import React, {createContext, useReducer, useContext} from 'react';
-import {User, Customer, UserActions, CartActions} from '../types';
+import {User,  UserActions, CartActions} from '../types';
 
 const UserContext = createContext<User | undefined>(undefined);
 const UserDispatchContext = createContext<React.Dispatch<UserActions> | undefined>(undefined);
