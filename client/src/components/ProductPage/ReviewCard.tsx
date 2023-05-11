@@ -6,7 +6,7 @@ function ReviewCard({ reviews }: { reviews: Review[] }) {
   return (
     <>
       {reviews?.map((rev) =>
-        <Grid item xs={4} style={{ margin: '1rem 2rem 2rem 4rem' }}>
+        <Grid key={rev.id} item xs={4} style={{ margin: '1rem 2rem 2rem 4rem' }}>
           <Card style={{padding:5, backgroundColor:"whitesmoke"}}>
             <CardContent>
               <Typography typography={'h5'}>{rev.title}</Typography>

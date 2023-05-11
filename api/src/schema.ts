@@ -58,10 +58,10 @@ type Address {
 
 type Review {
   id: ID!
-  title: String
+  title: String!
   text: String
   rating: Float!
-  user: User
+  user: User!
   product: Product!
 }
 
@@ -153,10 +153,10 @@ input ProductLineInput{
 }
 input ReviewInput {
   id: ID
-  title: String
+  title: String!
   text: String
   rating: Float!
-  userId: ID
+  userId: ID!
   productId: ID!
 }
   
