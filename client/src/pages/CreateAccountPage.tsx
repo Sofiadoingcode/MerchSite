@@ -5,24 +5,33 @@ import GqlEditProduct from "../resolvers/mutations/GqlEditProduct";
 import {Card, Grid} from "@mui/material";
 import '../styles/createaccountpage.css'
 import {NavLink} from "react-router-dom";
+import {Customer, User} from "../types"
+import GqlCreateCustomer from "../resolvers/mutations/GqlCreateCustomer";
 
 function CreateAccountPage(props: any) {
-    const [editProduct, {loading, error}] = useMutation(GqlEditProduct);
-    const [accountCredentials, setAccountCredentials] = useState({
-        username: '',
-        password: ''
-    });
+    const [CreateCustomer, {loading, error}] = useMutation(GqlCreateCustomer);
+
+    const [userCredentials, setUserCredentials] = useState<User>(Object);
+    const [customerCredentials, setCustomerCredentials] = useState<Customer>(Object);
 
 
-    const createAccount = (evt: any) => {
+    const createAccount = (evt: React.FormEvent<HTMLFormElement>) => {
         evt.preventDefault();
-
+        customerCredentials.name = "testName"
+        userCredentials.customer = customerCredentials;
+        CreateCustomer({variables: {userInput: userCredentials}})
     }
-
     const onChange = (evt: any) => {
-        setAccountCredentials({...accountCredentials, [evt.target.id]: evt.target.value})
-    }
+        const {id, value} = evt.target;
 
+        if (evt.target.id === "email" || evt.target.id === "name") {
+            return setCustomerCredentials({...customerCredentials, [id]: value})
+        }
+        if (evt.target.id === "phone") {
+            return setCustomerCredentials({...customerCredentials, [id]: parseFloat(value)})
+        }
+        setUserCredentials({...userCredentials, [id]: value})
+    }
 
 
     return (
@@ -38,8 +47,16 @@ function CreateAccountPage(props: any) {
                             <input style={{margin: '10px 10px'}} className={"createAccountCardInputFields"}
                                    onChange={onChange} type="password" placeholder="Password" id="password"/>
                             <br/>
-                            <input className={"createAccountCardInputFields"} onChange={onChange} type="email"
+
+                            <input style={{margin: '10px 10px'}} className={"createAccountCardInputFields"}
+                                   onChange={onChange} type="string"
+                                   placeholder="Name" id="name"/>
+                            <input style={{margin: '10px 10px'}} className={"createAccountCardInputFields"}
+                                   onChange={onChange} type="email"
                                    placeholder="Email" id="email"/>
+                            <input style={{margin: '10px 10px'}} className={"createAccountCardInputFields"}
+                                   onChange={onChange} type="number"
+                                   placeholder="Number" id="phone"/>
                             <div style={{fontSize: '13px', color: 'grey'}}>
                                 <span>Already have an account?</span>
                                 <br/>

@@ -13,7 +13,7 @@ type User = {
     id: string;
     username: string;
     password: string;
-    role: string
+    role: string;
     customer: Customer;
 }
 
@@ -69,3 +69,4 @@ type UserActions = AddUser | RemoveUser;
 
 
 export type { Product, Category, DropdownItems, Review, CartActions, User, Customer, UserActions }
+

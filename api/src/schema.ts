@@ -84,9 +84,8 @@ type Query {
     login(userInput: UserInput) : LoginOutput
     orders: [Order!]!
     reviewsByProduct(id: ID): [Review!]!
+
   }
-
-
 type Mutation {
   createProduct(input:ProductInput): Product
   deleteProduct(id:ID): Boolean
@@ -117,6 +116,7 @@ input UserInput {
     username: String!
     password: String!
     customer: CustomerInput
+    role: String
 }
 
 input CustomerInput {
