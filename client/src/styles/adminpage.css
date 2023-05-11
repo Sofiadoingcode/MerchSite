@@ -42,3 +42,20 @@
     right: 20px;
     user-select: none;
 }
+.admin_orders_card {
+    width: 80%;
+}
+.admin_orders_title {
+    margin-left: 40%;
+}
+.admin_orders_collapsible {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
