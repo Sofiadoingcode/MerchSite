@@ -1,5 +1,6 @@
 import { createContext, useReducer, useContext, useEffect } from 'react';
 import { CartActions, Product, ProductLine, ProductLineWithProduct } from '../types';
+import { empty } from '@apollo/client';
 
     const CartContext = createContext<ProductLineWithProduct[] | undefined>(undefined);
     const CartDispatchContext = createContext<React.Dispatch<CartActions> | undefined>(undefined);
@@ -19,7 +20,16 @@ export function CartContextProvider({children}: { children: JSX.Element }) {
     );
 }
 
-    const initialCart : ProductLineWithProduct[] = []
+  const getInitialState = () => {
+    let cartString = localStorage.getItem('cart');
+    if(cartString != null) {
+      return JSON.parse(cartString)
+    } else {
+      return []
+    }
+  }
+
+    const initialCart : ProductLineWithProduct[] = getInitialState();
     
 
     function cartReducer(cart:ProductLineWithProduct[], action:CartActions) {
