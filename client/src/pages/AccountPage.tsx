@@ -44,7 +44,7 @@ function AccountPage() {
                         </Grid>
                         <Grid item md={6}>
                             <CardContent style={{float: 'right'}}>
-                                <h2>{user.customer.name}</h2>
+                                <h2>{user.username}</h2>
                             </CardContent>
                             <CardContent style={{float: 'right'}}>
                                 <h2>{user.customer.email}</h2>
