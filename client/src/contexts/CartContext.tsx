@@ -35,6 +35,10 @@ export function CartContextProvider({ children }:{children:JSX.Element}) {
           case 'removed': {
             return cart.filter(i => i.product !== action.item.product && i.size !== action.item.size);
           }
+          case 'reset': {
+            cart = initialCart;
+            return cart;
+          }
         }
       }
       export function useCartContext() {

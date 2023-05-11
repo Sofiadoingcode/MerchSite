@@ -56,5 +56,11 @@ type RemoveFromCart = {
     type: 'removed';
     item: ProductLineWithProduct;
 };
-type CartActions = AddtoCart | RemoveFromCart;
+
+type ResetCart = {
+    type: 'reset';
+};
+
+
+type CartActions = AddtoCart | RemoveFromCart | ResetCart;
 export type { Product, Category, DropdownItems, CartActions, Address, Order, ProductLine, ProductLineWithProduct }

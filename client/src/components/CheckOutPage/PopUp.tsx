@@ -1,5 +1,6 @@
 import '../../styles/checkoutpage.css'
 import { NavLink } from 'react-router-dom';
+import {Button, Card, CardMedia, Grid, TextField, Typography} from "@mui/material";
 
 function PopUp(props : {text: String, setOpenPopUp: React.Dispatch<React.SetStateAction<boolean>>, reroute: string }) {
     
@@ -9,7 +10,7 @@ function PopUp(props : {text: String, setOpenPopUp: React.Dispatch<React.SetStat
                 <div className="popup-body">      
                     <h2>{props.text}</h2>   
                     <NavLink to={props.reroute} >
-                        <button onClick={() => props.setOpenPopUp(false)}>Close</button>  
+                        <Button onClick={() => props.setOpenPopUp(false)}>Close</Button>  
                     </NavLink>
    
                 </div>   
