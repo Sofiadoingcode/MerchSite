@@ -101,7 +101,7 @@ type ResetCart = {
 type UserActions = AddUser | RemoveUser;
 
 type CartActions = AddtoCart | RemoveFromCart | ResetCart;
-export type { Product, Category, DropdownItems, Review, CartActions, User, Customer, UserActions, Address, Order, ProductLine, ProductLineWithProduct }
+export type { Product, Category, DropdownItems, Review, CartActions, User, UserActions, Address, Order, ProductLine, ProductLineWithProduct }
 
 
 

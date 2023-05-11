@@ -23,10 +23,12 @@ function ProductPage() {
     const {loading, error, data} = useQuery(GetProduct, {
         variables: {productId},
     });
+
     const r = useQuery(GetReviewsByProduct, {
         variables: {
             reviewsByProductId: productId
         },
+        onCompleted: ()=> {setProductLine({...productLine, size: "Small"})}
     });
 
     const dispatch = useCartDispatchContext();
@@ -50,7 +52,6 @@ function ProductPage() {
 
     const handleChange = (evt: React.ChangeEvent<HTMLSelectElement>) => {
         evt.preventDefault();
-        
         setProductLine({...productLine, size: evt.target.value});
     }
 
@@ -91,7 +92,7 @@ function ProductPage() {
                         <Grid item xs={6}>
                             <label htmlFor="size" style={{fontSize: '25px'}}>Size:</label>
                             <br/>
-                            <select id="size" name="size" defaultValue={"small"} onChange={handleChange}>
+                            <select id="size" name="size" onChange={handleChange}>
                                 <option value="small">Small</option>
                                 <option value="medium">Medium</option>
                                 <option value="large">Large</option>
