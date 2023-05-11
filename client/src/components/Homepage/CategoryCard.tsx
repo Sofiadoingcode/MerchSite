@@ -1,14 +1,17 @@
-import {Category} from "../../types";
+import {Category, Product} from "../../types";
 import {Card, CardContent, Grid} from "@mui/material";
 import React, {useState} from "react";
 import {NavLink} from "react-router-dom";
 import {useQuery} from "@apollo/client";
 import GetAllCategories from "../../resolvers/queries/GqlGetAllCategories";
+import getProductFromCategory from "../../resolvers/queries/GqlGetProductByCategory";
 
 function CategoryCard() {
 
-    const [categories, setCategories] = useState<Category[]>([])
+    const [product1, setProduct1] = useState<Product>()
+    const [product2, setProduct2] = useState<Product>()
 
+    const [categories, setCategories] = useState<Category[]>([])
     const {loading, error, data} = useQuery(GetAllCategories, {
         onCompleted: (data: any) => {
             setCategories(data.categories)
@@ -18,28 +21,31 @@ function CategoryCard() {
     if (loading) return <>'Submitting...'</>;
     if (error) return <>`Submission error! ${error.message}`</>;
 
-    const category1 = categories[Math.floor(Math.random() * categories.length)];
-
-    const category2 = categories[Math.floor(Math.random() * categories.length)];
-
     return (
-        <Grid container>
+        <Grid container spacing={4}>
             <Grid item md={6}>
-                <Card raised>
-                    {/*<NavLink to={`shop/${category1.name}`}>*/}
-                    <NavLink style={{textDecoration: 'none'}} to={`shop`}>
-                        <h1>
-                            {category1.name}
-                        </h1>
-                    </NavLink>
-                </Card>
+                <NavLink style={{textDecoration: 'none'}} to={`shop`}>
+                    <Card raised>
+                        <CardContent style={{textAlign: 'center'}}>
+                            <h1>
+                                {categories[0].name}
+                            </h1>
+                            <img style={{width: '10rem', height: '7.5rem'}}
+                                 src={"https://www.ikea.com/dk/da/images/products/blahaj-tojdyr-haj__0710175_pe727378_s5.jpg"}/>
+                        </CardContent>
+                    </Card>
+                </NavLink>
             </Grid>
             <Grid item md={6}>
                 <Card raised>
                     <NavLink style={{textDecoration: 'none'}} to={`shop`}>
-                        <h1>
-                            {category2.name}
-                        </h1>
+                        <CardContent style={{textAlign: 'center'}}>
+                            <h1>
+                                {categories[1].name}
+                            </h1>
+                            <img style={{width: '10rem', height: '7.5rem'}}
+                                 src={"https://cdn2.yamaha-motor.eu/prod/accessories/APPAREL/Apparel/B22-FT117-E0-0L-Paddock-Blue-Team-Hoodie-_Men_-EU-Studio-001.jpg"}/>
+                        </CardContent>
                     </NavLink>
                 </Card>
             </Grid>
