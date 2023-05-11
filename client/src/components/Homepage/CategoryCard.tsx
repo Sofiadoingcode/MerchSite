@@ -8,9 +8,6 @@ import getProductFromCategory from "../../resolvers/queries/GqlGetProductByCateg
 
 function CategoryCard() {
 
-    const [product1, setProduct1] = useState<Product>()
-    const [product2, setProduct2] = useState<Product>()
-
     const [categories, setCategories] = useState<Category[]>([])
     const {loading, error, data} = useQuery(GetAllCategories, {
         onCompleted: (data: any) => {

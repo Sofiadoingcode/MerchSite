@@ -25,10 +25,10 @@ function HomePage() {
                     <Video></Video>
                 </Grid>
                 <Grid item md={12} style={{margin: '10px'}}>
-                    <CategoryCard></CategoryCard>
+                    <CategoryCard/>
                 </Grid>
                 <Grid item md={12} style={{margin: '10px'}}>
-                    <FeaturedItems></FeaturedItems>
+                    <FeaturedItems/>
                 </Grid>
             </Grid>
         </div>
