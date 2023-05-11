@@ -84,7 +84,7 @@ type Query {
     login(userInput: UserInput) : LoginOutput
     orders: [Order!]!
     reviewsByProduct(id: ID): [Review!]!
-
+    ordersByUser(id: ID): [Order!]!
   }
 type Mutation {
   createProduct(input:ProductInput): Product

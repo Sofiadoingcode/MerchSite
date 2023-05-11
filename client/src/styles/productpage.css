@@ -83,3 +83,7 @@ option {
 #review_input_box_rating {
     margin-left: 30%;
 }
+#review_card {
+    margin-left: 4rem;
+    width: 60%;
+}

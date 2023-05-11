@@ -37,7 +37,7 @@ function ReviewInputBox({product}:{product:Product}) {
     return (
         <>
             <Grid item xs={10}>
-                <Card style={{ marginLeft: '4rem', width: '60%' }}>
+                <Card id="review_card">
                     {user.id.length > 0 ? <>
                     <CardContent>
                     <Typography typography={'h4'}>Leave a review</Typography>

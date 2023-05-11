@@ -18,6 +18,11 @@ export default {
 
     categories: async () => await Category.find({}),
     orders: async () => await Order.find({}),
+    /*ordersByUser: async (_parent:never, {id}: Args) => {
+        const allOrders = await Order.find({});
+       const orders = allOrders.filter((ord)=> ord.userId.toString() === id)
+       return orders
+    },*/
 
     reviewsByProduct: async (_parent: never, {id}: Args) => {
        const allReviews = await Review.find({});
