@@ -42,11 +42,12 @@
     right: 20px;
     user-select: none;
 }
-.admin_orders_card {
-    width: 80%;
+.admin_orders_grid {
+    margin-left: 2%;
+    margin-top: 1%;
 }
 .admin_orders_title {
-    margin-left: 40%;
+    text-align: center;
 }
 .admin_orders_collapsible {
     background-color: #eee;
@@ -57,5 +58,24 @@
     border: none;
     text-align: left;
     outline: none;
-    font-size: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+}
+.active, .admin_orders_collapsible:hover {
+    background-color: #ccc;
+}
+.admin_order_tab_text {
+    margin-right: 5%;
+}
+.admin_orders_content {
+        padding: 0 18px;
+        background-color: white;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+        border: 1px grey black;
+        border-style: outset;
+}
+.admin_orders_content_text {
+    padding: 5px;
 }
