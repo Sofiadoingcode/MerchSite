@@ -1,5 +1,6 @@
-import { createContext, useReducer, useContext } from 'react';
+import { createContext, useReducer, useContext, useEffect } from 'react';
 import { CartActions, Product, ProductLine, ProductLineWithProduct } from '../types';
+import { empty } from '@apollo/client';
 
     const CartContext = createContext<ProductLineWithProduct[] | undefined>(undefined);
     const CartDispatchContext = createContext<React.Dispatch<CartActions> | undefined>(undefined);
@@ -19,28 +20,46 @@ export function CartContextProvider({children}: { children: JSX.Element }) {
     );
 }
 
-    const initialCart : ProductLineWithProduct[] = []
+  const getInitialState = () => {
+    let cartString = localStorage.getItem('cart');
+    if(cartString != null) {
+      return JSON.parse(cartString)
+    } else {
+      return []
+    }
+  }
+
+    const initialCart : ProductLineWithProduct[] = getInitialState();
+    
 
     function cartReducer(cart:ProductLineWithProduct[], action:CartActions) {
         switch (action.type) {
           case 'added': {
-            return [...cart, {
+            cart = [...cart, {
               lineprice: action.item.lineprice,
               amount: action.item.amount,
               size: action.item.size,
               product: action.item.product,
-              
-            }];
+            }]
+            localStorage.setItem("cart", JSON.stringify(cart))
+            return cart ;
           }
           case 'removed': {
-            return cart.filter(i => i.product !== action.item.product && i.size !== action.item.size);
+
+            let unwanted = cart.filter(i => i.product.id == action.item.product.id && i.size == action.item.size)
+            cart = cart.filter(i => !unwanted.includes(i))
+            localStorage.setItem("cart", JSON.stringify(cart))
+            return cart;
           }
+          
           case 'reset': {
             cart = initialCart;
+            localStorage.setItem("cart", JSON.stringify(cart))
             return cart;
           }
         }
     }
+
 
     
 export function useCartContext() {

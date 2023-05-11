@@ -10,7 +10,7 @@ import CartPage from './pages/CartPage';
 import ProductPage from './pages/ProductPage';
 import {ApolloClient, InMemoryCache, ApolloProvider, gql} from '@apollo/client';
 import CheckOutPage from './pages/CheckOutPage';
-import {CartContextProvider} from './contexts/CartContext';
+import {CartContextProvider, useCartContext} from './contexts/CartContext';
 import AdminPage from "./pages/AdminPage";
 import CreateAccountPage from "./pages/CreateAccountPage";
 import AccountPage from "./pages/AccountPage";
@@ -25,6 +25,7 @@ const client = new ApolloClient({
 
 function App() {
     const currentPage = usePageTitle();
+
     return (
         <ApolloProvider client={client}>
             <CartContextProvider>
