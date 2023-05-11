@@ -6,11 +6,13 @@ import ProductLineSummary from "../components/CheckOutPage/ProductLineSummary"
 import { Address, Order, ProductLine } from "../types"
 import { useCartContext } from "../contexts/CartContext"
 import {Button, Card, CardMedia, Grid, TextField, Typography} from "@mui/material";
+import PopUp from "../components/CheckOutPage/PopUp"
 import '../styles/productpage.css'
 
 function CheckOutPage() {
   const [order, setOrder] = useState<Order>(Object)
   const [address, setAddress] = useState<Address>(Object)
+  const [openPopUp, setOpenPopUp] = useState(false);
   const cart = useCartContext();
     const [mutateFunction, {loading, error, data}] = useMutation(GqlCreateOrder, {
     })
@@ -49,7 +51,7 @@ function CheckOutPage() {
             orderInput: order
         }
     })
-
+      setOpenPopUp(true)
     }
 
     return (
@@ -80,6 +82,7 @@ function CheckOutPage() {
         
                         <Grid item xs={5}>
                         <Button style={{height: '40px', width: '200px'}} variant="contained" onClick={handleSubmit}>Pay</Button>
+                        {openPopUp ? <PopUp text="Thank you for your purchase" setOpenPopUp={setOpenPopUp} reroute={"/"}/> : null}
                         </Grid>
                     </Grid>
                 </Card>
