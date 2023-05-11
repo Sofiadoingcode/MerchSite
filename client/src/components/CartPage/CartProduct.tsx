@@ -1,7 +1,17 @@
 import { Card, CardContent, CardMedia, Typography, Grid } from '@mui/material';
 import React from 'react';
+import {useCartDispatchContext} from "../../contexts/CartContext";
+import {CartActions, Product} from "../../types";
 
-function CartProduct({ item }: { item: any }) {
+function CartProduct({ item, changedCart, setChangedCart }: { item: Product, changedCart: boolean, setChangedCart: React.Dispatch<React.SetStateAction<boolean>> }) {
+
+    const dispatch = useCartDispatchContext();
+
+    function handleDelete(item: Product, dispatch: React.Dispatch<CartActions>) {
+        dispatch({ type: 'removed', item: item });
+        setChangedCart(!changedCart);
+    }
+
     return (
         <>
             <Card raised sx={{ margin: 1 }}>
@@ -24,7 +34,7 @@ function CartProduct({ item }: { item: any }) {
                     </Grid>
                     <Grid item md={1}>
                         <CardContent>
-                            ''Remove item''
+                            <button onClick={() => handleDelete(item, dispatch)} className={"delete_from_cart_button"}>X</button>
                         </CardContent>
                     </Grid>
                 </Grid>

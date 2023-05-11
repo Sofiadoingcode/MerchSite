@@ -23,3 +23,9 @@
     position: sticky;
     top: 135px;
 }
+
+.delete_from_cart_button{
+    background-color: red;
+    width: 40px;
+    height: 40px;
+}
