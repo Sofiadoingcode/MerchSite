@@ -26,9 +26,11 @@ function NavBar(props: { page: String }) {
                 <CssBaseline/>
                 <Toolbar className='navbar'>
                     <div className='navbarleft'>
+                    <NavLink style={{backgroundColor:'#ccb9ed'}} to="/" className="link">
                         <Typography variant="h4">
                             SofiaStunts
                         </Typography>
+                        </NavLink>
                     </div>
                     <div className='navbarright'>
                         {props.page == "HOMEPAGE" && <NavLink to="/shop" className="link">
