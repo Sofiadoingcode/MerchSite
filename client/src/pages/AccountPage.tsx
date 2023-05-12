@@ -1,25 +1,38 @@
 import React from 'react';
 import {useUserContext} from "../contexts/UserContext";
-import {Card, CardContent, CardMedia, Grid, Typography} from "@mui/material";
+import {Card, CardContent, CardMedia, Grid, Typography, Button} from "@mui/material";
+import CreateAddress from '../components/CheckOutPage/CreateAddress';
+import GqlAddAddressToUser from '../resolvers/mutations/GqlAddAddressToUser';
+import {Address, Order, ProductLine} from "../types"
+import {useState} from "react"
+import {useMutation} from "@apollo/client"
 
 function AccountPage() {
-
+    const [address, setAddress] = useState<Address>(Object)
     const user = useUserContext()
+    const [mutateFunction, {loading, error, data}] = useMutation(GqlAddAddressToUser, {})
+
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error.message}</p>;
+
+    const handleSubmit = () => {
+
+        mutateFunction({
+            variables: {
+                addAddressToUserId: user.id,
+                addressInput: address
+            }
+        })
+    }
 
     return (
         <Grid container>
             <Grid item md={6}>
                 <Card raised sx={{margin: '20px',}}>
-                    <Grid container>
-                        <Grid item md={8}>
-                            <CardContent>
-                            </CardContent>
-                        </Grid>
-                        <Grid item md={4}>
-                            <CardContent>
-                            </CardContent>
-                        </Grid>
-                    </Grid>
+                    <h3>SET YOUR ADDRESS</h3>
+                    <CreateAddress address={address} setAddress={setAddress}/>
+                    <Button style={{height: '40px', width: '200px', margin: '10px'}} variant="contained"
+                                       onClick={handleSubmit} >Set Address</Button>
                 </Card>
             </Grid>
             <Grid item md={6}>
