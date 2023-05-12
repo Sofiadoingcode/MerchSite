@@ -25,8 +25,14 @@ export default {
     },
 
     reviewsByProduct: async (_parent: never, {id}: Args) => {
-       const allReviews = await Review.find({});
-       const reviews = allReviews.filter((rev)=> rev.productId.toString() === id)
-       return reviews
+        const allReviews = await Review.find({});
+        const reviews = allReviews.filter((rev) => rev.productId.toString() === id)
+        return reviews
+    },
+    productByCategory: async (_parent: never, {id}: Args) => {
+        const allProducts = await Product.find({});
+        const products = allProducts.filter((products) => products.categoryId.toString() === id)
+        const product = products[Math.floor(Math.random() * products.length)];
+        return product
     }
 }
