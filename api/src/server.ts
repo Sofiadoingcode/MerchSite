@@ -15,6 +15,7 @@ import Product from './resolvers/product';
 import Order from './resolvers/order';
 import ProductLine from './resolvers/productLine';
 import Review from './resolvers/review';
+import User from './resolvers/user';
 const {json} = body_parser_pkg;
 
 dotenv.config({path: './config.env'})
@@ -29,7 +30,8 @@ const resolvers = {
     Product,
     Order,
     ProductLine,
-    Review
+    Review,
+    User
 };
 
 const app = express();
