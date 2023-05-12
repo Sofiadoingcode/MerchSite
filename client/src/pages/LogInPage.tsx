@@ -32,8 +32,13 @@ function Login() {
         }).then((result) => {
             dispatch({ type: 'added', user: result.data.login.user });
             localStorage.setItem('token', result.data.login.token);
-
-            navigate('/');
+            if(result.data.login.user.role === 'admin'){
+                navigate('/adminpage')
+            }
+            else{
+                navigate('/');
+            }
+            
         })
             .catch((error) => {
                 console.log(`Submission error! ${error.message}`);
