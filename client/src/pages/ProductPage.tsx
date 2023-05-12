@@ -62,7 +62,7 @@ function ProductPage() {
         <Grid style={{backgroundColor: '#cbecf2'}} container rowSpacing={2} columnSpacing={{xs: 1, sm: 2, md: 3}}>
             <Grid item xs={6}>
                 <Card className={"pictureAndInfo"} style={{marginLeft: 'auto'}}>
-                    <img style={{height: '100%', minHeight: '400px', width: '100%', minWidth: '400px'}}
+                    <img style={{height: '100%', minHeight: '400px', maxHeight: '600px', width: '100%', minWidth: '400px', maxWidth: '600px'}}
                          src={product.image}
                     ></img>
                 </Card>
@@ -92,11 +92,20 @@ function ProductPage() {
                         <Grid item xs={6}>
                             <label htmlFor="size" style={{fontSize: '25px'}}>Size:</label>
                             <br/>
+
+                            {/*<select required onChange={handleChange} className="dropdown_select">*/}
+                            {/*    <option value={''}>Select Category</option>*/}
+                            {/*    {items?.map((item)=>*/}
+                            {/*        <option key={item.id} value={item.id}>{item.name}</option>*/}
+                            {/*    )}*/}
+                            {/*</select>*/}
                             <select id="size" name="size" onChange={handleChange}>
-                                <option value="small">Small</option>
-                                <option value="medium">Medium</option>
-                                <option value="large">Large</option>
+                                <option value=''>Select Size</option>
+                                {product.size?.map((size)=>
+                                    <option key={size} value={size}>{size}</option>
+                                )}
                             </select>
+
                         </Grid>
                         <Grid item xs={5}>
                             <h3>{product.price} €</h3>
