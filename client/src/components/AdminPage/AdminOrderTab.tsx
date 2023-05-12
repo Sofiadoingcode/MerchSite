@@ -29,19 +29,35 @@ function AdminOrderTab({ order, initialState, activeOrder, setActiveOrder }: { o
             <button type="button" className={classes} onClick={handleCollapsible}>
                 <p className="admin_order_tab_text">OrderId: {order.id}</p>
                 <p className="admin_order_tab_text">Name: {order.user.name}</p>
-                <p className="admin_order_tab_text">Total Amount: {order.productLines.length}</p>
+                <p className="admin_order_tab_text">ProductLines: {order.productLines.length}</p>
             </button>
             <div className="admin_orders_content" style={{ maxHeight: expand }}>
-                <Grid container gap={10}>
-                    <Grid item xs={3}>
-                        <Typography className="admin_orders_content_text">Order Time: {order.orderTime}</Typography>
-                        <Typography className="admin_orders_content_text">Total Price: {order.totalPrice}</Typography>
+                <Card>
+                    <Typography className="admin_orders_content_text" typography={'h6'}>Order Info</Typography>
+                    <Typography className="admin_orders_content_text" sx={{fontSize:14}}>ID: {order.id}</Typography>
+                    <Typography className="admin_orders_content_text" sx={{fontSize:14}}>Order Time: {order.orderTime}</Typography>
+                    <Typography className="admin_orders_content_text" sx={{fontSize:14}}>Total Price: {order.totalPrice}</Typography>
+                </Card>
+                <Grid container gap={2} className="admin_orders_content_grid">
+                    <Grid item xs={5.8}>
+                        <Card>
+                            <Typography className="admin_orders_content_text" typography={'h6'}>Address Info</Typography>
+                            <Typography className="admin_orders_content_text" sx={{fontSize:14}}>ID: {order.address.id}</Typography>
+                            <Typography className="admin_orders_content_text" sx={{fontSize:14}}>Street Address: {order.address.streetAddress}</Typography>
+                            <Typography className="admin_orders_content_text" sx={{fontSize:14}}>Postal Code: {order.address.postalCode}</Typography>
+                            <Typography className="admin_orders_content_text" sx={{fontSize:14}}>City: {order.address.city}</Typography>
+                            <Typography className="admin_orders_content_text" sx={{fontSize:14}}>Country: {order.address.country}</Typography>
+                        </Card>
                     </Grid>
-                    <Grid item xs={3}>
-                        <Typography className="admin_orders_content_text">Total Price: {order.totalPrice}</Typography>
-                    </Grid>
-                    <Grid item xs={3}>
-                        <Typography className="admin_orders_content_text">e</Typography>
+                    <Grid item xs={5.8}>
+                        <Card>
+                            <Typography className="admin_orders_content_text" typography={'h6'}>Customer Info</Typography>
+                            <Typography className="admin_orders_content_text" sx={{fontSize:14}}>ID: {order.user.id}</Typography>
+                            <Typography className="admin_orders_content_text" sx={{fontSize:14}}>Name: {order.user.name}</Typography>
+                            <Typography className="admin_orders_content_text" sx={{fontSize:14}}>Username: {order.user.username}</Typography>
+                            <Typography className="admin_orders_content_text" sx={{fontSize:14}}>Email: {order.user.email}</Typography>
+                            <Typography className="admin_orders_content_text" sx={{fontSize:14}}>Phone Number: {order.user.phone}</Typography>
+                        </Card>
                     </Grid>
                 </Grid>
             </div>

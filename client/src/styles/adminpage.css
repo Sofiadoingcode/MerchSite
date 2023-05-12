@@ -66,10 +66,11 @@
     background-color: #ccc;
 }
 .admin_order_tab_text {
-    margin-right: 5%;
+    margin-right: 3%;
+    font-size: 14px;
 }
 .admin_orders_content {
-        padding: 0 18px;
+        padding: 0 8px;
         background-color: white;
         overflow: hidden;
         transition: max-height 0.2s ease-out;
@@ -78,4 +79,12 @@
 }
 .admin_orders_content_text {
     padding: 5px;
+}
+.admin_orders_content_grid {
+    margin: 10px 0;
+}
+.admin_orders_productlines {
+    position: sticky;
+    top: 95px;
+    overflow: scroll;
 }

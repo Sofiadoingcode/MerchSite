@@ -31,9 +31,12 @@ function AdminOrders() {
       </Card>
       </Grid>
       <Grid item xs={6}>
-      <Card>
+      <Card className="admin_orders_productlines">
         <CardContent className="admin_orders_title">
           <Typography typography={'h4'}>ProductLines</Typography>
+        </CardContent>
+        <CardContent className="admin_orders_title">
+          <Typography typography={'h6'}>Order ID: {activeOrder?.id}</Typography>
         </CardContent>
         {activeOrder.productLines?.map((productLine)=>
         <ProductLineSummary productLine={productLine}/>
