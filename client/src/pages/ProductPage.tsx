@@ -92,20 +92,12 @@ function ProductPage() {
                         <Grid item xs={6}>
                             <label htmlFor="size" style={{fontSize: '25px'}}>Size:</label>
                             <br/>
-
-                            {/*<select required onChange={handleChange} className="dropdown_select">*/}
-                            {/*    <option value={''}>Select Category</option>*/}
-                            {/*    {items?.map((item)=>*/}
-                            {/*        <option key={item.id} value={item.id}>{item.name}</option>*/}
-                            {/*    )}*/}
-                            {/*</select>*/}
                             <select id="size" name="size" onChange={handleChange}>
                                 <option value=''>Select Size</option>
                                 {product.size?.map((size)=>
                                     <option key={size} value={size}>{size}</option>
                                 )}
                             </select>
-
                         </Grid>
                         <Grid item xs={5}>
                             <h3>{product.price} €</h3>
