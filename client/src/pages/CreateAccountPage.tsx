@@ -3,20 +3,45 @@ import Button from "@mui/material/Button";
 import {useMutation} from "@apollo/client";
 import {Card, Grid} from "@mui/material";
 import '../styles/createaccountpage.css'
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import GqlCreateCustomer from "../resolvers/mutations/GqlCreateCustomer";
 import {User} from "../types";
 
 function CreateAccountPage() {
     const [CreateCustomer, {loading, error}] = useMutation(GqlCreateCustomer);
-
     const [userCredentials, setUserCredentials] = useState<User>(Object);
-
+    const [feedback, setFeedback] = useState('');
+    let accountCreated = false;
+    const navigate = useNavigate();
 
     const createAccount = (evt: React.FormEvent<HTMLFormElement>) => {
         evt.preventDefault();
 
         CreateCustomer({variables: {userInput: userCredentials}})
+            .then(() => {
+
+                setFeedback('');
+                alert("Account created!\nYou will now be taken to your new account page!")
+                navigate("/account");
+            })
+            .catch(() => {
+
+                console.log("Im not monke")
+                setFeedback('Incorrect Account Information')
+                if (userCredentials.username.length < 4) {
+                    setFeedback('Username must be at least 4 characters long')
+                }
+                if (userCredentials.username.length > 16) {
+                    setFeedback('Username must be less than 16 characters long')
+                }
+                if (userCredentials.password.length < 4) {
+                    setFeedback('Password must be at least 4 characters long')
+                }
+                if (userCredentials.username.length > 16) {
+                    setFeedback('Username must be less than 16 characters long')
+                }
+
+            })
     }
     const onChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
         const {id, value} = evt.target;
@@ -29,7 +54,6 @@ function CreateAccountPage() {
         }
         setUserCredentials({...userCredentials, [id]: value})
     }
-
 
     return (
         <div className={"createAccountDiv"}>
@@ -55,14 +79,19 @@ function CreateAccountPage() {
                                    onChange={onChange} type="number"
                                    placeholder="Number" id="phone"/>
                             <div style={{fontSize: '13px', color: 'grey'}}>
+                                {feedback && <div style={{color: 'red', fontSize: '14px'}}>{feedback}</div>}
                                 <span>Already have an account?</span>
                                 <br/>
                                 <NavLink className={"navLinkToCreateOrLogin"} to={"/login"}>Log in</NavLink>
                             </div>
-                            <br/>
-                            <br/>
-                            <Button style={{height: '40px', width: '200px'}} variant="contained"
-                                    onClick={createAccount}>Sign up!</Button>
+                            <Button
+                                style={{marginTop: '10px', height: '40px', width: '200px'}}
+                                variant="contained"
+                                onClick={createAccount}
+                                disabled={loading}
+                            >
+                                {loading ? 'Loading...' : 'Create Account!'}
+                            </Button>
 
                         </form>
                     </Card>
