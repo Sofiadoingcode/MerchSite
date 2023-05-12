@@ -16,8 +16,8 @@ function CreateAddress(props: {address: Address , setAddress:React.Dispatch<Reac
                        onChange={(evt) => {
                            props.setAddress({...props.address, city: evt.target.value})
                        }}></input>
-                <p>ZipCode</p>
-                <input type='text' style={{margin: 5}} required placeholder='Zipcode' value={props.address?.postalCode} className="inputfield"
+                <p>Postal Code</p>
+                <input type='text' style={{margin: 5}} required placeholder='Postal Code' value={props.address?.postalCode} className="inputfield"
                        onChange={(evt) => {
                         props.setAddress({...props.address, postalCode: evt.target.value})
                        }}></input>

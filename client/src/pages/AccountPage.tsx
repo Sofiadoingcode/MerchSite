@@ -3,17 +3,36 @@ import {useUserContext} from "../contexts/UserContext";
 import {Card, CardContent, CardMedia, Grid, Typography, Button} from "@mui/material";
 import CreateAddress from '../components/CheckOutPage/CreateAddress';
 import GqlAddAddressToUser from '../resolvers/mutations/GqlAddAddressToUser';
-import {Address, Order, ProductLine} from "../types"
+import {Address, Order, ProductLine, User} from "../types"
 import {useState} from "react"
-import {useMutation} from "@apollo/client"
+import {useMutation, useQuery} from "@apollo/client"
+import GetUser from '../resolvers/queries/GqlGetUser';
 
 function AccountPage() {
     const [address, setAddress] = useState<Address>(Object)
     const user = useUserContext()
-    const [mutateFunction, {loading, error, data}] = useMutation(GqlAddAddressToUser, {})
+    const q = useQuery(GetUser, {
+        variables: {
+            userId: user.id
+        },
+        onCompleted: ()=> {
+            console.log("TEST1")
+            if(q.data.user.address) {
+                address.streetAddress = q.data.user.address.streetAddress;
+                address.city = q.data.user.address.city;
+                address.postalCode = q.data.user.address.postalCode;
+                address.country = q.data.user.address.country;
+                console.log("TEST2")
+            }
+        }
+    });
 
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error: {error.message}</p>;
+    const [mutateFunction, {loading, error, data}] = useMutation(GqlAddAddressToUser, {refetchQueries:[GetUser]})
+    
+
+    //if (loading) return <p>Loading...</p>;
+    //if (error) return <p>Error: {error.message}</p>;
+
 
     const handleSubmit = () => {
 
@@ -21,8 +40,11 @@ function AccountPage() {
             variables: {
                 addAddressToUserId: user.id,
                 addressInput: address
-            }
+            },
+    
         })
+
+        console.log("TEST 3")
     }
 
     return (
