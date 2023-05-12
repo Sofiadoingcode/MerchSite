@@ -17,7 +17,7 @@ function AccountPage() {
         },
         onCompleted: ()=> {
             console.log("TEST1")
-            if(q.data.user.address) {
+            if(q.data.user.address != undefined) {
                 address.streetAddress = q.data.user.address.streetAddress;
                 address.city = q.data.user.address.city;
                 address.postalCode = q.data.user.address.postalCode;
