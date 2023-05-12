@@ -7,6 +7,7 @@ import jwt from "jsonwebtoken";
 // import bcrypt from "bcrypt";
 import Order from "../models/orderModel";
 import Review from "../models/reviewModel";
+import Address from "../models/addressModel";
 
 
 export default {
@@ -28,5 +29,11 @@ export default {
        const allReviews = await Review.find({});
        const reviews = allReviews.filter((rev)=> rev.productId.toString() === id)
        return reviews
-    }
+    },
+
+    user: async (_parent: never, {id}: Args) => {
+        const user = await UserModel.findById(id);
+        return user;
+    },
+
 }

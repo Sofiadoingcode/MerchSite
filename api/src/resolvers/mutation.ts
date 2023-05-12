@@ -1,4 +1,4 @@
-import {Args, CategoryArgs} from "../types";
+import {Args, CategoryArgs, Address} from "../types";
 import Product from "../models/productModel";
 import Category from "../models/categoryModel";
 import Order from "../models/orderModel";
@@ -6,6 +6,8 @@ import Review from "../models/reviewModel";
 import UserModel from "../models/userModel";
 import jwt from "jsonwebtoken";
 import User from "../models/userModel";
+import AddressModel from "../models/addressModel";
+import { graphql } from "graphql";
 
 export default {
     createProduct: async (_parent: never, {input}: Args) => {
@@ -61,4 +63,35 @@ export default {
         return newUser;
 
     },
+
+    createAddress: async (_parent: never, {addressInput}: Args) => {
+        const newAddress = new AddressModel(addressInput);
+        await newAddress.save();
+        return newAddress;
+    },
+
+    addAddressToUser: async (_parent: never, {id, addressInput}: Args) => {
+        const addresses: Address[] = await AddressModel.find({})
+        let foundAddress = null;
+        addresses.map((address) => {
+            if(addressInput.streetAddress == address.streetAddress &&
+                addressInput.city == address.city &&
+                addressInput.postalCode == address.postalCode &&
+                addressInput.country == address.country
+                ) {
+                    foundAddress = address;
+            }
+        })
+
+
+        if(foundAddress == null) {
+            const newAddress = new AddressModel(addressInput);
+            await newAddress.save();
+            const user = await User.findByIdAndUpdate(id, {addressId: newAddress.id});
+            return user;
+        } else {
+            const user = await User.findByIdAndUpdate(id, {addressId: foundAddress.id});
+            return user;
+        }
+    }
 }
