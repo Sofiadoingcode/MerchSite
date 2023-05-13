@@ -12,26 +12,24 @@ import GetAllCategories from "../resolvers/queries/GqlGetAllCategories";
 
 function ShopPage() {
   const [allProducts, setAllProducts] = useState<Product[]>([])
-  const [products, setProducts] = useState<Product[]>([])
+  const [searchInput, setSearchInput] = useState<string>('')
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
   const [categories, setCategories] = useState<Category[]>([])
   const [value, setValue] = useState<string>('');
   const catData = useQuery(GetAllCategories, {onCompleted: (data)=> {setCategories(data.categories)}});
-  const { loading, error, data } = useQuery(GetAllProducts, {onCompleted: (data)=> {setAllProducts(data.products); setProducts(data.products); setFilteredProducts(data.products)}});
+  const { loading, error, data } = useQuery(GetAllProducts, {onCompleted: (data)=> {setAllProducts(data.products); setFilteredProducts(data.products)}});
 
     useEffect(() => {
+      let filtered: Product[] = allProducts?.filter((product) => {
+        return product.name.toLowerCase().match(searchInput.toLowerCase());
+      });
       if(value.length > 0){
-        const filtered: Product[] = allProducts.filter((product) => {
+          filtered = filtered?.filter((product) => {
           return product.category.id === value;
         });
-        setProducts(filtered)
-        setFilteredProducts(filtered)
       }
-      else{
-        setProducts(allProducts)
-        setFilteredProducts(allProducts)
-      }
-  }, [value])
+      setFilteredProducts(filtered)
+  }, [value, searchInput])
   if (loading || catData.loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;
   if (catData.error) return <p>Error : {catData.error.message}</p>;
@@ -48,7 +46,7 @@ function ShopPage() {
       />
       <Grid container gap={10}>
         <Grid item xs={6} md={5}>
-        <SearchBar products={products} setFilteredProducts={setFilteredProducts}/>
+        <SearchBar searchInput={searchInput} setSearchInput={setSearchInput}/>
         </Grid>
         <Grid item xs={6} md={5}>
         <CategoryDropDown items={categories} value={value} setValue={setValue}/>

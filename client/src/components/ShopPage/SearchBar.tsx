@@ -1,15 +1,11 @@
 import { useState } from "react"
 import { Product } from "../../types"
 
-function SearchBar({ products, setFilteredProducts }: { products: Product[], setFilteredProducts: React.Dispatch<React.SetStateAction<Product[]>> }) {
-  const [searchInput, setSearchInput] = useState<string>('')
+function SearchBar({ searchInput, setSearchInput }: { searchInput: string, setSearchInput: React.Dispatch<React.SetStateAction<string>> }) {
+  
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const input: string = event.target.value
-    const filtered: Product[] = products.filter((product) => {
-      return product.name.toLowerCase().match(input.toLowerCase());
-    });
-    setFilteredProducts(filtered)
     setSearchInput(event.target.value);
   };
 
