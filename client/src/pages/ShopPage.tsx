@@ -13,10 +13,11 @@ import GetAllCategories from "../resolvers/queries/GqlGetAllCategories";
 function ShopPage() {
   const [allProducts, setAllProducts] = useState<Product[]>([])
   const [products, setProducts] = useState<Product[]>([])
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
   const [categories, setCategories] = useState<Category[]>([])
   const [value, setValue] = useState<string>('');
   const catData = useQuery(GetAllCategories, {onCompleted: (data)=> {setCategories(data.categories)}});
-  const { loading, error, data } = useQuery(GetAllProducts, {onCompleted: (data)=> {setAllProducts(data.products); setProducts(data.products)}});
+  const { loading, error, data } = useQuery(GetAllProducts, {onCompleted: (data)=> {setAllProducts(data.products); setProducts(data.products); setFilteredProducts(data.products)}});
 
     useEffect(() => {
       if(value.length > 0){
@@ -24,9 +25,11 @@ function ShopPage() {
           return product.category.id === value;
         });
         setProducts(filtered)
+        setFilteredProducts(filtered)
       }
       else{
         setProducts(allProducts)
+        setFilteredProducts(allProducts)
       }
   }, [value])
   if (loading || catData.loading) return <p>Loading...</p>;
@@ -45,7 +48,7 @@ function ShopPage() {
       />
       <Grid container gap={10}>
         <Grid item xs={6} md={5}>
-        <SearchBar allProducts={allProducts} setProducts={setProducts}/>
+        <SearchBar products={products} setFilteredProducts={setFilteredProducts}/>
         </Grid>
         <Grid item xs={6} md={5}>
         <CategoryDropDown items={categories} value={value} setValue={setValue}/>
@@ -53,7 +56,7 @@ function ShopPage() {
       </Grid>
     <div id={'shop_outer_div'}>
       <Grid container id={'grid_container_shop'} gap={10} spacing={1}>
-        {products.map((product)=>
+        {filteredProducts?.map((product)=>
               <Grid item key={product.id} xs={6} md={3}>
         <ProductCard product={product}/>
         </Grid>
