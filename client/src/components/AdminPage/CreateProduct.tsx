@@ -33,7 +33,7 @@ function CreateProduct() {
     }
 
     return (
-        <div>
+        <div style={{width:'80%'}}>
             <form onSubmit={handleOnSubmit} style={{margin: 30}}>
                 <input type='text' style={{margin: 5}} required placeholder='Name' value={product?.name}
                        onChange={(evt) => {
@@ -47,14 +47,14 @@ function CreateProduct() {
                        onChange={(evt) => {
                            setProduct({...product, price: evt.target.valueAsNumber})
                        }}></input>
-                       <div style={{width:'18%'}}>
+                       <div style={{width:'20%'}}>
                        <CategoryDropDown items={categories} value={value} setValue={setValue}/>
                        </div>
                 <input type='text' style={{margin: 5}} placeholder='Size' value={product?.size.toString()} onChange={(evt) => {
                     let arr: string[] = evt.target.value.split(",").map(str => str.trim())
                     setProduct({...product, size: arr})
                 }}></input>
-                <input type='text' style={{margin: 5}} placeholder='Image' value={product?.image} onChange={(evt) => {
+                <input type='text' style={{margin: 5}} placeholder='Image' required value={product?.image} onChange={(evt) => {
                     setProduct({...product, image: evt.target.value})
                 }}></input>
                 <input type='submit' style={{margin: 5}} value={"Create Product"}/>
