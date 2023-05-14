@@ -4,12 +4,12 @@ import {Button, Card, CardContent, CardMedia, Grid} from "@mui/material";
 import {NavLink, redirect, useNavigate} from "react-router-dom";
 import {useMutation} from "@apollo/client";
 import GqlLogIn from "../resolvers/mutations/GqlLogIn";
-import {useUserContext, useCartDispatchContext} from "../contexts/UserContext";
+import {useUserContext, useUserDispatchContext} from "../contexts/UserContext";
 
 
 
 function Login() {
-    const dispatch = useCartDispatchContext();
+    const dispatch = useUserDispatchContext();
     const navigate = useNavigate();
     const [user, setUser] = useState({
         username: '',
