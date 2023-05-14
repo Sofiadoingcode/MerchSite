@@ -17,6 +17,7 @@ import AccountPage from "./pages/AccountPage";
 import Login from "./pages/LogInPage";
 import { User } from './types';
 import { useUserContext } from './contexts/UserContext';
+import LogoutNav from './components/LogoutNav';
 
 
 const client = new ApolloClient({
@@ -42,13 +43,13 @@ function App() {
                         {user.role === 'admin' &&
                             <Route path="/adminPage" element={<AdminPage />}></Route>
                         }
-                        {user.id === '' &&
+                        {user.id === '' ?
                             <>
                                 <Route path="/signup" element={<CreateAccountPage />}></Route>
                                 <Route path="/login" element={<Login />}></Route>
-                            </>
+                            </>:
+                            <Route path="/logout" element={<LogoutNav />}></Route>
                         }
-
                         <Route path="/account" element={<AccountPage />}></Route>
                         <Route path="*" element={<h1>Page Not Found !!!!</h1>} />
                     </Routes>

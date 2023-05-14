@@ -37,7 +37,7 @@ const getInitialState = () => {
         return initialUser
     }
   }
-console.log(getInitialState())
+
 const initialUser: User = {
     id: '',
     username: '',
@@ -86,7 +86,7 @@ export function useUserContext() {
     return context
 }
 
-export function useCartDispatchContext() {
+export function useUserDispatchContext() {
     let context = useContext(UserDispatchContext)
     if (context === undefined) {
         throw Error('Used outside of context')
