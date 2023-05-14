@@ -18,15 +18,21 @@ export default {
 
     categories: async () => await Category.find({}),
     orders: async () => await Order.find({}),
-    ordersByUser: async (_parent:never, {id}: Args) => {
-        const allOrders = await Order.find({});
-       const orders = allOrders.filter((ord)=> ord.userId.toString() === id)
-       return orders
+    ordersByUser: async (_parent: never, {id}: Args) => {
+        const allOrders = await Order.find({userId: id});
+        return allOrders;
+        /*
+        await console.table(allOrders)
+        const orders = allOrders.filter((ord) => ord.userId.toString() === id)
+        return orders
+        */
     },
 
     reviewsByProduct: async (_parent: never, {id}: Args) => {
-       const allReviews = await Review.find({});
-       const reviews = allReviews.filter((rev)=> rev.productId.toString() === id)
-       return reviews
-    }
+        const allReviews = await Review.find({});
+        const reviews = allReviews.filter((rev) => rev.productId.toString() === id)
+        return reviews
+    },
+
+
 }

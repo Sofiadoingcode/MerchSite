@@ -61,8 +61,8 @@ function CreateAccountPage() {
                             </div>
                             <br/>
                             <br/>
-                            <Button style={{height: '40px', width: '200px'}} variant="contained"
-                                    onClick={createAccount}>Sign up!</Button>
+                            <button style={{height: '40px', width: '200px'}} variant="contained"
+                                    onClick={createAccount}>Sign up!</button>
 
                         </form>
                     </Card>
