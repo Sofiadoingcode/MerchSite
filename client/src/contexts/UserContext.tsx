@@ -1,14 +1,16 @@
 import React, {createContext, useReducer, useContext} from 'react';
 import {User,  UserActions, CartActions} from '../types';
+import jwtDecode, {JwtPayload} from 'jwt-decode';
 
 const UserContext = createContext<User | undefined>(undefined);
 const UserDispatchContext = createContext<React.Dispatch<UserActions> | undefined>(undefined);
 
+type customJwtPayload = JwtPayload & { username: User };
 
 export function UserContextProvider({children}: { children: JSX.Element }) {
     const [user, dispatch] = useReducer(
         userReducer,
-        initialUser
+        getInitialState()
     );
     return (
         <UserContext.Provider value={user}>
@@ -19,7 +21,23 @@ export function UserContextProvider({children}: { children: JSX.Element }) {
     );
 }
 
-
+const getInitialState = () => {
+    let token = localStorage.getItem('token');
+    if(!token){
+        return initialUser
+    }
+    let userObject = getDecodedToken(token)
+    if(userObject){
+        if('_id' in userObject.username){
+            delete Object.assign(userObject.username, {['id']: userObject.username['_id'] })['_id'];
+        }
+        return userObject.username
+    }
+    else {
+        return initialUser
+    }
+  }
+console.log(getInitialState())
 const initialUser: User = {
     id: '',
     username: '',
@@ -52,6 +70,13 @@ function userReducer(user: User, action: UserActions) {
         }
     }
 }
+function getDecodedToken(token: string) {
+    try {
+      return jwtDecode<customJwtPayload>(token);
+    } catch(Error) {
+      return null;
+    }
+  }
 
 export function useUserContext() {
     let context = useContext(UserContext)
