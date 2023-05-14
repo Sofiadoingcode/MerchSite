@@ -16,13 +16,13 @@ function AccountPage() {
             userId: user.id
         },
         onCompleted: ()=> {
-            console.log("TEST1")
+            
             if(q.data.user.address != undefined) {
                 address.streetAddress = q.data.user.address.streetAddress;
                 address.city = q.data.user.address.city;
                 address.postalCode = q.data.user.address.postalCode;
                 address.country = q.data.user.address.country;
-                console.log("TEST2")
+                
             }
         }
     });
