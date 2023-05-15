@@ -17,8 +17,6 @@ function CreateAccountPage() {
     })
     const [userCredentials, setUserCredentials] = useState<User>(Object);
     const [feedback, setFeedback] = useState('');
-    let accountCreated = false;
-    const navigate = useNavigate();
 
     const createAccount = (evt: React.FormEvent<HTMLFormElement>) => {
         evt.preventDefault();
