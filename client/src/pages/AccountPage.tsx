@@ -7,6 +7,8 @@ import {Address, Order, ProductLine, User} from "../types"
 import {useState} from "react"
 import {useMutation, useQuery} from "@apollo/client"
 import GetUser from '../resolvers/queries/GqlGetUser';
+import { NavLink } from 'react-router-dom';
+import '../styles/accountpage.css';
 
 function AccountPage() {
     const [address, setAddress] = useState<Address>(Object)
@@ -74,14 +76,14 @@ function AccountPage() {
                 </Card>
             </Grid>
             <Grid item md={6}>
-                <Card raised sx={{margin: '20px',}}>
+                <Card raised sx={{ margin: '20px', }}>
                     <Grid container>
                         <Grid item md={12}>
-                            <CardContent style={{textAlign: 'center'}}>
+                            <CardContent style={{ textAlign: 'center' }}>
                                 <h2>{user.name}</h2>
                             </CardContent>
                         </Grid>
-                        <Grid style={{fontSize: '24.5px'}} item md={6}>
+                        <Grid style={{ fontSize: '24.5px' }} item md={6}>
                             <CardContent>
                                 <p>Name: </p>
                             </CardContent>
@@ -93,17 +95,22 @@ function AccountPage() {
                             </CardContent>
                         </Grid>
                         <Grid item md={6}>
-                            <CardContent style={{float: 'right'}}>
+                            <CardContent style={{ float: 'right' }}>
                                 <h2>{user.username}</h2>
                             </CardContent>
-                            <CardContent style={{float: 'right'}}>
+                            <CardContent style={{ float: 'right' }}>
                                 <h2>{user.email}</h2>
                             </CardContent>
-                            <CardContent style={{float: 'right'}}>
+                            <CardContent style={{ float: 'right' }}>
                                 <h2>{user.phone}</h2>
                             </CardContent>
                         </Grid>
                     </Grid>
+                    <CardContent style={{textAlign:'right'}}>
+                    <NavLink to="/logout" className='account_logout'>
+                        LOGOUT
+                    </NavLink>
+                    </CardContent>
                 </Card>
             </Grid>
         </Grid>

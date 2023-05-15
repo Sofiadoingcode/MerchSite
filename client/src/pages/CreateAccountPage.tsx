@@ -3,20 +3,48 @@ import Button from "@mui/material/Button";
 import {useMutation} from "@apollo/client";
 import {Card, Grid} from "@mui/material";
 import '../styles/createaccountpage.css'
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import GqlCreateCustomer from "../resolvers/mutations/GqlCreateCustomer";
 import {User} from "../types";
+import GqlLogIn from "../resolvers/mutations/GqlLogIn";
+import { useUserDispatchContext } from '../contexts/UserContext';
 
 function CreateAccountPage() {
+    const dispatch = useUserDispatchContext();
+    const navigate = useNavigate();
     const [CreateCustomer, {loading, error}] = useMutation(GqlCreateCustomer);
-
+    const [mutateFunction, q] = useMutation(GqlLogIn, {
+    })
     const [userCredentials, setUserCredentials] = useState<User>(Object);
 
 
     const createAccount = (evt: React.FormEvent<HTMLFormElement>) => {
         evt.preventDefault();
-
         CreateCustomer({variables: {userInput: userCredentials}})
+        .then((result)=>{
+            console.log(result)
+            mutateFunction({
+                variables: {
+                    userInput: {
+                        username: result.data.createCustomerAccount.username,
+                        password: result.data.createCustomerAccount.password,
+                    },
+                }
+            }).then((result) => {
+                dispatch({ type: 'added', user: result.data.login.user });
+                localStorage.setItem('token', result.data.login.token);
+                if(result.data.login.user.role === 'admin'){
+                    navigate('/adminpage')
+                }
+                else{
+                    navigate('/');
+                }
+                
+            })
+                .catch((error) => {
+                    console.log(`Submission error! ${error.message}`);
+                });
+        })
     }
     const onChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
         const {id, value} = evt.target;

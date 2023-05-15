@@ -4,12 +4,12 @@ import {Button, Card, CardContent, CardMedia, Grid} from "@mui/material";
 import {NavLink, redirect, useNavigate} from "react-router-dom";
 import {useMutation} from "@apollo/client";
 import GqlLogIn from "../resolvers/mutations/GqlLogIn";
-import {useUserContext, useCartDispatchContext} from "../contexts/UserContext";
+import {useUserContext, useUserDispatchContext} from "../contexts/UserContext";
 
 
 
 function Login() {
-    const dispatch = useCartDispatchContext();
+    const dispatch = useUserDispatchContext();
     const navigate = useNavigate();
     const [user, setUser] = useState({
         username: '',
@@ -32,8 +32,13 @@ function Login() {
         }).then((result) => {
             dispatch({ type: 'added', user: result.data.login.user });
             localStorage.setItem('token', result.data.login.token);
-
-            navigate('/');
+            if(result.data.login.user.role === 'admin'){
+                navigate('/adminpage')
+            }
+            else{
+                navigate('/');
+            }
+            
         })
             .catch((error) => {
                 console.log(`Submission error! ${error.message}`);

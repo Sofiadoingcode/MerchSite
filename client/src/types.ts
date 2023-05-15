@@ -10,7 +10,7 @@ type Product = {
 }
 
 type User = {
-    id: string;
+    id?: string;
     username: string;
     password: string;
     role: string;
@@ -36,6 +36,14 @@ type Order = {
     address: Address;
     userId: string;
     productLines: ProductLine[];
+}
+type OrderWithEverything = {
+    id: string;
+    totalPrice: number;
+    orderTime: string;
+    address: Address;
+    user: User;
+    productLines: ProductLineWithProduct[];
 }
 
 type ProductLine = {
@@ -101,7 +109,7 @@ type ResetCart = {
 type UserActions = AddUser | RemoveUser;
 
 type CartActions = AddtoCart | RemoveFromCart | ResetCart;
-export type { Product, Category, DropdownItems, Review, CartActions, User, UserActions, Address, Order, ProductLine, ProductLineWithProduct }
+export type { Product, Category, DropdownItems, Review, CartActions, User, UserActions, Address, Order, ProductLine, ProductLineWithProduct, OrderWithEverything }
 
 
 
