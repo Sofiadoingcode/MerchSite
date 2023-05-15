@@ -4,7 +4,7 @@ import '../../styles/productpage.css'
 import '../../styles/checkoutpage.css'
 
 function ProductLineSummary(props: {productLine: ProductLineWithProduct}) {
-    console.log(props.productLine.lineprice)
+    
     return (
         <div>
            <Card className={"description"}>

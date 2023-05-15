@@ -10,12 +10,10 @@ import ProductLineSummary from "../CheckOutPage/ProductLineSummary";
 
 function UserOrders(props: { user: User }) {
 
-    const [orders, setOrders] = useState<Order[]>([])
+
     const [openPopUp, setOpenPopUp] = useState(false);
     const {loading, error, data} = useQuery(ordersByUser, {
-        variables: {id: props.user.id}, onCompleted: (data) => {
-
-        }
+        variables: {id: props.user.id},
     });
     const handleSubmit = () => {
         setOpenPopUp(true)
@@ -38,7 +36,7 @@ function UserOrders(props: { user: User }) {
                     </thead>
                     <tbody>
                     {data.ordersByUser.map((order: OrderWithEverything) =>
-                        <tr>
+                        <tr key = {order.id}>
                             <td>{order.id}</td>
                             <td>{order.totalPrice}</td>
                             <td>{order.address.country} {order.address.city} {order.address.postalCode} {order.address.streetAddress} </td>
