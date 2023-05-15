@@ -1,0 +1,10 @@
+.account_logout {
+    text-decoration: none;
+    background-color: darkgray;
+    padding: 5px;
+    color: aliceblue;
+}
+.account_logout:hover {
+    color: white;
+    background-color: gray;
+}

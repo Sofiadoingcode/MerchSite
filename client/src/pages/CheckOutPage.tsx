@@ -1,24 +1,39 @@
 import GqlCreateOrder from "../resolvers/mutations/GqlCreateOrder"
 import {useState} from "react"
-import {useMutation} from "@apollo/client"
+import {useMutation, useQuery} from "@apollo/client"
 import CreateAddress from "../components/CheckOutPage/CreateAddress"
 import ProductLineSummary from "../components/CheckOutPage/ProductLineSummary"
-import {Address, Order, ProductLine} from "../types"
+import {Address, Order, ProductLine, User} from "../types"
 import {useCartContext, useCartDispatchContext} from "../contexts/CartContext"
 import {Button, Card, CardMedia, Grid, TextField, Typography} from "@mui/material";
 import PopUp from "../components/CheckOutPage/PopUp"
 import '../styles/productpage.css'
 import {useUserContext} from "../contexts/UserContext";
+import GetUser from '../resolvers/queries/GqlGetUser';
 
 
 function CheckOutPage() {
     const [order, setOrder] = useState<Order>(Object)
     const [address, setAddress] = useState<Address>(Object)
+    const [userAddress, setUserAddress] = useState<Address>(Object);
     const [openPopUp, setOpenPopUp] = useState(false);
     const cart = useCartContext();
     const dispatch = useCartDispatchContext();
     const userId = useUserContext().id;
     const [mutateFunction, {loading, error, data}] = useMutation(GqlCreateOrder, {})
+    const userData = useQuery(GetUser, {
+        variables: {
+            userId: userId
+        },
+        onCompleted: (data)=> {
+           userAddress.city = data.user.address.city;
+           userAddress.country = data.user.address.country;
+           userAddress.postalCode = data.user.address.postalCode;
+           userAddress.streetAddress = data.user.address.streetAddress;
+        }
+    
+    });
+    
 
     let totalPrice: number = 0;
     useCartContext()?.map((item) => totalPrice += item.lineprice)
@@ -38,8 +53,9 @@ function CheckOutPage() {
         }
     )
 
-    if (loading) return <p>Loading...</p>;
+    if (loading || userData.loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
+    if (userData.error) return <p>Error: {userData.error.message}</p>;
 
     const handleSubmit = () => {
 
@@ -58,6 +74,16 @@ function CheckOutPage() {
         setOpenPopUp(true)
     }
 
+
+    const handleSetAddress = () => {
+        (console.log("TEST1"))
+        address.country = userAddress.country;
+        address.postalCode = userAddress.postalCode;
+        address.city = userAddress.city;
+        address.streetAddress = userAddress.streetAddress;
+        setAddress({...address, streetAddress: userAddress.streetAddress})
+    }
+
     return (
         <div>
 
@@ -66,6 +92,8 @@ function CheckOutPage() {
                     <Card>
                         <h2>Delivery Address</h2>
                         <CreateAddress address={address} setAddress={setAddress}/>
+                        <Button style={{height: '50px', width: '200px', margin: '10px'}} variant="contained"
+                                       onClick={handleSetAddress} >Set To Your Address</Button>
                     </Card>
                 </Grid>
                 <Grid item xs={6}>

@@ -38,8 +38,8 @@ type ProductLine = {
 
 type Address = {
     id: string;
-    postalcode: string;
-    streetaddress: string;
+    postalCode: string;
+    streetAddress: string;
     city: string;
     country: string;
 }
@@ -74,6 +74,7 @@ type Args = {
     userInput: User;
     orderInput: Order;
     reviewInput: Review;
+    addressInput: Address;
 };
 
 type CategoryArgs = {
