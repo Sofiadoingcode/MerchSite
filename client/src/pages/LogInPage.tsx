@@ -7,7 +7,6 @@ import GqlLogIn from "../resolvers/mutations/GqlLogIn";
 import {useUserContext, useUserDispatchContext} from "../contexts/UserContext";
 
 
-
 function Login() {
     const dispatch = useUserDispatchContext();
     const navigate = useNavigate();
@@ -15,6 +14,8 @@ function Login() {
         username: '',
         password: '',
     });
+
+    const [feedback, setFeedback] = useState('');
 
     const [mutateFunction, {loading, error, data}] = useMutation(GqlLogIn, {
         // refetchQueries: []
@@ -30,7 +31,7 @@ function Login() {
                 },
             }
         }).then((result) => {
-            dispatch({ type: 'added', user: result.data.login.user });
+            dispatch({type: 'added', user: result.data.login.user});
             localStorage.setItem('token', result.data.login.token);
             if(result.data.login.user.role === 'admin'){
                 navigate('/adminpage')
@@ -41,16 +42,14 @@ function Login() {
             
         })
             .catch((error) => {
-                console.log(`Submission error! ${error.message}`);
+                setFeedback('Incorrect Username or Password!');
             });
     };
+
 
     const onChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
         setUser({...user, [evt.target.id]: evt.target.value});
     };
-
-    if (loading) return <>Submitting...</>;
-    if (error) return <>Submission error! {error.message}</>;
 
     return (
         <div className={"createAccountDiv"}>
@@ -66,14 +65,22 @@ function Login() {
                                    onChange={onChange} type="password" placeholder="Password" id="password"/>
 
                             <br/>
+                            {feedback && <div style={{color: 'red', fontSize: '14px'}}>{feedback}</div>}
                             <div style={{fontSize: '14px', color: 'grey'}}>
                                 <p>Don't have an account?</p>
                                 <NavLink className={"navLinkToCreateOrLogin"} to={"/signup"}>Create
                                     account</NavLink>
                             </div>
                             <br/>
-                            <Button style={{height: '40px', width: '200px'}} variant="contained"
-                                    onClick={performLogin}>Log in!</Button>
+                            <Button
+                                style={{height: '40px', width: '200px'}}
+                                variant="contained"
+                                onClick={performLogin}
+                                disabled={loading}
+                            >
+                                {loading ? 'Loading...' : 'Log in!'}
+                            </Button>
+
 
                         </form>
                     </Card>

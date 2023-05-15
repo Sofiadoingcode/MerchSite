@@ -73,14 +73,14 @@ type Query {
     products: [Product!]!
     product(id: ID): Product
     categories: [Category!]!
-    productsByCategory(id: ID): [Product!]!
+    productByCategory(id: ID): Product!
     login(userInput: UserInput) : LoginOutput
     orders: [Order!]!
     reviewsByProduct(id: ID): [Review!]!
     ordersByUser(id: ID): [Order!]!
     user(id:ID): User
   }
-  
+
 type Mutation {
   createProduct(input:ProductInput): Product
   deleteProduct(id:ID): Boolean
@@ -153,7 +153,7 @@ input ReviewInput {
   userId: ID!
   productId: ID!
 }
-  
+
 `
 
 export default typeDefs;

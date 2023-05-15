@@ -16,6 +16,7 @@ function ShopPage() {
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
   const [categories, setCategories] = useState<Category[]>([])
   const [value, setValue] = useState<string>('');
+
   const catData = useQuery(GetAllCategories, {onCompleted: (data)=> {setCategories(data.categories)}});
   const { loading, error, data } = useQuery(GetAllProducts, {onCompleted: (data)=> {setAllProducts(data.products); setFilteredProducts(data.products)}});
 

@@ -16,7 +16,9 @@ function CreateAccountPage() {
     const [mutateFunction, q] = useMutation(GqlLogIn, {
     })
     const [userCredentials, setUserCredentials] = useState<User>(Object);
-
+    const [feedback, setFeedback] = useState('');
+    let accountCreated = false;
+    const navigate = useNavigate();
 
     const createAccount = (evt: React.FormEvent<HTMLFormElement>) => {
         evt.preventDefault();
@@ -33,18 +35,31 @@ function CreateAccountPage() {
             }).then((result) => {
                 dispatch({ type: 'added', user: result.data.login.user });
                 localStorage.setItem('token', result.data.login.token);
-                if(result.data.login.user.role === 'admin'){
-                    navigate('/adminpage')
-                }
-                else{
-                    navigate('/');
-                }
-                
+                setFeedback('');
+                alert("Account created!\nYou will now be taken to your new account page!")
+                navigate("/account");
+
             })
-                .catch((error) => {
-                    console.log(`Submission error! ${error.message}`);
-                });
+            
         })
+
+            .catch(() => {
+
+                setFeedback('Incorrect Account Information')
+                if (userCredentials.username.length < 4) {
+                    setFeedback('Username must be at least 4 characters long')
+                }
+                if (userCredentials.username.length > 16) {
+                    setFeedback('Username must be less than 16 characters long')
+                }
+                if (userCredentials.password.length < 4) {
+                    setFeedback('Password must be at least 4 characters long')
+                }
+                if (userCredentials.username.length > 16) {
+                    setFeedback('Username must be less than 16 characters long')
+                }
+
+            })
     }
     const onChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
         const {id, value} = evt.target;
@@ -57,7 +72,6 @@ function CreateAccountPage() {
         }
         setUserCredentials({...userCredentials, [id]: value})
     }
-
 
     return (
         <div className={"createAccountDiv"}>
@@ -83,14 +97,19 @@ function CreateAccountPage() {
                                    onChange={onChange} type="number"
                                    placeholder="Number" id="phone"/>
                             <div style={{fontSize: '13px', color: 'grey'}}>
+                                {feedback && <div style={{color: 'red', fontSize: '14px'}}>{feedback}</div>}
                                 <span>Already have an account?</span>
                                 <br/>
                                 <NavLink className={"navLinkToCreateOrLogin"} to={"/login"}>Log in</NavLink>
                             </div>
-                            <br/>
-                            <br/>
-                            <Button style={{height: '40px', width: '200px'}} variant="contained"
-                                    onClick={createAccount}>Sign up!</Button>
+                            <Button
+                                style={{marginTop: '10px', height: '40px', width: '200px'}}
+                                variant="contained"
+                                onClick={createAccount}
+                                disabled={loading}
+                            >
+                                {loading ? 'Loading...' : 'Create Account!'}
+                            </Button>
 
                         </form>
                     </Card>
