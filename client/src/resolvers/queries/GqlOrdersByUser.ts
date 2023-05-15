@@ -16,6 +16,7 @@ query Query {
       amount
       linePrice
       product {
+        image
         name
         price
         description
