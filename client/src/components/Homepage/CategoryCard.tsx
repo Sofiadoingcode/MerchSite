@@ -6,17 +6,7 @@ import {useQuery} from "@apollo/client";
 import GetAllCategories from "../../resolvers/queries/GqlGetAllCategories";
 import getProductFromCategory from "../../resolvers/queries/GqlGetProductByCategory";
 
-function CategoryCard() {
-
-    const [categories, setCategories] = useState<Category[]>([])
-    const {loading, error, data} = useQuery(GetAllCategories, {
-        onCompleted: (data: any) => {
-            setCategories(data.categories)
-        }
-    });
-
-    if (loading) return <>'Submitting...'</>;
-    if (error) return <>`Submission error! ${error.message}`</>;
+function CategoryCard({categories}: {categories: Category[]}) {
 
     return (
         <Grid container spacing={4}>
