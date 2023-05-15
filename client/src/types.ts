@@ -28,6 +28,8 @@ type Address = {
     city: string;
     postalCode: string;
     streetAddress: string;
+
+
 }
 
 type Order = {

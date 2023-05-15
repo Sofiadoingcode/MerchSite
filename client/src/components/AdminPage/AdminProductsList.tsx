@@ -18,6 +18,8 @@ function AdminProductsList() {
 
     return (
 
+
+
         <div>
             <table>
                 <tr>
@@ -31,6 +33,7 @@ function AdminProductsList() {
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
+
                 {data.products.map((product: Product) => (<tr>
                     <td>{product.id}</td>
                     <UpdateProduct product={product}/>
