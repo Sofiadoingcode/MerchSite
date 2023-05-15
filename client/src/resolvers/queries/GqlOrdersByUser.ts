@@ -1,30 +1,41 @@
 import { gql } from '@apollo/client';
 
 const ordersByUser = gql`
-query Query {
-  ordersByUser {
-    orderTime
+query Query($ordersByUserId: ID) {
+  ordersByUser(id: $ordersByUserId) {
     id
-    address {
-      city
-      country
-      postalCode
-      streetAddress
-      id
-    }
-    productLines {
-      amount
-      linePrice
-      product {
-        image
-        name
-        price
-        description
-      }
-      id
-      size
-    }
     totalPrice
+    productLines {
+      size
+      product {
+        size
+        ratingAvg
+        price
+        name
+        image
+        id
+        description
+        category {
+          name
+        }
+      }
+      linePrice
+      id
+      amount
+    }
+    orderTime
+    address {
+      streetAddress
+      postalCode
+      id
+      country
+      city
+    }
+    user {
+      username
+      name
+      id
+    }
   }
 }
   `

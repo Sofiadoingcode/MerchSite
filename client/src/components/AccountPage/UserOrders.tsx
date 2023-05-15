@@ -13,15 +13,17 @@ function UserOrders(props: { user: User }) {
 
     const [openPopUp, setOpenPopUp] = useState(false);
     const {loading, error, data} = useQuery(ordersByUser, {
-        variables: {id: props.user.id},
+        variables: {ordersByUserId: props.user.id},
     });
+
+    console.log(props.user.id)
+
     const handleSubmit = () => {
         setOpenPopUp(true)
-
     }
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
-    console.table(data.ordersByUser)
+    console.table(data)
     return (
 
             <div>
