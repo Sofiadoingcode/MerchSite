@@ -1,8 +1,9 @@
 import { Address } from "../../types"
 import "../../styles/checkoutpage.css"
+import { useEffect } from "react"
 
 function CreateAddress(props: {address: Address , setAddress:React.Dispatch<React.SetStateAction<Address>>}) {
-    
+
     return (
         <div>
             <div>

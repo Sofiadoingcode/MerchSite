@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useUserContext} from "../contexts/UserContext";
 import UserOrders from "../components/AccountPage/UserOrders";
 import ordersByUser from "../resolvers/queries/GqlOrdersByUser";
@@ -32,6 +32,22 @@ function AccountPage() {
     });
 
     const [mutateFunction, {loading, error, data}] = useMutation(GqlAddAddressToUser, {
+        variables: {
+            addAddressToUserId: user.id,
+            addressInput: address
+        },
+
+        onCompleted: () => {
+            if(data){
+                address.streetAddress = data.address.streetAddress;
+                address.city = data.address.city;
+                address.postalCode = data.address.postalCode;
+                address.country = data.address.country;
+                setAddress({...address, country: data.address.country})
+            }
+            
+        },
+
         refetchQueries: [{
             query: GetUser,
             variables: {
@@ -41,29 +57,14 @@ function AccountPage() {
     })
 
 
-    //if (loading) return <p>Loading...</p>;
-    //if (error) return <p>Error: {error.message}</p>;
+
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error.message}</p>;
 
 
     const handleSubmit = () => {
 
-        mutateFunction({
-            variables: {
-                addAddressToUserId: user.id,
-                addressInput: address
-            },
-            onCompleted: () => {
-
-                if (data.user.address != undefined) {
-                    address.streetAddress = data.user.address.streetAddress;
-                    address.city = data.user.address.city;
-                    address.postalCode = data.user.address.postalCode;
-                    address.country = data.user.address.country;
-                    setAddress({...address, country: data.user.address.country})
-
-                }
-            }
-        })
+        mutateFunction()
     }
 
 
