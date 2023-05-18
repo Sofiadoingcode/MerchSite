@@ -42,14 +42,14 @@ function NavBar(props: { page: String }) {
                     </div>
                     <div className='navbarright'>
                         {user.role === 'admin' ?
-                            <NavLink to="/adminpage" className="link">
+                            <NavLink style={{ backgroundColor: '#ccb9ed' }} to="/adminpage" className="link">
                                 ADMINPAGE
                             </NavLink> :
                             <>
-                                {props.page == "HOMEPAGE" && <NavLink to="/shop" className="link">
+                                {props.page == "HOMEPAGE" && <NavLink style={{ backgroundColor: '#ccb9ed' }} to="/shop" className="link">
                                     SHOP
                                 </NavLink>}
-                                {props.page != "HOMEPAGE" && <NavLink to="/" className="link">
+                                {props.page != "HOMEPAGE" && <NavLink style={{ backgroundColor: '#ccb9ed' }} to="/" className="link">
                                     HOMEPAGE
                                 </NavLink>}
                             </>
@@ -58,23 +58,23 @@ function NavBar(props: { page: String }) {
 
                         {user.id === '' &&
                             <>
-                                <NavLink to="/login" className="link">
+                                <NavLink style={{ backgroundColor: '#ccb9ed' }} to="/login" className="link">
                                     LOGIN
                                 </NavLink>
-                                <NavLink to="/signup" className="link">
+                                <NavLink style={{ backgroundColor: '#ccb9ed' }} to="/signup" className="link">
                                     SIGN UP
                                 </NavLink>
                             </>
                         }
-                        {user.id.length > 0 ?
+                        {user.id && user.id.length > 0 ?
                             user.role === 'admin' ?
                                 <>
-                                    <NavLink to="/logout" className="link">
+                                    <NavLink style={{ backgroundColor: '#ccb9ed' }} to="/logout" className="link">
                                         LOGOUT
                                     </NavLink>
 
                                 </> :
-                                <NavLink to="/account" className="link">
+                                <NavLink style={{ backgroundColor: '#ccb9ed' }} to="/account" className="link">
                                     ACCOUNT
                                 </NavLink>
 
@@ -83,7 +83,7 @@ function NavBar(props: { page: String }) {
 
                         }
 
-                        <NavLink to="/wishlist" className="iconlink">
+                        <NavLink style={{ backgroundColor: '#ccb9ed' }} to="/wishlist" className="iconlink">
                             <svg width="2rem" height="2rem" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg" className='svg'>
                                 <path fillRule="evenodd" clipRule="evenodd"
@@ -91,7 +91,7 @@ function NavBar(props: { page: String }) {
                                     fill="white" />
                             </svg>
                         </NavLink>
-                        <NavLink to="/cart" className="iconlink">
+                        <NavLink style={{ backgroundColor: '#ccb9ed' }} to="/cart" className="iconlink">
                             <p id='cart_number'>{cart.length}</p>
                             <svg width="2rem" height="2rem" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg" className='svg'>

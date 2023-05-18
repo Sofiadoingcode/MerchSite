@@ -27,7 +27,7 @@ function ProductCard({ product }: { product: Product }) {
           </Grid>
         </Grid>
         <CardContent>
-          <Rating value={product.ratingAvg} readOnly/>
+          <Rating value={product.ratingAvg | 0} readOnly/>
         </CardContent>
       </Card>
     </NavLink>

@@ -7,24 +7,22 @@ import { useState } from "react"
 import { useUserContext } from "../../contexts/UserContext"
 
 
-function ReviewInputBox({product}:{product:Product}) {
+function ReviewInputBox({product, review, setReview}:{product:Product, review: Review, setReview:React.Dispatch<React.SetStateAction<Review>>}) {
     const intialState: Review = {id:'', title:'', text:'', rating:0, userId:'', productId:''}
-    const [review, setReview] = useState<Review>(intialState)
     const user: User = useUserContext()
     const [mutateFunction, {loading, error, data}] = useMutation(GqlCreateReview, {
-        refetchQueries: [{
-            query: GetReviewsByProduct,
-            variables: {
-                reviewsByProductId: product.id
-            }
-        }]
+        refetchQueries: [
+            GetReviewsByProduct
+        ]
     })
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
     function handleSubmit(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault()
         
-        review.userId = user.id
+        if(user.id){
+            review.userId = user.id
+        }
         review.productId = product.id
         mutateFunction({
             variables: {
@@ -38,7 +36,7 @@ function ReviewInputBox({product}:{product:Product}) {
         <>
             <Grid item xs={10}>
                 <Card id="review_card">
-                    {user.id.length > 0 ? <>
+                    {user.id && user.id.length > 0 ? <>
                     <CardContent>
                     <Typography typography={'h4'}>Leave a review</Typography>
                 </CardContent>
