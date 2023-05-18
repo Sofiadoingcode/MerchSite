@@ -103,7 +103,7 @@ function CreateAccountPage() {
                             <Button
                                 style={{marginTop: '10px', height: '40px', width: '200px'}}
                                 variant="contained"
-                                onClick={createAccount}
+                                type='submit'
                                 disabled={loading}
                             >
                                 {loading ? 'Loading...' : 'Create Account!'}
