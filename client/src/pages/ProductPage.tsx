@@ -29,9 +29,7 @@ function ProductPage() {
     const r = useQuery(GetReviewsByProduct, {
         variables: {
             reviewsByProductId: productId
-        },
-        //hvad er det her til for?
-        onCompleted: ()=> {setProductLine({...productLine, size: "Small"})}
+        }
     });
 
     const dispatch = useCartDispatchContext();
