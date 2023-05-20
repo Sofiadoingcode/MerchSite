@@ -1,3 +1,5 @@
+
+
 type Product = {
     id: string;
     name: string;
@@ -42,7 +44,7 @@ type Order = {
 type OrderWithEverything = {
     id: string;
     totalPrice: number;
-    orderTime: string;
+    orderTime: number;
     address: Address;
     user: User;
     productLines: ProductLineWithProduct[];
