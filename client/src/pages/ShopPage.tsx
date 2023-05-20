@@ -38,8 +38,8 @@ function ShopPage() {
   return (
     <>
       <Image
-        src="https://media.gq.com/photos/57486a68cd0aaff827f46ae6/master/pass/sharks-michael-muller-photo-book-03.jpg"
-        height="10rem"
+        src="../../images/Salecrop.png"
+        height="15rem"
         width="100%"
         fit="cover"
         duration={2000}
