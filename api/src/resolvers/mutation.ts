@@ -58,6 +58,15 @@ export default {
 
     createCustomerAccount: async (_parent: never, {userInput}: Args) => {
         userInput.role = 'customer';
+
+        if (userInput.username) {
+            const existingUser = await User.findOne({ username: userInput.username });
+
+            if (existingUser) {
+                throw new Error('Duplicate username');
+            }
+        }
+
         const newUser = new User(userInput);
         await newUser.save();
         return newUser;
