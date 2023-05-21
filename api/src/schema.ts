@@ -90,6 +90,7 @@ type Mutation {
   createOrder(orderInput:OrderInput): Order
   createReview(reviewInput:ReviewInput): Review
   createCustomerAccount(userInput:UserInput): User
+  createAccount(userInput:UserInput): User
   createAddress(addressInput: AddressInput): Address
   addAddressToUser(id:ID, addressInput: AddressInput): User
 }

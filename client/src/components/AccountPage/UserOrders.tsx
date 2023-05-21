@@ -16,6 +16,9 @@ function UserOrders(props: { user: User }) {
         variables: {ordersByUserId: props.user.id},
     });
 
+    const [orders, setOrders] = useState<OrderWithEverything[]>([])
+    const [activeOrder, setActiveOrder] = useState<OrderWithEverything>()
+
     console.log(props.user.id)
 
     const handleSubmit = () => {

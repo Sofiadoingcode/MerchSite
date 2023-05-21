@@ -42,7 +42,7 @@ function Login() {
             
         })
             .catch((error) => {
-                setFeedback('Incorrect Username or Password!');
+                setFeedback(error.message);
             });
     };
 
