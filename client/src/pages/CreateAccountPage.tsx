@@ -21,7 +21,6 @@ function CreateAccountPage() {
         evt.preventDefault();
         CreateCustomer({variables: {userInput: userCredentials}})
             .then((result) => {
-                console.log(result)
                 mutateFunction({
                     variables: {
                         userInput: {
@@ -43,7 +42,6 @@ function CreateAccountPage() {
             })
 
             .catch((error) => {
-                // console.log(error)
                 setFeedback('Incorrect Account Information')
                 if (error.message == "Duplicate username"){
                     setFeedback('This username is already in use')

@@ -60,7 +60,9 @@ function CheckOutPage() {
     const handleSubmit = () => {
 
         order.totalPrice = totalPrice;
-        order.userId = userId;
+        if (userId !=undefined){
+            order.userId = userId;
+        }
         order.address = address;
 
 
@@ -76,7 +78,6 @@ function CheckOutPage() {
 
 
     const handleSetAddress = () => {
-        (console.log("TEST1"))
         address.country = userAddress.country;
         address.postalCode = userAddress.postalCode;
         address.city = userAddress.city;

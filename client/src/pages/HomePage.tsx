@@ -25,15 +25,12 @@ function HomePage() {
     const q = useQuery(GetAllCategories, {
         onCompleted: (data: any) => {
             setCategories(data.categories)
-            console.log("Category Fetch")
         }
     });
 
     if (loading || q.loading) return <>'Submitting...'</>;
     if (error) return <>`Submission error! ${error.message}`</>;
 
-    if (error) return <>`Submission error! ${error.message}`</>;
-    if (q.error) return <>`Submission error! ${error.message}`</>;
 
 
     return (

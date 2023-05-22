@@ -116,9 +116,9 @@ function AccountPage() {
                         </CardContent>
                     </Card>
                 </Grid>
+                <UserOrders user={user}/>
             </Grid>
 
-            <UserOrders user={user}/>
 
 
         </>

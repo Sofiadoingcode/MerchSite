@@ -101,8 +101,10 @@ input ProductInput{
   description: String
   price: Float!
   categoryId: ID
+  category: CategoryInput
   size: [String]
   image: String!
+  ratingAvg: Float
 }
 
 input CategoryInput {

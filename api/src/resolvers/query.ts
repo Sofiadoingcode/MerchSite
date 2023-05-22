@@ -22,11 +22,7 @@ export default {
     ordersByUser: async (_parent: never, {id}: Args) => {
         const allOrders = await Order.find({userId: id});
         return allOrders;
-        /*
-        await console.table(allOrders)
-        const orders = allOrders.filter((ord) => ord.userId.toString() === id)
-        return orders
-        */
+
     },
 
     reviewsByProduct: async (_parent: never, {id}: Args) => {

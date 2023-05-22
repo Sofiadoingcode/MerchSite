@@ -12,7 +12,7 @@ import AdminOrderTab from "../AdminPage/AdminOrderTab";
 function UserOrders(props: { user: User }) {
 
     const initialState: OrderWithEverything = {
-        id: '', totalPrice: 0, orderTime: '',
+        id: '', totalPrice: 0, orderTime: 0,
         address: {id: '', country: '', city: '', postalCode: '', streetAddress: ''},
         user: {id: '', username: '', password: '', role: '', email: '', name: '', phone: ''},
         productLines: []
@@ -25,7 +25,7 @@ function UserOrders(props: { user: User }) {
     const [orders, setOrders] = useState<OrderWithEverything[]>([])
     const [activeOrder, setActiveOrder] = useState<OrderWithEverything>(initialState)
 
-    console.log(props.user.id)
+
 
     const handleSubmit = () => {
         setOpenPopUp(true)
@@ -34,8 +34,9 @@ function UserOrders(props: { user: User }) {
     if (error) return <p>Error: {error.message}</p>;
 
     return (
-        <Grid container xs={9} gap={10} className="admin_orders_grid">
-            <Grid item xs={5}>
+        // <Grid container xs={9} gap={10} className="admin_orders_grid">
+        <>
+            <Grid item xs={6}>
                 <Card>
                     <CardContent className="admin_orders_title">
                         <Typography typography={'h4'}>Orders</Typography>
@@ -46,7 +47,7 @@ function UserOrders(props: { user: User }) {
                     )}
                 </Card>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={6}  >
                 <Card className="admin_orders_productlines">
                     <CardContent className="admin_orders_title">
                         <Typography typography={'h4'}>Items in order</Typography>
@@ -59,7 +60,8 @@ function UserOrders(props: { user: User }) {
                     )}
                 </Card>
             </Grid>
-        </Grid>
+
+        </>
     );
 }
 

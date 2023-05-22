@@ -17,7 +17,8 @@ const UpdateProduct = (props: { product: Product }) => {
             name: props.product.category.name
         },
         size: props.product.size,
-        image: props.product.image
+        image: props.product.image,
+        ratingAvg : props.product.ratingAvg
     });
     const [updateCategory, setUpdateCategory] = useState<Category>({
         id: props.product.category.id,
@@ -38,6 +39,7 @@ const UpdateProduct = (props: { product: Product }) => {
 
     const handleSubmit = (event: React.MouseEvent<HTMLElement>) => {
         event.preventDefault();
+        console.log(updateProduct);
         editProduct({
             variables: {
                 id: updateProduct.id,
@@ -46,9 +48,6 @@ const UpdateProduct = (props: { product: Product }) => {
                 },
             },
         })
-            .then((result) => {
-                console.log("Product updated successfully", result);
-            })
             .catch((error) => {
                 console.error("Error updating product", error);
             });
