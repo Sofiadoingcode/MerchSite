@@ -9,7 +9,16 @@ const Footer = () => {
           <div className="footer-section">
             <h4>Social Media</h4>
             <p>
-              NOT DONE
+            <img style={{width: '13px'}} src='../../images/instagram-167-svgrepo-com.svg'/>
+              sofiadoingstunt
+            </p>
+            <p>
+            <img style={{width: '13px'}} src='../../images/twitter-3-svgrepo-com.svg'/>
+              sofiastunts
+            </p>
+            <p>
+            <img style={{width: '15px'}} src='../../images/brand-tiktok-sq-svgrepo-com.svg'/>
+              sofiastunts
             </p>
           </div>
           <div className="footer-section">

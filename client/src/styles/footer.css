@@ -3,7 +3,6 @@ footer {
     bottom: 0px;
     right: 0px;
     left: 0px;
-    
   }
 
 .footer {
@@ -17,6 +16,7 @@ footer {
     max-width: auto;
     margin: 0 auto;
     padding: 0 0rem;
+    margin-left: 50px;
 
   }
   
