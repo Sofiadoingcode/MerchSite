@@ -22,7 +22,7 @@ export default {
         const userId = user.username._id
         const u = await UserModel.findById(userId)
         const userRole = u.role;
-        if (userRole === "admin"){
+        if (userRole !== "admin"){
         return {
           error: "You have no permission to perform this action",
         }}
