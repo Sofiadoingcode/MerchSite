@@ -6,6 +6,15 @@ function AdminOrderTab({ order, initialState, activeOrder, setActiveOrder }: { o
     const [expand, setExpand] = useState<number>(0)
     const [classes, setClasses] = useState<string>("admin_orders_collapsible")
 
+    const date: Date = new Date(order.orderTime*1);
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const seconds = date.getSeconds();
+    const formattedTime = year + ':' + month + ':' + day + '  ' + hours + ':' + minutes + ':' + seconds;
+
     function handleCollapsible(evt: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
         let content = evt.currentTarget.nextElementSibling
         if (expand === 0) {
@@ -35,7 +44,8 @@ function AdminOrderTab({ order, initialState, activeOrder, setActiveOrder }: { o
                 <Card>
                     <Typography className="admin_orders_content_text" typography={'h6'}>Order Info</Typography>
                     <Typography className="admin_orders_content_text" sx={{fontSize:14}}>ID: {order.id}</Typography>
-                    <Typography className="admin_orders_content_text" sx={{fontSize:14}}>Order Time: {order.orderTime}</Typography>
+                
+                    <Typography className="admin_orders_content_text" sx={{fontSize:14}}>Order Time: {formattedTime}</Typography>
                     <Typography className="admin_orders_content_text" sx={{fontSize:14}}>Total Price: {order.totalPrice}</Typography>
                 </Card>
                 <Grid container gap={2} className="admin_orders_content_grid">
