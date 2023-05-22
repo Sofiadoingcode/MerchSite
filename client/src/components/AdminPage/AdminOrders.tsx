@@ -24,8 +24,8 @@ function AdminOrders() {
     if (error) return <p>Error : {error.message}</p>;
 
     return (
-        <Grid container xs={9} gap={10} className="admin_orders_grid">
-            <Grid item xs={5}>
+        <Grid container gap={10} className="admin_orders_grid">
+            <Grid item >
                 <Card>
                     <CardContent className="admin_orders_title">
                         <Typography typography={'h4'}>Orders</Typography>
@@ -36,7 +36,7 @@ function AdminOrders() {
                     )}
                 </Card>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item >
                 <Card className="admin_orders_productlines">
                     <CardContent className="admin_orders_title">
                         <Typography typography={'h4'}>ProductLines</Typography>

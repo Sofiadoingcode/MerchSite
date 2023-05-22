@@ -35,6 +35,8 @@ query Query($ordersByUserId: ID) {
       username
       name
       id
+      phone
+      email
     }
   }
 }

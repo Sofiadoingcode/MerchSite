@@ -19,14 +19,14 @@ function AccountPage() {
         variables: {
             userId: user.id
         },
-        onCompleted: () => {
+        onCompleted: (data) => {
 
-            if (q.data.user.address != undefined) {
-                address.streetAddress = q.data.user.address.streetAddress;
-                address.city = q.data.user.address.city;
-                address.postalCode = q.data.user.address.postalCode;
-                address.country = q.data.user.address.country;
-                setAddress({...address, city: q.data.user.address.city})
+            if (data.user.address != undefined) {
+                address.streetAddress = data.user.address.streetAddress;
+                address.city = data.user.address.city;
+                address.postalCode = data.user.address.postalCode;
+                address.country = data.user.address.country;
+                setAddress({...address, city: data.user.address.city})
             }
         }
     });
