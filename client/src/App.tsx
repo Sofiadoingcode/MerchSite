@@ -8,7 +8,8 @@ import { usePageTitle } from './usePageTitle';
 import Footer from './components/Footer';
 import CartPage from './pages/CartPage';
 import ProductPage from './pages/ProductPage';
-import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
+import { ApolloClient, InMemoryCache, ApolloProvider, gql, createHttpLink } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context'
 import CheckOutPage from './pages/CheckOutPage';
 import { CartContextProvider, useCartContext } from './contexts/CartContext';
 import AdminPage from "./pages/AdminPage";
@@ -19,9 +20,22 @@ import { User } from './types';
 import { useUserContext } from './contexts/UserContext';
 import LogoutNav from './components/LogoutNav';
 
+const httpLink = createHttpLink({
+    uri: 'http://localhost:4001/graphql',
+});
+
+const authLink = setContext((_, { headers }) => {
+    const token = localStorage.getItem('token');
+    return {
+        headers: {
+            ...headers,
+            authorization: token ? `Bearer ${token}` : "",
+        }
+    }
+});
 
 const client = new ApolloClient({
-    uri: 'http://localhost:4001/graphql',
+    link: authLink.concat(httpLink),
     cache: new InMemoryCache(),
 });
 
@@ -47,7 +61,7 @@ function App() {
                             <>
                                 <Route path="/signup" element={<CreateAccountPage />}></Route>
                                 <Route path="/login" element={<Login />}></Route>
-                            </>:
+                            </> :
                             <Route path="/logout" element={<LogoutNav />}></Route>
                         }
                         <Route path="/account" element={<AccountPage />}></Route>

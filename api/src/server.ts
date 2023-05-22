@@ -17,12 +17,14 @@ import ProductLine from './resolvers/productLine';
 import Review from './resolvers/review';
 import User from './resolvers/user';
 const {json} = body_parser_pkg;
+import jwt from 'jsonwebtoken';
+import { JwtPayload } from 'jsonwebtoken';
 
 dotenv.config({path: './config.env'})
 
 interface MyContext {
-
-};
+    user: string | JwtPayload
+  }
 
 const resolvers = {
     Query,
@@ -34,6 +36,7 @@ const resolvers = {
     User
 };
 
+
 const app = express();
 
 const httpServer = http.createServer(app);
@@ -42,7 +45,7 @@ const server = new ApolloServer<MyContext>({
     typeDefs,
     resolvers,
     plugins: [ApolloServerPluginDrainHttpServer({httpServer})],
-});
+})
 
 await server.start();
 
@@ -51,7 +54,11 @@ app.use('/graphql',
     cors<cors.CorsRequest>(),
     json(),
     expressMiddleware(server, {
-            context: async () => ({})
+        context: async({req, res}) => {
+             const token = req.headers.authorization || ''
+             const user = await getUser(token)
+             return {user}
+            }
         },
     )
 );
@@ -68,3 +75,15 @@ const DB = process.env.DATABASE_DEV!.replace(
 );
 
 mongoose.connect(DB, {}).then(() => console.log('DB connection successful!'));
+
+const getUser = (token : string) => {
+    if (token) {
+      try {
+        token = token.split(' ')[1]
+        return jwt.verify(token, process.env.JWT_SECRET);
+      } catch (err) {
+        return { error: true, msg: "Session invalid" };
+      }
+    }
+  };
+  

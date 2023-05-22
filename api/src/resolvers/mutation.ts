@@ -34,7 +34,7 @@ export default {
         const user = await UserModel.findOne({username: userInput.username}).exec();
         if (!user) throw new Error('User not found');
 
-        const validPassword = await user.password === userInput.password;
+        const validPassword = user.password === userInput.password;
         if (!validPassword) throw new Error('Invalid password');
 
         const token = jwt.sign({username: user}, process.env.JWT_SECRET);

@@ -1,3 +1,4 @@
+import { JwtPayload } from 'jsonwebtoken';
 
 type Product = {
     id: string;
@@ -65,7 +66,7 @@ type Review = {
 }
 
 type Context = {
-    products: Product[];
+    user: JwtPayload
 };
 
 type Args = {
