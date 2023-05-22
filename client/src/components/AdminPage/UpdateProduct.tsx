@@ -56,11 +56,11 @@ const UpdateProduct = (props: { product: Product }) => {
 
     return (
         <>
-            <td><input type="string" name="name" defaultValue={props.product.name} onChange={handleInputChange}/></td>
+            <td><input style={{width: '95px'}} type="string" name="name" defaultValue={props.product.name} onChange={handleInputChange}/></td>
             <td><input type="string" name="image" defaultValue={props.product.image} onChange={handleInputChange}/></td>
             <td><input type="string" name="description" defaultValue={props.product.description} onChange={handleInputChange}/></td>
-            <td><input type="number" name="price" defaultValue={props.product.price} onChange={handleInputChange}/></td>
-            <td><input type="string" name="category" defaultValue={props.product.category.name} onChange={handleInputChange}/></td>
+            <td><input style={{width: '60px'}} type="number" name="price" defaultValue={props.product.price} onChange={handleInputChange}/></td>
+            <td><input style={{width: '80px'}} type="string" name="category" defaultValue={props.product.category.name} onChange={handleInputChange}/></td>
             <td><input type="string" name= "size" defaultValue={props.product.size} onChange={handleInputChange}/></td>
             <td><Button onClick={handleSubmit} variant="contained" disabled={loading}>
                 {loading ? "Updating..." : "Update Product"}

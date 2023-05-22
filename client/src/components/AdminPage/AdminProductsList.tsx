@@ -20,14 +20,14 @@ function AdminProductsList() {
 
 
 
-        <div>
+        <div style={{width: '75%'}}>
             <table>
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
                     <th>Image</th>
                     <th>Description</th>
-                    <th>Price</th>
+                    <th style={{width: '50%'}}>Price</th>
                     <th>Category</th>
                     <th>Size</th>
                     <th>Edit</th>

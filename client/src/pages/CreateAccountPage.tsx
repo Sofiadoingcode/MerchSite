@@ -7,43 +7,47 @@ import {NavLink, useNavigate} from "react-router-dom";
 import GqlCreateCustomer from "../resolvers/mutations/GqlCreateCustomer";
 import {User} from "../types";
 import GqlLogIn from "../resolvers/mutations/GqlLogIn";
-import { useUserDispatchContext } from '../contexts/UserContext';
+import {useUserDispatchContext} from '../contexts/UserContext';
 
 function CreateAccountPage() {
     const dispatch = useUserDispatchContext();
     const navigate = useNavigate();
     const [CreateCustomer, {loading, error}] = useMutation(GqlCreateCustomer);
-    const [mutateFunction, q] = useMutation(GqlLogIn, {
-    })
+    const [mutateFunction, q] = useMutation(GqlLogIn, {})
     const [userCredentials, setUserCredentials] = useState<User>(Object);
     const [feedback, setFeedback] = useState('');
 
     const createAccount = (evt: React.FormEvent<HTMLFormElement>) => {
         evt.preventDefault();
         CreateCustomer({variables: {userInput: userCredentials}})
-        .then((result)=>{
-            console.log(result)
-            mutateFunction({
-                variables: {
-                    userInput: {
-                        username: result.data.createCustomerAccount.username,
-                        password: result.data.createCustomerAccount.password,
-                    },
-                }
-            }).then((result) => {
-                dispatch({ type: 'added', user: result.data.login.user });
-                localStorage.setItem('token', result.data.login.token);
-                setFeedback('');
-                alert("Account created!\nYou will now be taken to your new account page!")
-                navigate("/account");
+            .then((result) => {
+                console.log(result)
+                mutateFunction({
+                    variables: {
+                        userInput: {
+                            username: result.data.createCustomerAccount.username,
+                            password: result.data.createCustomerAccount.password,
+                        },
+                    }
+                })
+                    .then((result) => {
+                        dispatch({type: 'added', user: result.data.login.user});
+                        localStorage.setItem('token', result.data.login.token);
+                        setFeedback('');
+                        alert("Account created!\nYou will now be taken to your new account page!")
+                        navigate("/account");
+
+                    })
+
 
             })
-            
-        })
 
-            .catch(() => {
-
+            .catch((error) => {
+                // console.log(error)
                 setFeedback('Incorrect Account Information')
+                if (error.message == "Duplicate username"){
+                    setFeedback('This username is already in use')
+                }
                 if (userCredentials.username.length < 4) {
                     setFeedback('Username must be at least 4 characters long')
                 }

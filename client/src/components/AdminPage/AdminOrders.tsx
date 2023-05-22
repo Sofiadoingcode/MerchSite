@@ -8,7 +8,7 @@ import ProductLineSummary from "../CheckOutPage/ProductLineSummary";
 
 function AdminOrders() {
     const initialState: OrderWithEverything = {
-        id: '', totalPrice: 0, orderTime: '',
+        id: '', totalPrice: 0, orderTime: 0,
         address: {id: '', country: '', city: '', postalCode: '', streetAddress: ''},
         user: {id: '', username: '', password: '', role: '', email: '', name: '', phone: ''},
         productLines: []
