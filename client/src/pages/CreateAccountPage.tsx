@@ -43,7 +43,7 @@ function CreateAccountPage() {
             })
 
             .catch((error) => {
-                console.log(error)
+                // console.log(error)
                 setFeedback('Incorrect Account Information')
                 if (error.message == "Duplicate username"){
                     setFeedback('This username is already in use')
