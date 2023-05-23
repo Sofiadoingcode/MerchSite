@@ -5,6 +5,7 @@ import { useMutation } from "@apollo/client"
 import GetReviewsByProduct from "../../resolvers/queries/GqlGetReviewsByProduct"
 import { useState } from "react"
 import { useUserContext } from "../../contexts/UserContext"
+import GetAllProducts from "../../resolvers/queries/GqlGetAllProducts"
 
 
 function ReviewInputBox({product, review, setReview}:{product:Product, review: Review, setReview:React.Dispatch<React.SetStateAction<Review>>}) {
@@ -12,7 +13,7 @@ function ReviewInputBox({product, review, setReview}:{product:Product, review: R
     const user: User = useUserContext()
     const [mutateFunction, {loading, error, data}] = useMutation(GqlCreateReview, {
         refetchQueries: [
-            GetReviewsByProduct
+            GetAllProducts
         ]
     })
     if (loading) return <p>Loading...</p>;
