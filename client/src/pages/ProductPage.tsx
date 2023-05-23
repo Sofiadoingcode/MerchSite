@@ -45,6 +45,10 @@ function ProductPage() {
 
 
     function handleAddToCartClick(item: Product, dispatch: React.Dispatch<any>) {
+        if (productLine.size == undefined || productLine.size.length > 0) {
+            productLine.size = product.size[0];
+        }
+
         productLine.product = product;
         productLine.amount = 1;
         productLine.lineprice = productLine.amount * product.price;
@@ -93,7 +97,7 @@ function ProductPage() {
                         <Grid item xs={6}>
                             <label htmlFor="size" style={{fontSize: '25px'}}>Size:</label>
                             <br/>
-                            <select id="size" name="size" onChange={handleChange}>
+                            <select id="size" name="size" onChange={handleChange} >
                                 <option value=''>Select Size</option>
                                 {product.size?.map((size)=>
                                     <option key={size} value={size}>{size}</option>

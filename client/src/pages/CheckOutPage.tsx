@@ -10,9 +10,10 @@ import PopUp from "../components/CheckOutPage/PopUp"
 import '../styles/productpage.css'
 import {useUserContext} from "../contexts/UserContext";
 import GetUser from '../resolvers/queries/GqlGetUser';
-
+import OrdersByUser from "../resolvers/queries/GqlOrdersByUser";
 
 function CheckOutPage() {
+
     const [order, setOrder] = useState<Order>(Object)
     const [address, setAddress] = useState<Address>(Object)
     const [userAddress, setUserAddress] = useState<Address>(Object);
@@ -20,20 +21,25 @@ function CheckOutPage() {
     const cart = useCartContext();
     const dispatch = useCartDispatchContext();
     const userId = useUserContext().id;
-    const [mutateFunction, {loading, error, data}] = useMutation(GqlCreateOrder, {})
+    const [mutateFunction, {loading, error, data}] = useMutation(GqlCreateOrder, {
+        refetchQueries: [{
+            query: OrdersByUser,
+            variables: {userId: userId}
+        }]
+    })
     const userData = useQuery(GetUser, {
         variables: {
             userId: userId
         },
-        onCompleted: (data)=> {
-           userAddress.city = data.user.address.city;
-           userAddress.country = data.user.address.country;
-           userAddress.postalCode = data.user.address.postalCode;
-           userAddress.streetAddress = data.user.address.streetAddress;
+        onCompleted: (data) => {
+            userAddress.city = data.user.address.city;
+            userAddress.country = data.user.address.country;
+            userAddress.postalCode = data.user.address.postalCode;
+            userAddress.streetAddress = data.user.address.streetAddress;
         }
-    
+
     });
-    
+
 
     let totalPrice: number = 0;
     useCartContext()?.map((item) => totalPrice += item.lineprice)
@@ -60,7 +66,7 @@ function CheckOutPage() {
     const handleSubmit = () => {
 
         order.totalPrice = totalPrice;
-        if (userId !=undefined){
+        if (userId != undefined) {
             order.userId = userId;
         }
         order.address = address;
@@ -94,7 +100,7 @@ function CheckOutPage() {
                         <h2>Delivery Address</h2>
                         <CreateAddress address={address} setAddress={setAddress}/>
                         <Button style={{height: '50px', width: '200px', margin: '10px'}} variant="contained"
-                                       onClick={handleSetAddress} >Set To Your Address</Button>
+                                onClick={handleSetAddress}>Set To Your Address</Button>
                     </Card>
                 </Grid>
                 <Grid item xs={6}>
