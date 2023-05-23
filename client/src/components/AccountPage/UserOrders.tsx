@@ -17,19 +17,14 @@ function UserOrders(props: { user: User }) {
         user: {id: '', username: '', password: '', role: '', email: '', name: '', phone: ''},
         productLines: []
     }
-    const [openPopUp, setOpenPopUp] = useState(false);
+
     const {loading, error, data} = useQuery(ordersByUser, {
         variables: {ordersByUserId: props.user.id},
     });
 
-    const [orders, setOrders] = useState<OrderWithEverything[]>([])
     const [activeOrder, setActiveOrder] = useState<OrderWithEverything>(initialState)
 
 
-
-    const handleSubmit = () => {
-        setOpenPopUp(true)
-    }
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
 
